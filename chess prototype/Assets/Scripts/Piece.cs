@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 public class Piece : MonoBehaviour 
 {
-	public Sprite sprWhite;
-	public Sprite sprBlack;
 	protected List<Cell> validCells;
 	protected List<Vector3> movementVectors;
 	public bool isWhite;

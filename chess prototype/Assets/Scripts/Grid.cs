@@ -22,7 +22,7 @@ public class Grid : MonoBehaviour
 		numOfColumns = 8;
 		numOfRows = 8;
 		numOfCells = numOfColumns*numOfRows;
-		distanceBetweenTiles = 1.00f;
+		distanceBetweenTiles = 1f;
 		grid = new GameObject[numOfColumns, numOfRows];
 		selectionX = -1;
 		selectionY = -1;
@@ -66,16 +66,24 @@ public class Grid : MonoBehaviour
 		// we want the piece to spawn at the center of its specified cell, so we call this function and store the data
 		Vector3 centeredPos = getCellCenter (cell);
 		GameObject newPiece = (GameObject)Instantiate (chessPiecePrefab[index], centeredPos, Quaternion.identity);
+		newPiece.transform.parent = cell.transform;
 		cell.GetComponent<Cell>().MyPiece = newPiece; 
 
 
 
 		// now we can set all the fields of our Piece
-		Piece pieceScript = cell.GetComponent<Cell>().MyPiece.GetComponent<Piece>();
-		pieceScript.isWhite = isWhite;
-		pieceScript.CurrentX = centeredPos.x;
-		pieceScript.CurrentY = centeredPos.y;
-		pieceScript.enabled = true;
+		if(newPiece.GetComponent<Piece>() != null)
+		{
+			Piece pieceScript = cell.GetComponent<Cell> ().MyPiece.GetComponent<Piece> ();
+			pieceScript.isWhite = isWhite;
+			pieceScript.CurrentX = centeredPos.x;
+			pieceScript.CurrentY = centeredPos.y;
+			pieceScript.enabled = true;
+		}
+		else
+		{
+			Debug.LogError("Error: the prefab at chessPiecePrefab["+index+"] does not contain a Piece script. Objects in this collection must have a Piece component.");
+		}
 	}
 	private Vector3 getCellCenter(GameObject cell)
 	{
@@ -94,7 +102,9 @@ public class Grid : MonoBehaviour
 		{
 			for (j = 0; j < numOfColumns; j++) 
 			{
+				// instantiate board cells, assign associated sprite
 				grid [i,j] = (GameObject)Instantiate (tilePrefab, new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), transform.rotation);
+				grid [i, j].transform.parent = transform;
 				currCells += 1;
 				if (i % 2 == 0)
 				{
@@ -111,31 +121,60 @@ public class Grid : MonoBehaviour
 				{
 					if (currCells % 2 == 0) 
 					{
-						grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("  wood_tile");
+						grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("wood_tile");
 					} 
 					else 
 					{
 						grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("vanilla_tile");
 					}
 				}
-
-				if (i == 1)
-					InstantiateChessPiece (0, grid [i, j], false);
-				else if (i == 6) {
-					InstantiateChessPiece (0, grid [i, j], true);
+				// create chess pieces and set their initial position
+				switch (i) 
+				{
+				case 0:
+					if (j == 0 || j == 7)
+						InstantiateChessPiece (1, grid [i, j], false);
+					else if (j == 1 || j == 6)
+						InstantiateChessPiece (2, grid [i, j], false);
+					else if (j == 2 || j == 5)
+						InstantiateChessPiece (3, grid [i, j], false);
+					else if (j == 4)
+						InstantiateChessPiece (4, grid [i, j], false);
+					else
+						InstantiateChessPiece (5, grid [i, j], false);
+					break;
+					case 1:
+						InstantiateChessPiece (0, grid [i, j], false);
+						break;
+					case 6:
+						InstantiateChessPiece (0, grid [i, j], true);
+						break;
+				case 7:
+					if (j == 0 || j == 7)
+						InstantiateChessPiece (1, grid [i, j], true);
+					else if (j == 1 || j == 6)
+						InstantiateChessPiece (2, grid [i, j], true);
+					else if (j == 2 || j == 5)
+						InstantiateChessPiece (3, grid [i, j], true);
+					else if (j == 4)
+						InstantiateChessPiece (4, grid [i, j], true);
+					else
+						InstantiateChessPiece (5, grid [i, j], true);
+					break;
 				}
-
-				xOffset += distanceBetweenTiles;			  
+				xOffset += distanceBetweenTiles;
 			}
 			yOffset += distanceBetweenTiles;
 			xOffset = 0;
 		}
+
 	}
+
 	// draws a diagonal red line over a cell whenever the mouse cursor is hovering over it
 	private void drawSelected()
 	{
 		Debug.DrawLine (Vector3.up*selectionY + Vector3.right*selectionX,
-						Vector3.up*(selectionY+1) + Vector3.right*(selectionX+1),
+						Vector3.up*(selectionY+1f) + Vector3.right*(selectionX+1f),
 						Color.red);
 	}
 	// updates all of the moves a piece is allowed to make given the piece's position and the set of rules it must conform to given convential chess rules

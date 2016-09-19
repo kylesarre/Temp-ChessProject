@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 public class Pawn : Piece
 {
 	public PawnState currentState;
@@ -18,21 +17,18 @@ public class Pawn : Piece
 	// Use this for initialization
 	void Start () 
 	{
-		
 		//Debug.Log (IsWhite);
 		base.Do_Init();
-		Debug.Log (isWhite);
+		Sprite temp = null;
 		if (!isWhite) 
 		{
-			Debug.Log ("Inside the black block");
-			movementVectors.Add (new Vector3 (1, 0, 0));
-			gameObject.GetComponent<SpriteRenderer> ().sprite = sprBlack;
+			movementVectors.Add (new Vector3 (0, 1, 0));
+			gameObject.GetComponent<SpriteRenderer> ().sprite = GetComponentInParent<SpriteDictionary> ().SpriteDict["spr_chess_pieces_0"];
 		} 
 		if(isWhite)
 		{
-			Debug.Log ("Inside the white block");
-			movementVectors.Add (new Vector3 (-1, 0, 0));
-			gameObject.GetComponent<SpriteRenderer> ().sprite = sprWhite;
+			movementVectors.Add (new Vector3 (0, -1, 0));
+			gameObject.GetComponent<SpriteRenderer> ().sprite	= GetComponentInParent<SpriteDictionary>().SpriteDict["spr_chess_pieces_6"];
 		}
 	}
 	
