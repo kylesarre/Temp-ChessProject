@@ -58,18 +58,16 @@ public class Grid : MonoBehaviour
 		}
 	}
 	// instantiates the specified chess piece prefab at the specified location
-	// indexes: 0 [Pawn], 1[Knight], 2[Rook], 3[Bishop], 4[Queen], 5[King]
+	// indexes: 0 [Pawn], 1[rook], 2[knight], 3[Bishop], 4[Queen], 5[King]
 	// location: the cell where the Piece resides
 	// isWhite: true whenever the piece is for player White, false when the piece is for player Black
-	private void InstantiateChessPiece(int index, GameObject cell, bool isWhite)
+	private void InstantiateChessPiece(int index, GameObject cell, int i, int j, bool isWhite)
 	{
 		// we want the piece to spawn at the center of its specified cell, so we call this function and store the data
 		Vector3 centeredPos = getCellCenter (cell);
 		GameObject newPiece = (GameObject)Instantiate (chessPiecePrefab[index], centeredPos, Quaternion.identity);
 		newPiece.transform.parent = cell.transform;
 		cell.GetComponent<Cell>().MyPiece = newPiece; 
-
-
 
 		// now we can set all the fields of our Piece
 		if(newPiece.GetComponent<Piece>() != null)
@@ -105,6 +103,7 @@ public class Grid : MonoBehaviour
 				// instantiate board cells, assign associated sprite
 				grid [i,j] = (GameObject)Instantiate (tilePrefab, new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), transform.rotation);
 				grid [i, j].transform.parent = transform;
+				grid [i, j].name = (char)('a' + j) + "" + (i+1);
 				currCells += 1;
 				if (i % 2 == 0)
 				{
@@ -133,33 +132,33 @@ public class Grid : MonoBehaviour
 				{
 				case 0:
 					if (j == 0 || j == 7)
-						InstantiateChessPiece (1, grid [i, j], false);
+						InstantiateChessPiece (1, grid [i, j],i,j, false);
 					else if (j == 1 || j == 6)
-						InstantiateChessPiece (2, grid [i, j], false);
+						InstantiateChessPiece (2, grid [i, j],i,j, false);
 					else if (j == 2 || j == 5)
-						InstantiateChessPiece (3, grid [i, j], false);
+						InstantiateChessPiece (3, grid [i, j],i,j, false);
 					else if (j == 4)
-						InstantiateChessPiece (4, grid [i, j], false);
+						InstantiateChessPiece (4, grid [i, j],i,j, false);
 					else
-						InstantiateChessPiece (5, grid [i, j], false);
+						InstantiateChessPiece (5, grid [i, j],i,j, false);
 					break;
 					case 1:
-						InstantiateChessPiece (0, grid [i, j], false);
+						InstantiateChessPiece (0, grid [i, j],i,j, false);
 						break;
 					case 6:
-						InstantiateChessPiece (0, grid [i, j], true);
+						InstantiateChessPiece (0, grid [i, j],i,j, true);
 						break;
 				case 7:
 					if (j == 0 || j == 7)
-						InstantiateChessPiece (1, grid [i, j], true);
+						InstantiateChessPiece (1, grid [i, j],i,j, true);
 					else if (j == 1 || j == 6)
-						InstantiateChessPiece (2, grid [i, j], true);
+						InstantiateChessPiece (2, grid [i, j],i,j, true);
 					else if (j == 2 || j == 5)
-						InstantiateChessPiece (3, grid [i, j], true);
+						InstantiateChessPiece (3, grid [i, j],i,j, true);
 					else if (j == 4)
-						InstantiateChessPiece (4, grid [i, j], true);
+						InstantiateChessPiece (4, grid [i, j],i,j, true);
 					else
-						InstantiateChessPiece (5, grid [i, j], true);
+						InstantiateChessPiece (5, grid [i, j],i,j, true);
 					break;
 				}
 				xOffset += distanceBetweenTiles;

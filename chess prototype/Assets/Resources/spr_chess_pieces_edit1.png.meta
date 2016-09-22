@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 9e580e929dc97fc44ba35336a70837a5
-timeCreated: 1474312056
+guid: 7506514d5d6e3e740824b919927a2db6
+timeCreated: 1474516558
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: spr_chess_pieces_0
-    21300002: spr_chess_pieces_1
-    21300004: spr_chess_pieces_2
-    21300006: spr_chess_pieces_3
-    21300008: spr_chess_pieces_4
-    21300010: spr_chess_pieces_5
-    21300012: spr_chess_pieces_6
-    21300014: spr_chess_pieces_7
-    21300016: spr_chess_pieces_8
-    21300018: spr_chess_pieces_9
-    21300020: spr_chess_pieces_10
-    21300022: spr_chess_pieces_11
+    21300000: spr_chess_pieces_edit1_0
+    21300002: spr_chess_pieces_edit1_1
+    21300004: spr_chess_pieces_edit1_2
+    21300006: spr_chess_pieces_edit1_3
+    21300008: spr_chess_pieces_edit1_4
+    21300010: spr_chess_pieces_edit1_5
+    21300012: spr_chess_pieces_edit1_6
+    21300014: spr_chess_pieces_edit1_7
+    21300016: spr_chess_pieces_edit1_8
+    21300018: spr_chess_pieces_edit1_9
+    21300020: spr_chess_pieces_edit1_10
+    21300022: spr_chess_pieces_edit1_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -39,9 +39,9 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 256
+  maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: -1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -62,7 +62,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: spr_chess_pieces_0
+    - name: spr_chess_pieces_edit1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -81,7 +81,7 @@ TextureImporter:
         - {x: 9, y: -13}
         - {x: 9, y: 11}
         - {x: 4, y: 13}
-    - name: spr_chess_pieces_1
+    - name: spr_chess_pieces_edit1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -92,13 +92,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -11, y: 16}
-        - {x: -15, y: -4}
-        - {x: -15, y: -16}
+      - - {x: -15, y: -16}
         - {x: 15, y: -16}
-        - {x: 15, y: -1}
-        - {x: 9, y: 16}
-    - name: spr_chess_pieces_2
+        - {x: 15, y: -3}
+        - {x: 10, y: 15}
+        - {x: 8, y: 16}
+        - {x: -12, y: 16}
+        - {x: -15, y: 9}
+    - name: spr_chess_pieces_edit1_2
       rect:
         serializedVersion: 2
         x: 64
@@ -117,7 +118,7 @@ TextureImporter:
         - {x: 16, y: -16}
         - {x: 16, y: -11}
         - {x: 13, y: -8}
-    - name: spr_chess_pieces_3
+    - name: spr_chess_pieces_edit1_3
       rect:
         serializedVersion: 2
         x: 96
@@ -137,7 +138,7 @@ TextureImporter:
         - {x: 14, y: -16}
         - {x: 15, y: -15}
         - {x: 15, y: 2}
-    - name: spr_chess_pieces_4
+    - name: spr_chess_pieces_edit1_4
       rect:
         serializedVersion: 2
         x: 128
@@ -154,7 +155,7 @@ TextureImporter:
         - {x: 15, y: -16}
         - {x: 15, y: 9}
         - {x: 13, y: 16}
-    - name: spr_chess_pieces_5
+    - name: spr_chess_pieces_edit1_5
       rect:
         serializedVersion: 2
         x: 160
@@ -171,7 +172,7 @@ TextureImporter:
         - {x: 12, y: 16}
         - {x: -13, y: 16}
         - {x: -15, y: 12}
-    - name: spr_chess_pieces_6
+    - name: spr_chess_pieces_edit1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -190,7 +191,7 @@ TextureImporter:
         - {x: 10, y: -12}
         - {x: 10, y: 12}
         - {x: 5, y: 14}
-    - name: spr_chess_pieces_7
+    - name: spr_chess_pieces_edit1_7
       rect:
         serializedVersion: 2
         x: 32
@@ -201,13 +202,14 @@ TextureImporter:
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -11, y: 16}
-        - {x: -15, y: -4}
-        - {x: -15, y: -16}
+      - - {x: -15, y: -16}
         - {x: 15, y: -16}
-        - {x: 15, y: -1}
-        - {x: 9, y: 16}
-    - name: spr_chess_pieces_8
+        - {x: 15, y: -3}
+        - {x: 10, y: 15}
+        - {x: 8, y: 16}
+        - {x: -12, y: 16}
+        - {x: -15, y: 9}
+    - name: spr_chess_pieces_edit1_8
       rect:
         serializedVersion: 2
         x: 64
@@ -226,7 +228,7 @@ TextureImporter:
         - {x: 15, y: -16}
         - {x: 15, y: -11}
         - {x: 12, y: -8}
-    - name: spr_chess_pieces_9
+    - name: spr_chess_pieces_edit1_9
       rect:
         serializedVersion: 2
         x: 96
@@ -246,7 +248,7 @@ TextureImporter:
         - {x: 14, y: -16}
         - {x: 15, y: -15}
         - {x: 15, y: 2}
-    - name: spr_chess_pieces_10
+    - name: spr_chess_pieces_edit1_10
       rect:
         serializedVersion: 2
         x: 128
@@ -263,7 +265,7 @@ TextureImporter:
         - {x: 15, y: -16}
         - {x: 15, y: 9}
         - {x: 13, y: 16}
-    - name: spr_chess_pieces_11
+    - name: spr_chess_pieces_edit1_11
       rect:
         serializedVersion: 2
         x: 160
