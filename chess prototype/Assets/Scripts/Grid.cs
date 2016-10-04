@@ -109,7 +109,7 @@ public class Grid : MonoBehaviour
 				{
 					if (currCells % 2 == 0) 
 					{
-						grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("vanilla_tile");
+						grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("vanilla_tile_edit1");
 					} 
 					else 
 					{
@@ -124,7 +124,7 @@ public class Grid : MonoBehaviour
 					} 
 					else 
 					{
-						grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("vanilla_tile");
+						grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("vanilla_tile_edit1");
 					}
 				}
 				// create chess pieces and set their initial position

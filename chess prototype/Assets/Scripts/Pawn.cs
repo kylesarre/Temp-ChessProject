@@ -2,15 +2,12 @@
 using System.Collections;
 public class Pawn : Piece
 {
-	public PawnState currentState;
-	public enum PawnState
-	{
-		NeverMoved, Moved
-	}
+	
+	public bool hasMoved;
 	// awake occurs before start
 	void Awake()
 	{		
-		currentState = PawnState.NeverMoved;
+		hasMoved = false;
 		// ensures that we can set this Piece's isWhite field before trying to access it Do_Init()
 		enabled = false;
 	}

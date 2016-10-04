@@ -1,0 +1,26 @@
+check rule:
+If the opposing player has a piece that can move onto the king's position, the player is in check.
+
+STATE: Check
+Whenever the player is in check, if a movement of a piece does not remove check, then that piece cannot make such a move.
+
+Algorithm for Check and Check Mate:
+if player state is CHECK
+store the piece that put the player in check
+create a virtual copy of the current array for each move the piece can make.
+play out the move on the corresponding copy of the board.
+store the cell the piece moved to.
+recalculate from the copy array the the opposing piece's valid moves to see if the move that put the king in check is still valid.
+If the  opposing piece's move is still valid, the selected cell that led to this calculation is invalid, so delete it from the list of valid moves for our player.
+If the opposing piece's move is now invalid, the selected cell is valid for movement.
+
+If we apply this algorithm to all of the player's pieces, we will have a list of ALL possible moves that can be made to protect the player's king (which is what we would want under check conditions).
+If the list of ALL possible moves is empty... 
+Then player has no moves left (Eureka!) and his state is now CHECK MATE.
+
+REQUIREMENTS for this algorithm:
+Player States
+List of pieces in play
+Selectable pieces
+Mostly implemented movement logic (Excluding Check and Check Mate logic of course)
+List of move simulations (requires list of valid cells a given piece can move to)
