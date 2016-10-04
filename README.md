@@ -28,7 +28,7 @@ todo
 
 ## Meeting Summary
 **Date**: 09-21-16</br>
-**Purpose**: Setting up source control for team members, setting up Unity and updating to the latest version for team members, discussion of game ideas
+**Purpose**: Setting up source control for team members, setting up Unity and updating to the latest version for team members, discussion of game ideas</br>
 **Members in attendance**: Robert Anderson, Kyle Sarre, Hannah Cunningham, Julian Plaisance, Gabrielle Davis</br>
 **Goals met**: Source control, Unity set up for all group members, discussed ideas that would distinguish our game from others.</br>
 
@@ -40,4 +40,4 @@ todo
 **Date**: 10/4/2016</br>
 **Purpose**: Brief requirements analysis, class diagramming.</br>
 **Members in attendance**: Robert Anderson, Kyle Sarre</br>
-**Goals met**: finished brief requirements analysis, rough draft class diagram for iteration 1 of the project.
+**Goals met**: finished brief requirements analysis, rough draft class diagram for iteration 1 of the project.</br>
