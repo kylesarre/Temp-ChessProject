@@ -64,7 +64,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.9921875
+  orthographic size: 4.984375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -114,12 +114,12 @@ MonoBehaviour:
   retroSnap: 0
   assetsPixelsPerUnit: 32
   showHUD: 0
-  cameraSize: {x: 8.9375, y: 4.9921875}
+  cameraSize: {x: 5.875, y: 4.984375}
   contraintUsed: 0
   cameraPixelsPerUnit: 64
   ratio: 2
-  nativeAssetResolution: {x: 572, y: 319.5}
-  fovCoverage: 0.71316963
+  nativeAssetResolution: {x: 376, y: 319}
+  fovCoverage: 0.7120536
 --- !u!124 &124000012873939032
 Behaviour:
   m_ObjectHideFlags: 1

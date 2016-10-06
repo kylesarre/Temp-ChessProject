@@ -11,6 +11,8 @@ GameObject:
   - 212: {fileID: 21239298}
   - 114: {fileID: 11475182}
   - 114: {fileID: 11469086}
+  - 114: {fileID: 114000011595903182}
+  - 61: {fileID: 61000012464438682}
   m_Layer: 9
   m_Name: obj_knight
   m_TagString: Untagged
@@ -110,3 +112,28 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124404}
   m_IsPrefabParent: 1
+--- !u!61 &61000012464438682
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124404}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+--- !u!114 &114000011595903182
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c716a4967497b1d48a3f1da1f207c1f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
