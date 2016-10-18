@@ -34,27 +34,23 @@ The following key functions to be included in this system are:
 * allow the user to save and load a game
 * allow a user to forfeit a game whenever they choose
 * provide convenient gui elements to help inform the player of what is occurring on screen and to give them limited control of the game
+
 ## 2.3 User Classes and Characteristics
 There is only one user class relevant in this version of the system: the end user(s). The end user(s) will use our system to play the game "Ultimate Chess". They will
 expect a software that simulates a consistent reimagining of classic chess, one in which they can navigate  and control with relatively little hastle. Thus,
 all of the features to be included in this iteration of our system will be dedicated to serving the end user(s).
 ## 2.4 Operating  Environment
-As of the most current version, The system shall operate on desktop and laptop computers, on the windows 7 platform and above. The entire system is to be designed
-and built using the Unity game engine.
+As of the most current version, The system shall operate on desktop and laptop computers, on the windows 7 platform and above. The entire system is to be designed and built using the Unity game engine.
 ## 2.5 Design and Implementation Constraints
-* language requirement - Our system utilizes the Unity game engine to avoid the hastles of low level problems (memory management, rendering to screen, sound, etc); however, this
-decision limits the developers of this project to the languages supported by the Unity API: C#, and Javascript. To conform with Unity requirements, Our team has elected to use C# for the implementation
-of this project.
-* hardware requirements - This system is designed under the assumption that the user is running our software with a PC running windows 7 or higher. 
-Hence, we expect users to meet the bare minimum requirements necessary to run their operating system on their machine according to microsoft's corresponding hardware
-specifications. 
+* language requirement - Our system utilizes the Unity game engine to avoid the hastles of low level problems (memory management, rendering to screen, sound, etc); however, this decision limits the developers of this project to the languages supported by the Unity API: C#, and Javascript. To conform with Unity requirements, Our team has elected to use C# for the implementation of this project.
+* hardware requirements - This system is designed under the assumption that the user is running our software with a PC running windows 7 or higher. Hence, we expect users to meet the bare minimum requirements necessary to run their operating system on their machine according to microsoft's corresponding hardware specifications. 
 ## 2.6 User Documentation
 The software will include a tutorial for general gameplaying and maneuvering of the system, which will be accessible from the main menu. 
 ## 2.7 Assumptions and Dependencies
 The following is a list of assumptions to be made during development:
 
-*Correctness of Unity Libraries - We assume during the development of the system that the C# libraries covered in the Unity handbook function as stated.
-*Users are running the software in its intended environment - We assume that the user will attempt to run the program in the environment for which it was designed, namely on a PC running Windows 7 or higher.
+* Correctness of Unity Libraries - We assume during the development of the system that the C# libraries covered in the Unity handbook function as stated.
+* Users are running the software in its intended environment - We assume that the user will attempt to run the program in the environment for which it was designed, namely on a PC running Windows 7 or higher.
 # 3.0 External Interfaces
 ## 3.1 User Interface
 List of user interface components: main menu, control menu, options box, save box, load box, game menu, game over box.
