@@ -22,8 +22,8 @@ perform new moves or maneuvers with their pieces. We intend for "Extreme Chess" 
 and allow for more personalization of gameplay and strategy, while reducing the effectiveness of years of practicing in the original chess ruleset. 
 Hence, "Extreme Chess" should be designed with the intent of making chess a more approachable, replayable, and fun experience for novices and experts alike.     	 
 ## 1.5 References
-General chess information: https://en.wikipedia.org/wiki/Rules_of_chess
-FIDE handbook: https://www.fide.com/fide/handbook.html
+* General chess information: https://en.wikipedia.org/wiki/Rules_of_chess
+* FIDE handbook: https://www.fide.com/fide/handbook.html
 # 2.0 Overall Description
 ## 2.1 Product Perspective
 "Extreme Chess" is a game app developed in Unity. It will allow users to play the game of Extreme Chess in a fun and convenient environment by utilizing the collection of key functions intended for this system.
