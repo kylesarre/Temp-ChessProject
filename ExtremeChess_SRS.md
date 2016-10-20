@@ -54,3 +54,48 @@ The following is a list of assumptions to be made during development:
 # 3.0 External Interfaces
 ## 3.1 User Interface
 List of user interface components: main menu, control menu, options box, save box, load box, game menu, game over box.
+
+# 4.0 System Features
+## 4.1 Main Menu Screen
+* The Main Menu shall be immediately rendered upon game startup
+* The Main Menu shall consist of the title of the game, centered across the top of the screen, and the following clickable options: New Game, Load Game, Rules, Options, and Quit.
+  * New Game: Upon selecting this option, the system will begin the process of creating a new game, as detailed in section 4.2.
+  * Load Game: Upon selecting this option, the system will display a list of previously saved games, allowing the player to continue a previous game.
+  * Rules: Upon selecting this option, the system will display a screen detailing the basic rules of chess, and the rules regarding the modifications of this program's chess variant.
+  * Options: Upon selecting this option, the system will display a list of game options the user can modify. The user will be able to modify graphics settings, the default level of ability energy at game start, and the energy gain rate per turn.
+  * Exit: Upon selecting this option, the application will terminate.
+
+## 4.2 Creating a New Game
+* Upon selecting “New Game,” the application will prompt Player 1 to enter their display name. Player 1 is the player associated with the white pieces (from here on referred to as “White”). The name entered will be displayed on the move history log on the gameplay screen above the player’s moves. After the name is entered, Player 2 will be prompted for the same process. Player 2 represents the player associated with the black pieces (from here on referred to as “Black”).
+
+* After confirming the player names, the game will display the ability selection screen. This screen will display a list of all available special abilities, including their names, a description of their effects, and their energy costs. The game first prompts Player 1 to choose their ability setup.
+
+* The player will select exactly five of these abilities. The abilities’ entries will be highlighted upon selection. By selecting an already-highlighted ability, the ability will be deselected and the highlight will be removed. When the player has selected five abilities, a button will appear allowing them to confirm their choices. The process will be displayed again for Player 2.
+
+* When both players have completed their selections, the game screen will be displayed. The application shall render 64 colored squares in an 8 x 8 grid, in the layout of a chessboard as described by the conventions of the FIDE (Fédération Internationale des Échecs, or World Chess Federation) handbook, section E.01 – The Laws of Chess. The board grid will be aligned left-of-center of the screen. Icons representing each player’s ability selections will be displayed above or below the board, dependent on each player’s side of the board and the current active turn.
+
+* Aligned to the right of the screen shall be a table representing the movement history. The table will be partitioned into two halves, with the left half displaying the player name and piece color of White on the top row, and the right half displaying the same for Black.
+
+* At game setup, the application shall render icons representing the game pieces on the game board, with the black chess pieces starting at the top of the board, and the white pieces on the bottom. The pieces’ initial starting positions shall conform to the standards set out in the FIDE handbook.
+
+* The first turn of the game loop then begins, starting with White.
+
+## 4.3 Main Game Loop
+* The game loop shall be separated into turns, alternating between each player. During each player’s turn, the active player has several options: Move a piece, activate an ability, or access options.
+
+* Move a piece:
+  * To move a piece, the player shall click on a piece belonging to their color. When this is done, any available valid moves for that piece will have their destination squares highlighted green. Clicking on a valid destination square moves the piece to that square, checks to see if victory conditions are met, then ends the turn. If an opponent’s piece is on a valid square of capture/movement, moving the piece onto that square will capture the piece, removing it from the game. A piece’s valid moves/captures shall correspond to the Laws of Chess as laid out in the FIDE Handbook, unless altered by a previously activated ability. If an activated ability would allow the opponent’s King to be immediately captured, that move is disallowed.
+
+* Activate an ability:
+  * To activate an ability, the player shall click on the icon representing that ability on their ability display bar. This shall bring up a text box containing a description of the ability’s effects, the ability’s energy cost, and two buttons to activate or cancel the ability’s use. If the player lacks the required energy to activate the ability, the button that confirms the ability’s activation will be grayed out and unselectable. If the player activates the ability, the energy cost will be deducted from their energy display, and the valid moves of the pieces will be altered accordingly.
+
+* Access options:
+  * This brings up an options menu which allows the player to offer a draw, which, if accepted, ends the game in a draw, accept a draw offer, if offered on the previous turn, save the game state, allowing the game to be stopped and resumed at a later date, and quit the game, returning to the main menu.
+
+* At end of turn:
+  * Upon the end of a turn, the move the player made during the turn is recorded in the movement history table, numbered by the turn number, and displayed conforming to standard algebraic notation as dictated by the FIDE handbook. The next turn then begins for the player of the opposite color.
+
+* End-of-game conditions:
+  * At the end of each turn, the game will check if victory conditions have been met. If victory (or draw) conditions are met, the game will end, and display the text, “Game Over - <playerName> wins!” or, in the event of a draw, “Game Over – Draw!” The victory condition is to force Checkmate.
+  * Checkmate occurs when a player places their opponent in Check, and the opponent has no valid moves that would result in that player no longer being in Check. Check is achieved when, following a move, the opponent’s king is in a square in which a friendly piece can make a valid capture. Check and checkmate are considered at the end of a turn, and only based on standard Chess moves. A piece with its valid moves altered by an ability cannot immediately force check with those altered moves (that is, capture the opponent’s King without a chance for the opponent to respond), though a piece with altered moves can use said moves to achieve a position which then results in check or checkmate under standard rules.
+  * A draw occurs under several circumstances: First, if a player whose turn is active is not in check, but has no valid moves that would not result in that player being in check, the game is a draw. Second, if the same pattern of either two or three moves repeats three times in a row, the game is drawn. Third, a game is drawn after 75 moves without a victory (a checkmate on the 75th move overrules this). Finally, a game is drawn if each player agrees to it on their turns.
