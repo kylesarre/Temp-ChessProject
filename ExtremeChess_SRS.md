@@ -90,8 +90,7 @@ User clicks the quit button| The system terminates
 User clicks the New Game button | The system 
 
 ## 4.1.3 Nonfunctional Requirements
-The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
-Saving a game should take no longer than 1 second. Loading a game should take no more than 10 seconds.
+
 ## 4.2 Creating a New Game
 * Upon selecting “New Game,” the application will prompt Player 1 to enter their display name. Player 1 is the player associated with the white pieces (from here on referred to as “White”). The name entered will be displayed on the move history log on the gameplay screen above the player’s moves. After the name is entered, Player 2 will be prompted for the same process. Player 2 represents the player associated with the black pieces (from here on referred to as “Black”).
 
@@ -118,9 +117,6 @@ User1 confirms their selection||System updates the upgrade list of user1
 ||User 2 selects five upgrades|System updates the upgrade list of user2
 ||User2 confirms their selection|
 |||System begins the game
-
-## 4.2.4 Nonfunctional Requirements
-The system should take no longer than .2 seconds to respond to a given users complete input (excluding when the system must build the game).
 
 ## 4.3.0 Taking Turns (Main Game Loop)
 
@@ -160,6 +156,9 @@ Player selects a piece | System highlights the cell yellow, highlights all movab
 Player selects an upgrade from the list | System updates the functionality of the piece to what is specified by the user's selection.
 Player selects a cell to move | System checks if the move is a valid one. If true, the system moves the piece to the specified cell.
 |						|System transitions to the next players turn.
-## 4.3.3 Nonfunctional Requirements
-The system should be able to carry out a move specified by the player in less than .5 seconds. The system should allow less than 2 seconds to transition from one turn to the next
-(to give time for any animations that need to be played during this transitionary period)
+
+# 5.0 Nonfunctional Requirements
+
+* The system should be able to carry out a move specified by the player in less than .5 seconds. The system should allow less than 2 seconds to transition from one turn to the next, to give time for any animations that need to be played during this transitionary period.
+* The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
+* Saving a game should take no longer than 1 second. Loading a game should take no more than 10 seconds.
