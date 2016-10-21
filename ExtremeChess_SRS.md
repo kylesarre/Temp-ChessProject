@@ -76,7 +76,7 @@ __Quit Dialog Box__ – accessed when clicking the Quit button in the Game Dialo
 
 __Game Over Screen__ – accessed when a game is forfeited, checkmate is reached, or a stalemate occurs. The screen displays the names of the players as well as who won and who lost, unless a stalemate was reached: then it displays that there was no winner. A confirm button appears which redirects the player back to the Title Screen. 
 
-## 3.2 Hardware interfaces
+## 3.2 Hardware Interfaces
 The software in question is compatible only with PC and requires access to a monitor, keyboard, and mouse. The monitor displays the user interface, allowing the user to view the game and make decisions based on the current position of chess pieces. The keyboard is used to enter the names of players upon starting a new game in order to make saved games easier to track and allow a name to be displayed on the turn of the current player. The mouse is the primary hardware component by which a user may navigate the screen, clicking to select various buttons as well as chess pieces and their intended destinations on the board. 
 ## 3.3 Software Interfaces
 The Windows Operating System is necessary in order to compile and interpret the code to run Extreme Chess. 
@@ -160,9 +160,9 @@ __Checkmate:__ signals the end of the game; occurs when a king is threatened and
 
 __Castling:__ a special move in standard chess-the only one that allows two pieces to be moved at the same time. If the back line of a player’s side is clear of game pieces between one of their rooks and their king, neither of those pieces have moved in the game yet, and the king is not in check, a player may move their king over one space towards the rook, move the rook next to the king, and then swap the position of the two pieces.
 
-__Power-Ups:__ special bonuses purchased with Energy in Extreme Chess; allows the normal rules of chess to be bent for more a more Extreme gameplay experience
+__Power-Ups:__ special bonuses purchased with Energy in Extreme Chess; allows the normal rules of chess to be bent for more a more Extreme gameplay experience.
 
-__Energy:__ currency acquired during the gameplay of Extreme Chess at the rate per turn determined at game start; used to purchase power-ups 
+__Energy:__ currency acquired during the gameplay of Extreme Chess at the rate per turn determined at game start; used to purchase power-ups. 
 
 
 # Appendix B: Analysis Models
