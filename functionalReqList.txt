@@ -1,0 +1,36 @@
+What we have:
+
+Functional Req.
+1. GUI:
+	Main Menu <- new game button brings us to 2
+2. Game Start 
+	Player 1,2 are assigned their colors
+	Player 1 selects upgrades
+	Player 2 selects upgrade	
+	Game Begins, starting with player 1
+3. Game Round Outlook:
+	Two Turns
+	Activate an Upgrade	
+	Access Options
+`	End of turn	
+	Move History
+	Game-ending Conditions (check mate, draw, forfeit, new game)	
+	Game End
+	
+What we need:
+1. Main Menu:
+	Loading
+	Saving
+	Exiting
+	Adjustable Game Settings
+
+2. Ingame Menu:
+	New Game (button)
+	Forfeit
+	Loading
+	Saving
+	Exiting
+	Adjustable Game Settings
+3. Game Round Outlook:
+	Piece Movement (castling, Taking pieces, el paissante, pawn advancement, check mate, check)
+	Promote a pawn

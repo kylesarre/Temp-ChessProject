@@ -1,4 +1,4 @@
-# 0.0 Table of Contents
+﻿# 0.0 Table of Contents
 
 # 1.0 Introduction
 ## 1.1 Purpose
@@ -25,17 +25,22 @@ Hence, "Extreme Chess" should be designed with the intent of making chess a more
 
 * General chess information: https://en.wikipedia.org/wiki/Rules_of_chess
 * FIDE handbook: https://www.fide.com/fide/handbook.html
+* Unity manual: https://docs.unity3d.com/Manual/index.html
+* Unity Scripting API: https://docs.unity3d.com/ScriptReference/index.html
 # 2.0 Overall Description
 ## 2.1 Product Perspective
 "Extreme Chess" is a game app developed in Unity. It will allow users to play the game of Extreme Chess in a fun and convenient environment by utilizing the collection of key functions intended for this system.
 ## 2.2 Key Functions
 The following key functions to be included in this system are:
 
-* the ability for two players to play against one another at a game of Extreme chess
+* the ability for two players to play against one another at a game of Extreme chess:
+	* players can move a piece
+	* players can select upgrades for the game
+	* players can use upgrades to enhance the functionality of their pieces
 * allowing the user to adjust the volume of the game
-* allow the user to save and load a game
-* allow a user to forfeit a game whenever they choose
-* provide convenient gui elements to help inform the player of what is occurring on screen and to give them limited control of the game
+* allowing the user to save and load a game
+* allowing a user to forfeit a game whenever they choose
+* a gui layer to help interface the end user with the system (helps wrap the system features into a more cohesive, easy to understand package)
 
 ## 2.3 User Classes and Characteristics
 There is only one user class relevant in this version of the system: the end user(s). The end user(s) will use our system to play the game "Ultimate Chess". They will
@@ -54,8 +59,18 @@ The following is a list of assumptions to be made during development:
 * Correctness of Unity Libraries - We assume during the development of the system that the C# libraries covered in the Unity handbook function as stated.
 * Users are running the software in its intended environment - We assume that the user will attempt to run the program in the environment for which it was designed, namely on a PC running Windows 7 or higher.
 # 3.0 External Interfaces
-## 3.1 User Interface
+## 3.1 User Interfaces
 List of user interface components: main menu, control menu, options box, save box, load box, game menu, game over box.
+## 3.2 Software Interfaces
+* Unity - our system relies heavily on the Unity game engine version 5.4.2a. Unity provides core functionality to our project common in most game-based systems:
+	* 2D rendering engine
+	* sound
+	* scripting
+	* animation
+	* memory management
+	* scene manager
+	* AI
+  By taking advantage of the scripting api provided by Unity, we can utilize these low level tools to aid in the development of our own system (rather than building the system from scratch). 
 
 # 4.0 System Features
 ## 4.1 Main Menu Screen
@@ -66,7 +81,17 @@ List of user interface components: main menu, control menu, options box, save bo
   * Rules: Upon selecting this option, the system will display a screen detailing the basic rules of chess, and the rules regarding the modifications of this program's chess variant.
   * Options: Upon selecting this option, the system will display a list of game options the user can modify. The user will be able to modify graphics settings, the default level of ability energy at game start, and the energy gain rate per turn.
   * Exit: Upon selecting this option, the application will terminate.
+## 4.1.2.1 User Input/System Response (Quitting the game)
+User|System
+---|---
+User clicks the quit button| The system terminates
 
+## 4.1.2.2 User Input/System Response (New Game)
+User clicks the New Game button | The system 
+
+## 4.1.4 Nonfunctional Requirements
+The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
+Saving a game should take no longer than 1 second. Loading a game should take no more than 10 seconds.
 ## 4.2 Creating a New Game
 * Upon selecting “New Game,” the application will prompt Player 1 to enter their display name. Player 1 is the player associated with the white pieces (from here on referred to as “White”). The name entered will be displayed on the move history log on the gameplay screen above the player’s moves. After the name is entered, Player 2 will be prompted for the same process. Player 2 represents the player associated with the black pieces (from here on referred to as “Black”).
 
@@ -82,7 +107,33 @@ List of user interface components: main menu, control menu, options box, save bo
 
 * The first turn of the game loop then begins, starting with White.
 
-## 4.3 Main Game Loop
+## 4.2.2 User Input/System Response
+User1| User2                                           |System                                                                  
+--- | --- | ---
+User selects "New Game"|| System prompts User1 to enter their display name
+User enters their display name|| System prompts User2 to enter their display name
+||User2 enters their display name| System displays the upgrade selection screen
+User1 selects five upgrades||
+User1 confirms their selection||System updates the upgrade list of user1
+||User 2 selects five upgrades|System updates the upgrade list of user2
+||User2 confirms their selection|
+|||System begins the game
+
+## 4.2.4 Nonfunctional Requirements
+The system should take no longer than .2 seconds to respond to a given users complete input (excluding when the system must build the game).
+
+## 4.3.0 Taking Turns (Main Game Loop)
+
+## 4.3.1 Functional Requirements
+
+Item| SR-3: Taking turns
+---|---
+Priority| High
+Summary| The system should allow users to take turns continuously until a user is unable to make a valid move 
+Rational| Chess is a turn-based game that requires players to make a move on their turn. Hence, if a player can't make a move on their turn, the game is over.  
+Requirements| The game must be separated into turns, where the system alternates between the two players. When the game begins, the first player's turn is always first. Each player must move a piece on their turn. For a player to move a piece, they must select a piece that matches their color. When a piece is selected, all cells that the piece can potentially move to will be highlighted green. If the cell a piece can potentially move to is occupied by a piece of the opposite color, the cell of the opposing piece will be highlighted red. Optionally, a player may choose to upgrade 1 piece 1 time before deciding on a move. If the player wishes, the player can undo an upgrade and then upgrade another piece as long as they haven't made a move for their turn. The player should be able to deselect a piece and select another piece. If a player has a piece selected and  they select one of the cells the piece can move to, all selections made by the player for this turn are final and the piece moves to the specified cell. Once a move occurs, the player's turn ends and the next player's turn begins. If a player's move renders the opposing player unable to move and the opposing player's king is not in check, the game should end in a draw. If a player's move renders the opposing player unable to move and the opposing player's king is in check, the game should end with the opposing player as the loser.  Players should be able forfeit or bring up the control menu during their turn. 
+References| Activating an upgrade, forfeiting, control menu, State Diagram 
+
 * The game loop shall be separated into turns, alternating between each player. During each player’s turn, the active player has several options: Move a piece, activate an ability, or access options.
 
 * Move a piece:
@@ -101,3 +152,14 @@ List of user interface components: main menu, control menu, options box, save bo
   * At the end of each turn, the game will check if victory conditions have been met. If victory (or draw) conditions are met, the game will end, and display the text, “Game Over - <playerName> wins!” or, in the event of a draw, “Game Over – Draw!” The victory condition is to force Checkmate.
   * Checkmate occurs when a player places their opponent in Check, and the opponent has no valid moves that would result in that player no longer being in Check. Check is achieved when, following a move, the opponent’s king is in a square in which a friendly piece can make a valid capture. Check and checkmate are considered at the end of a turn, and only based on standard Chess moves. A piece with its valid moves altered by an ability cannot immediately force check with those altered moves (that is, capture the opponent’s King without a chance for the opponent to respond), though a piece with altered moves can use said moves to achieve a position which then results in check or checkmate under standard rules.
   * A draw occurs under several circumstances: First, if a player whose turn is active is not in check, but has no valid moves that would not result in that player being in check, the game is a draw. Second, if the same pattern of either two or three moves repeats three times in a row, the game is drawn. Third, a game is drawn after 75 moves without a victory (a checkmate on the 75th move overrules this). Finally, a game is drawn if each player agrees to it on their turns.
+
+## 4.3.2 User Input/System Response
+User                                           |System                                                                  
+--- | ---
+Player selects a piece | System highlights the cell yellow, highlights all movable cells green, and sets the list of upgrades as active. 
+Player selects an upgrade from the list | System updates the functionality of the piece to what is specified by the user's selection.
+Player selects a cell to move | System checks if the move is a valid one. If true, the system moves the piece to the specified cell.
+|						|System transitions to the next players turn.
+## 4.3.3 Nonfunctional Requirements
+The system should be able to carry out a move specified by the player in less than .5 seconds. The system should allow less than 2 seconds to transition from one turn to the next
+(to give time for any animations that need to be played during this transitionary period)
