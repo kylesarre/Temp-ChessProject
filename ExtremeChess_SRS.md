@@ -23,7 +23,6 @@ and allow for more personalization of gameplay and strategy, while reducing the 
 Hence, "Extreme Chess" should be designed with the intent of making chess a more approachable, replayable, and fun experience for novices and experts alike.     	 
 ## 1.5 References
 
-* General chess information: https://en.wikipedia.org/wiki/Rules_of_chess
 * FIDE handbook: https://www.fide.com/fide/handbook.html
 * Unity manual: https://docs.unity3d.com/Manual/index.html
 * Unity Scripting API: https://docs.unity3d.com/ScriptReference/index.html
