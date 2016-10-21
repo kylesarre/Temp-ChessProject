@@ -120,13 +120,17 @@ Extreme Chess does not communicate with any external entities.
   * Options: Upon selecting this option, the system will display a list of game options the user can modify. The user will be able to modify graphics settings, the default level of ability energy at game start, and the energy gain rate per turn.
   * Exit: Upon selecting this option, the application will terminate.
   
-## 4.1.2.1 User Input/System Response (Quitting the game)
+### 4.1.2 User Input/System Response
+
+#### 4.1.2.1 Quitting the game
 User|System
 ---|---
-User clicks the quit button| The system terminates
+User clicks the "Quit" button| The system terminates
 
-## 4.1.2.2 User Input/System Response (New Game)
-User clicks the New Game button | The system 
+#### 4.1.2.2 New Game
+User|System
+---|---
+User clicks the "New Game" button| The system begins a new game 
 
 ## 4.1.3 Nonfunctional Requirements
 
@@ -157,9 +161,9 @@ User1 confirms their selection||System updates the upgrade list of user1
 ||User2 confirms their selection|
 |||System begins the game
 
-## 4.3.0 Taking Turns (Main Game Loop)
+## 4.3 Taking Turns (Main Game Loop)
 
-## 4.3.1 Functional Requirements
+### 4.3.1 Functional Requirements
 
 Item| SR-3: Taking turns
 ---|---
@@ -188,13 +192,44 @@ References| Activating an upgrade, forfeiting, control menu, State Diagram
   * Checkmate occurs when a player places their opponent in Check, and the opponent has no valid moves that would result in that player no longer being in Check. Check is achieved when, following a move, the opponent’s king is in a square in which a friendly piece can make a valid capture. Check and checkmate are considered at the end of a turn, and only based on standard Chess moves. A piece with its valid moves altered by an ability cannot immediately force check with those altered moves (that is, capture the opponent’s King without a chance for the opponent to respond), though a piece with altered moves can use said moves to achieve a position which then results in check or checkmate under standard rules.
   * A draw occurs under several circumstances: First, if a player whose turn is active is not in check, but has no valid moves that would not result in that player being in check, the game is a draw. Second, if the same pattern of either two or three moves repeats three times in a row, the game is drawn. Third, a game is drawn after 75 moves without a victory (a checkmate on the 75th move overrules this). Finally, a game is drawn if each player agrees to it on their turns.
 
-## 4.3.2 User Input/System Response
+### 4.3.2 User Input/System Response
 User                                           |System                                                                  
 --- | ---
 Player selects a piece | System highlights the cell yellow, highlights all movable cells green, and sets the list of upgrades as active. 
 Player selects an upgrade from the list | System updates the functionality of the piece to what is specified by the user's selection.
 Player selects a cell to move | System checks if the move is a valid one. If true, the system moves the piece to the specified cell.
 |						|System transitions to the next players turn.
+
+## 4.4 Ability Properties and Descriptions
+
+### 4.4.1 General Ability Rules
+* Activated abilities permit special piece movement or capture functions for the turn they are activated.
+* Use of an ability shall not allow a player to immediately capture the opponent's king; in other words, an ability may not create check on a turn before the player has made their move, which would essentially allow instant victory with no chance to respond on the part of the opponent.
+  * Pieces which are moved by means of special ability may create check or checkmate, but only upon the end of the turn.
+* When an ability is used, the move will be recorded in the move history log with an underline, to indicate a non-standard move. E.g. 10. __Bd2__ or 10. __e5xe6__. If the move is indescribable with standard algebraic notation - for example, if multiple pieces move without castling in a single turn - the move will be described as a comma-separated list of the pieces and their new positions. E.g. 16: __Qe5,Kc5__. If this is still insufficient to describe a move, the move will be recorded as 'PA#', where '#' is the position of the ability used in the player's ability list, to indicate "Player Ability #." E.g. 11. __PA4__
+
+### 4.4.2 Ability List
+
+This list is subject to change and addition, as laid out in Appendix C.
+
+* __Bishop Color Swap:__ For one turn, a bishop may move one square horizontally or vertically, changing the color of the squares it can normally travel. Energy Cost: 7
+* __Pawn Straight Capture:__ For one turn, a pawn may capture a piece one square directly ahead of it, however, when it does this, the pawn is immediately sacrificed. Energy Cost: 5
+* __Pawn Shift:__ For one turn, a pawn may move a single square horizontally or backwards. A pawn moving in this way cannot capture another piece while doing so. Energy Cost: 5
+* __Knight/Rook Merge:__ For one turn, a knight may move onto the same square as a friendly rook, or vice versa. The pieces remain on the same square after the turn, though if one piece moves on a future turn, they separate. If the square is captured by an enemy piece, both pieces are lost. Energy Cost: 8
+* __Queen/King Swap:__ For one turn, if the king and queen are within three squares of each other, either horizontally, vertically, or diagonally, they may swap positions. This ability cannot be used to escape check. Energy Cost: 15
+* __Pawn Reinforcements:__ For the turn this ability is activated, instead of making a move, the player may place a new friendly pawn on a vacant square in which a pawn would be placed at the start of a new game. The player must have no existing pawns on the file in which the new pawn is placed, and the player must have less than 8 total pawns in order to activate this ability. This ability cannot be used to escape check. Energy Cost: 12
+
+## 4.4 Saving/Loading
+
+### 4.4.1 Saving
+* Upon clicking the "Save Game" option, the user will be prompted to enter a name for their game save, and a "cancel" option if the user no longer wishes to save the game.
+  * If the name of the game save already exists, the user will be prompted to overwrite their save.
+* The system saves their game.
+
+### 4.4.2 Loading
+* Upon clicking the "Load Game" option, the user will be prompted with a list of the names of previously saved games, and a "cancel" option to return the user to the main menu.
+  * If no previous saves are available, display "No saved games!" and an option to return to the main menu.
+* Upon selecting a previously saved game and pressing "confirm," the game state will be loaded and play will resume.
 
 # 5 Other Nonfunctional Requirements
 
@@ -212,7 +247,7 @@ As stated earlier in the document performance should remain quick and responsive
 As stated earlier it will be a closed system so a security system will not implemented. It will be an offline player 1 vs player 2 system so no user data is being stored or used so in turn no security measures are needed.
 
 ## 5.4 Software Quality Attributes
-The system will prioritize usability to give users an optimal experience. Ease-of-use will be promoted with simple design elements to keep the game easy to understand.   To eliminate frustration, the entire system will be thoroughly tested for potential glitches and game breaking abilities. Each feature mentioned will have testability. Developers will test each feature, developers will work together to test features together, and all developers will test the whole system to ensure a final product that works as intended. 
+##The system will prioritize usability to give users an optimal experience. Ease-of-use will be promoted with simple design elements to keep the game easy to understand.   To eliminate frustration, the entire system will be thoroughly tested for potential glitches and game breaking abilities. Each feature mentioned will have testability. Developers will test each feature, developers will work together to test features together, and all developers will test the whole system to ensure a final product that works as intended. 
 
 ## 5.5 Business Rules
 Not applicable to the system. It is purely academic with no monetary motivations.
@@ -252,7 +287,7 @@ __Checkmate:__ signals the end of the game; occurs when a king is threatened and
 
 __Castling:__ a special move in standard chess-the only one that allows two pieces to be moved at the same time. If the back line of a player’s side is clear of game pieces between one of their rooks and their king, neither of those pieces have moved in the game yet, and the king is not in check, a player may move their king over one space towards the rook, move the rook next to the king, and then swap the position of the two pieces.
 
-__Power-Ups:__ special bonuses purchased with Energy in Extreme Chess; allows the normal rules of chess to be bent for more a more Extreme gameplay experience.
+__Abilities:__ special bonuses purchased with Energy in Extreme Chess; allows the normal rules of chess to be bent for more a more Extreme gameplay experience.
 
 __Energy:__ currency acquired during the gameplay of Extreme Chess at the rate of 1 Energy(E) per turn; used to purchase power-ups.
 
