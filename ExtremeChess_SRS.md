@@ -90,7 +90,8 @@ User clicks the quit button| The system terminates
 User clicks the New Game button | The system 
 
 ## 4.1.3 Nonfunctional Requirements
-
+The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
+Saving a game should take no longer than 1 second. Loading a game should take no more than 10 seconds.
 ## 4.2 Creating a New Game
 * Upon selecting “New Game,” the application will prompt Player 1 to enter their display name. Player 1 is the player associated with the white pieces (from here on referred to as “White”). The name entered will be displayed on the move history log on the gameplay screen above the player’s moves. After the name is entered, Player 2 will be prompted for the same process. Player 2 represents the player associated with the black pieces (from here on referred to as “Black”).
 
@@ -117,6 +118,9 @@ User1 confirms their selection||System updates the upgrade list of user1
 ||User 2 selects five upgrades|System updates the upgrade list of user2
 ||User2 confirms their selection|
 |||System begins the game
+
+## 4.2.4 Nonfunctional Requirements
+The system should take no longer than .2 seconds to respond to a given users complete input (excluding when the system must build the game).
 
 ## 4.3.0 Taking Turns (Main Game Loop)
 
@@ -156,9 +160,25 @@ Player selects a piece | System highlights the cell yellow, highlights all movab
 Player selects an upgrade from the list | System updates the functionality of the piece to what is specified by the user's selection.
 Player selects a cell to move | System checks if the move is a valid one. If true, the system moves the piece to the specified cell.
 |						|System transitions to the next players turn.
+## 4.3.3 Nonfunctional Requirements
+The system should be able to carry out a move specified by the player in less than .5 seconds. The system should allow less than 2 seconds to transition from one turn to the next
+(to give time for any animations that need to be played during this transitionary period)
 
-# 5.0 Nonfunctional Requirements
+# 5.0 Other Nonfunctional Requirements
+## 5.1	Performance Requirements
+As stated earlier in the document performance should remain quick and responsive regardless of what type of system the game is being run on(high end PC, mobile etc). It will be an offline game so there are no concerns when it will come to an internet connection hindering with the performance of the game.
 
-* The system should be able to carry out a move specified by the player in less than .5 seconds. The system should allow less than 2 seconds to transition from one turn to the next, to give time for any animations that need to be played during this transitionary period.
-* The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
-* Saving a game should take no longer than 1 second. Loading a game should take no more than 10 seconds.
+## 5.2 Safety Requirements
+The system used for the game will be a closed system; that is, all data that is managed by the system will only happen within the system. Nothing outside of the system will be affected; the user’s device will be unaffected by the application aside from taking up storage space. The same safety precautions when using a phone apply when using the mobile version of the app; do not utilize the app when driving and be wary to not get distracted by the app when in dangerous areas. For the desktop version be careful when sitting at the computer for extended periods of time.
+
+## 5.3 Security Requirements
+As stated earlier it will be a closed system so a security system will not implemented. It will be an offline player 1 vs player 2 system so no user data is being stored or used so in turn no security measures are needed.
+
+## 5.4	Software Quality Attributes
+The system will prioritize usability to give users an optimal experience. Ease-of-use will be promoted with simple design elements to keep the game easy to understand.   To eliminate frustration, the entire system will be thoroughly tested for potential glitches and game breaking abilities. Each feature mentioned will have testability. Developers will test each feature, developers will work together to test features together, and all developers will test the whole system to ensure a final product that works as intended.
+
+## 5.5	Business Rules
+Not applicable to the system. It is purely academic with no monetary motivations.
+
+
+
