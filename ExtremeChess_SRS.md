@@ -57,9 +57,13 @@ The following is a list of assumptions to be made during development:
 # 3 External Interfaces
 ## 3.1 User Interfaces
 List of user interface components: main menu, control menu, options box, save box, load box, game menu, game over box.
-## 3.2 Hardware Interfaces
+## 3.2 Hardware interfaces
+The software in question is compatible only with PC and requires access to a monitor, keyboard, and mouse. The monitor displays the user interface, allowing the user to view the game and make decisions based on the current position of chess pieces. The keyboard is used to enter the names of players upon starting a new game in order to make saved games easier to track and allow a name to be displayed on the turn of the current player. The mouse is the primary hardware component by which a user may navigate the screen, clicking to select various buttons as well as chess pieces and their intended destinations on the board. 
 ## 3.3 Software Interfaces
+The Windows Operating System is necessary in order to compile and interpret the code to run Extreme Chess. 
 ## 3.4 Communications Interfaces
+Extreme Chess does not communicate with any external entities.
+
 
 # 4 System Features
 ## 4.1 Main Menu Screen
