@@ -139,7 +139,7 @@ __Castling:__ a special move in standard chess-the only one that allows two piec
 
 __Power-Ups:__ special bonuses purchased with Energy in Extreme Chess; allows the normal rules of chess to be bent for more a more Extreme gameplay experience
 
-__Energy:__ currency acquired during the gameplay of Extreme Chess at the rate of 1 Energy(E) per turn; used to purchase power-ups 
+__Energy:__ currency acquired during the gameplay of Extreme Chess at the rate per turn determined at game start; used to purchase power-ups 
 
 
 # Appendix B: Analysis Models
