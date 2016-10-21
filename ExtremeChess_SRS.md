@@ -162,3 +162,8 @@ Player selects a cell to move | System checks if the move is a valid one. If tru
 * The system should be able to carry out a move specified by the player in less than .5 seconds. The system should allow less than 2 seconds to transition from one turn to the next, to give time for any animations that need to be played during this transitionary period.
 * The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
 * Saving and loading games should take no less than 5 seconds.
+
+# Appendix B: Analysis Models
+## 1B. Turn Taking: State Diagram
+![Alt text](https://github.com/kylesarre/Temp-ChessProject/blob/master/StateDiagramForChessRound.PNG "State Diagram:Turn Taking")
+Figure 1: Illustrates the process of turn taking as a graph of states linked by conditionals as described in SR-3.
