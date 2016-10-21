@@ -58,7 +58,7 @@ The following is a list of assumptions to be made during development:
 ## 3.1 User Interfaces
 __Title Screen__ – features the name “Extreme Chess” along with buttons for New Game, Load Game, Rules, Options, and Quit, which closes the application.
 
-__New Game Screen__ - accessed when selecting New Game on the Title Screen; prompts the user to input a name for player 1 and player 2 and sends the user to the Main Game Screen.
+__New Game Screen__ - accessed when selecting New Game on the Title Screen; prompts the user to input a name for player 1 and select five power-ups to use in the game, then prompts player 2 to enter their name and select power-up. It then sends the user to the Main Game Screen.
 
 __Main Game Screen__ – the screen in which the game of Extreme Chess is played. The screen displays a timer, a graveyard for captured pieces, the game board, a log of previous moves, a list of selected power-ups, the amount of energy possessed by the current player, a gear icon button, and a forfeit flag button. On the Main Game Screen, a player may choose to select and move their pieces, use power-ups, or select one of the available buttons.
 
