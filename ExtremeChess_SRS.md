@@ -159,6 +159,10 @@ Player selects a cell to move | System checks if the move is a valid one. If tru
 
 # 5.0 Other Nonfunctional Requirements
 
+* The system should be able to carry out a move specified by the player in less than .5 seconds. The system should allow less than 2 seconds to transition from one turn to the next, to give time for any animations that need to be played during this transitionary period.
+* The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
+* Saving and loading games should take no less than 5 seconds.
+
 # 5.1 Performance Requirements
 As stated earlier in the document performance should remain quick and responsive regardless of what type of system the game is being run on(high end PC, mobile etc). It will be an offline game so there are no concerns when it will come to an internet connection messing with the performance of the game.
 
@@ -183,8 +187,9 @@ Not applicable to the system. It is purely academic with no monetary motivations
 
 # Appendix B: Analysis Models
 
-## Game Turn State Diagram
-![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/StateDiagramForChessRound.PNG)
+## 1B. Turn Taking: State Diagram
+![Alt text](https://github.com/kylesarre/Temp-ChessProject/blob/master/StateDiagramForChessRound.PNG "State Diagram:Turn Taking")
+Figure 1: Illustrates the process of turn taking as a graph of states linked by conditionals as described in SR-3.
 
 # Appendix C: To Be Determined List
 
