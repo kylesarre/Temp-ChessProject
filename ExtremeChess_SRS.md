@@ -59,8 +59,30 @@ The following is a list of assumptions to be made during development:
 * Users are running the software in its intended environment - We assume that the user will attempt to run the program in the environment for which it was designed, namely on a PC running Windows 7 or higher.
 # 3.0 External Interfaces
 ## 3.1 User Interfaces
-List of user interface components: main menu, control menu, options box, save box, load box, game menu, game over box.
-## 3.2 Software Interfaces
+__Title Screen__ – features the name “Extreme Chess” along with buttons for New Game, Load Game, Rules, Options, and Quit
+
+__Main Game Screen__ – the screen in which the game of Extreme Chess is played. The screen displays a timer, a graveyard for captured pieces, the game board, a log of previous moves, a list of selected power-ups, the amount of energy possessed by the current player, a gear icon button, and a forfeit flag button. On the Main Game Screen, a player may choose to select and move their pieces, use power-ups, or select one of the available buttons.
+
+__Game Dialog Screen__ – accessed by clicking the gear icon in the lower right corner of the Main Game Screen; displays buttons for Options, Save, Rules, Quit, and Resume.
+
+__Forfeit Dialog Boxes 1 and 2__ – Forfeit Dialog Box 1 appears when clicking on the forfeit flag in the Main Game Screen and it asks if the current player wishes to forfeit, offering a Yes or No option. If Yes is selected, Forfeit Dialog Box 2 will appear to ask the player if they are sure of their decision to forfeit. If they select Yes again, then the Game Over Screen is displayed. If the player selects No on either screen, the player is returned to the current game on the Main Game Screen.
+
+__Save/Load Screen__ – appears when clicking Load Game in the Title Screen, or Save in the Game Dialog Menu; displays up to ten saved game files in a list format. A game can be selected from the list and loaded by clicking the Load button on this screen. If a game is already in session, buttons for Save and Continue as well as Save and Quit will be displayed. Save and Continue allows for an instance of the current game to be saved, then the player is returned to the active game. If Save and Quit is selected, the current game will be saved and the player will be redirected to the Title Screen.
+
+__Rules__ – accessed by clicking Rules on the Title Screen or in the Game Dialog Screen; displays the basic rules of chess and the functions of all power-ups in the game. 
+
+__Title Screen Options__ – accessed by clicking the Options button on the Title Screen; allows the user to choose a set amount of energy with which to start a new game, energy gain per turn, and game options such as screen brightness and music volume.
+
+__In Game Options__ – accessed by clicking the Options button on the Game Dialog Screen; allows the user to adjust screen brightness and music volume in game.
+
+__Quit Dialog Box__ – accessed when clicking the Quit button in the Game Dialog Screen; asks the player if they would like to leave the game without saving with a Yes or No option. If the player responds Yes, then the current game is exited and the Title Screen is displayed. If No is selected, the game returns to its current state.
+
+__Game Over Screen__ – accessed when a game is forfeited, checkmate is reached, or a stalemate occurs. The screen displays the names of the players as well as who won and who lost, unless a stalemate was reached: then it displays that there was no winner. A confirm button appears which redirects the player back to the Title Screen. 
+
+## 3.2 Hardware interfaces
+The software in question is compatible only with PC and requires access to a monitor, keyboard, and mouse. The monitor displays the user interface, allowing the user to view the game and make decisions based on the current position of chess pieces. The keyboard is used to enter the names of players upon starting a new game in order to make saved games easier to track and allow a name to be displayed on the turn of the current player. The mouse is the primary hardware component by which a user may navigate the screen, clicking to select various buttons as well as chess pieces and their intended destinations on the board. 
+
+## 3.3 Software Interfaces
 * Unity - our system relies heavily on the Unity game engine version 5.4.2a. Unity provides core functionality to our project common in most game-based systems:
 	* 2D rendering engine
 	* sound
@@ -69,7 +91,10 @@ List of user interface components: main menu, control menu, options box, save bo
 	* memory management
 	* scene manager
 	* AI
-  By taking advantage of the scripting api provided by Unity, we can utilize these low level tools to aid in the development of our own system (rather than building the system from scratch). 
+By taking advantage of the scripting api provided by Unity, we can utilize these low level tools to aid in the development of our own system (rather than building the system from scratch). 
+
+## 3.4 Communications Interfaces
+Extreme Chess does not communicate with any external entities.
 
 # 4.0 System Features
 ## 4.1 Main Menu Screen
@@ -181,9 +206,41 @@ Not applicable to the system. It is purely academic with no monetary motivations
 
 # Appendix A: Glossary
 
-* FIDE: The Fédération Internationale des Échecs, or World Chess Federation. The FIDE is the official governing body of international chess competition.
-* White: The player associated with the white pieces, also referred to as "Player 1."
-* Black: The player associated with the black pieces, also referred to as "Player 2."
+__Chess:__ a strategy board game played between two players in which each player takes turns maneuvering 16 chess pieces around a chess board, capturing their opponent’s pieces, and ultimately attempting to put the other player into checkmate. Each player is assigned a unique color at the start of the game that corresponds to their game pieces-black or white-and the player who controls the white pieces always makes the first move.
+
+__FIDE:__ The Fédération Internationale des Échecs, or World Chess Federation. The FIDE is the official governing body of international chess competition.
+
+__Piece:__ one of seven unique types of game pieces used in chess; each possessing a different movement pattern and rules specific to itself.
+
+__White:__ The player associated with the white pieces, also referred to as "Player 1."
+
+__Black:__ The player associated with the black pieces, also referred to as "Player 2."
+
+__Board:__ the field of play for the chess; consists of an 8 by 8 grid of squares in which the player may maneuver their pieces-in normal chess, only one piece may occupy one grid square at a time.
+
+__Capture:__ occurs when one piece lands on top of an opponent’s piece, resulting in the removal of the opponent’s piece from the board.
+
+__Pawn:__ the most numerous piece in a chess game; each player begins with 8 pawns positioned in front of the pieces along their back line. Under most conditions, pawns can only move forward a single space each turn or capture a piece diagonally in front of it. On the first move of the pawn, however, it may move two spaces forward. If you choose to move your pawn two spaces on its first move, then your opponent moves the pawn directly across from yours in the same way, your pawn may move diagonally forward one space and capture their pawn. This is the only scenario in the game in which one piece may capture another without landing directly on it. If a pawn is not captured and makes its way to the end of the board, all the way to the back line of the opponent’s side, it may be upgraded. When upgraded, the player controlling the pawn may choose to turn it into another piece of their choosing, namely a rook, knight, bishop, or queen. 
+
+__Rook:__ a piece that may move any number of squares in a straight line-forward, backward, left, or right-as long as its path is not blocked by a piece of the same color.
+
+__Knight:__ a piece that always moves in an ‘L’ shape; it may move two spaces in a straight line-forward, backward, left, or right-then it must move one square at a right angle to its initial movement direction. The knight is the only piece that may jump over other pieces, friend or foe.
+
+__Bishop:__ a piece that may move any number of squares diagonally; of the player’s bishops, one begins on a white space, while the other appears on a dark space. Under normal conditions, a bishop will never move to a square with a different color than the one on which it started.
+
+__Queen:__ often considered the most powerful chess piece, the queen may move any number of squares in any of the cardinal directions, meaning it can choose to move like a rook or a bishop on any given turn.
+
+__King:__ the piece to be protected; the point of the game of chess is to defend the king and ensure the opponent does not capture the piece. One must move their pieces around to prevent the king from being cornered, as the king can move in any of the cardinal directions, like the queen, but it can only move a single space in any direction per turn.
+
+__Check:__ the condition where a king is in danger. If an opponent moves one of their pieces into a position by which it may capture the king on the next turn, the threatened king is considered ‘in check.’ The player with the threatened king then has three options: move the king to a position in which it is not threatened, capture the piece that threatens the king, or move another one of their pieces to obstruct the piece that is threatening the king. 
+
+__Checkmate:__ signals the end of the game; occurs when a king is threatened and the player controlling that king can make no possible moves to get the king out of check.
+
+__Castling:__ a special move in standard chess-the only one that allows two pieces to be moved at the same time. If the back line of a player’s side is clear of game pieces between one of their rooks and their king, neither of those pieces have moved in the game yet, and the king is not in check, a player may move their king over one space towards the rook, move the rook next to the king, and then swap the position of the two pieces.
+
+__Power-Ups:__ special bonuses purchased with Energy in Extreme Chess; allows the normal rules of chess to be bent for more a more Extreme gameplay experience.
+
+__Energy:__ currency acquired during the gameplay of Extreme Chess at the rate of 1 Energy(E) per turn; used to purchase power-ups.
 
 # Appendix B: Analysis Models
 
