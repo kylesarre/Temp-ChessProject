@@ -157,12 +157,23 @@ Player selects an upgrade from the list | System updates the functionality of th
 Player selects a cell to move | System checks if the move is a valid one. If true, the system moves the piece to the specified cell.
 |						|System transitions to the next players turn.
 
-# 5.0 Nonfunctional Requirements
+# 5.0 Other Nonfunctional Requirements
 
-* The system should be able to carry out a move specified by the player in less than .5 seconds. The system should allow less than 2 seconds to transition from one turn to the next, to give time for any animations that need to be played during this transitionary period.
-* The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
-* Saving and loading games should take no less than 5 seconds.
-* The system shall not use color schemes that would create ambiguities for colorblind users.
+# 5.1 Performance Requirements
+As stated earlier in the document performance should remain quick and responsive regardless of what type of system the game is being run on(high end PC, mobile etc). It will be an offline game so there are no concerns when it will come to an internet connection messing with the performance of the game.
+
+#5.2 Safety Requirements
+ The system used for the game will be a closed system; that is, all data that is managed by the system will only happen within the system. Nothing outside of the system will be affected; the user’s device will be unaffected by the application aside from taking up storage space. The same safety precautions when using a phone apply when using the mobile version of the app; do not utilize the app when driving and be wary to not get distracted by the app when in dangerous areas. For the desktop version be careful when sitting at the computer for extended periods of time.
+
+# 5.3 Security Requirements
+As stated earlier it will be a closed system so a security system will not implemented. It will be an offline player 1 vs player 2 system so no user data is being stored or used so in turn no security measures are needed.
+
+#5.4 Software Quality Attributes
+The system will prioritize usability to give users an optimal experience. Ease-of-use will be promoted with simple design elements to keep the game easy to understand.   To eliminate frustration, the entire system will be thoroughly tested for potential glitches and game breaking abilities. Each feature mentioned will have testability. Developers will test each feature, developers will work together to test features together, and all developers will test the whole system to ensure a final product that works as intended.   . 
+
+#5.5 Business Rules
+Not applicable to the system. It is purely academic with no monetary motivations.
+
 
 # Appendix A: Glossary
 
