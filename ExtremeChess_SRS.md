@@ -90,7 +90,7 @@ User clicks the quit button| The system terminates
 ## 4.1.2.2 User Input/System Response (New Game)
 User clicks the New Game button | The system 
 
-## 4.1.4 Nonfunctional Requirements
+## 4.1.3 Nonfunctional Requirements
 The user should be able to quit the game and pull up the options or rules interface in less than .2 seconds. Launching a new game should begin in less than .2 seconds.
 Saving a game should take no longer than 1 second. Loading a game should take no more than 10 seconds.
 ## 4.2 Creating a New Game
