@@ -188,7 +188,7 @@ Not applicable to the system. It is purely academic with no monetary motivations
 # Appendix B: Analysis Models
 
 ## 1B. Turn Taking: State Diagram
-![Alt text](https://github.com/kylesarre/Temp-ChessProject/blob/master/StateDiagramForChessRound.PNG "State Diagram:Turn Taking")
+![Alt text](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/StateDiagramForChessRound.PNG "State Diagram:Turn Taking")
 Figure 1: Illustrates the process of turn taking as a graph of states linked by conditionals as described in SR-3.
 
 # Appendix C: To Be Determined List
