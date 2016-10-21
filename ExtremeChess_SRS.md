@@ -81,6 +81,7 @@ List of user interface components: main menu, control menu, options box, save bo
   * Rules: Upon selecting this option, the system will display a screen detailing the basic rules of chess, and the rules regarding the modifications of this program's chess variant.
   * Options: Upon selecting this option, the system will display a list of game options the user can modify. The user will be able to modify graphics settings, the default level of ability energy at game start, and the energy gain rate per turn.
   * Exit: Upon selecting this option, the application will terminate.
+  
 ## 4.1.2.1 User Input/System Response (Quitting the game)
 User|System
 ---|---
