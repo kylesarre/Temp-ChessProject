@@ -42,28 +42,28 @@ todo
 **Members in attendance**: Robert Anderson, Kyle Sarre</br>
 **Goals met**: finished brief requirements analysis, rough draft class diagram for iteration 1 of the project.</br>
 
-**Date**: 10-7-16
-**Purpose**: 
-**Members in Attendance**:
-**Goals met**: 
+**Date**: 10-7-16</br>
+**Purpose**: </br>
+**Members in Attendance**: </br>
+**Goals met**: </br>
 
-**Date**: 10-14-16
-**Purpose**: 
-**Members in Attendance**: Robert Anderson, Kyle Sarre, Gabriel Davis, Julian Plaisance, Hanna Cunningham
-**Goals met**: 
+**Date**: 10-14-16</br>
+**Purpose**: </br>
+**Members in Attendance**: Robert Anderson, Kyle Sarre, Gabriel Davis, Julian Plaisance, Hanna Cunningham </br>
+**Goals met**: </br>
 
-**Date**: 10-17-16
-**Purpose**: 
-**Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Gabriel Davis
-**Goals met**: 
+**Date**: 10-17-16</br>
+**Purpose**: </br>
+**Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Gabriel Davis </br>
+**Goals met**: </br>
 
-**Date**: 10-18-16
-**Purpose**: discuss the User Interface
-**Members in Attendance**: Hanna Cunningham, Julian Plaisance
-**Goals met**: mapped out the basic appearance of the UI and took notes for the External Interfaces section of the SRS
+**Date**: 10-18-16</br>
+**Purpose**: discuss the User Interface</br>
+**Members in Attendance**: Hanna Cunningham, Julian Plaisance</br>
+**Goals met**: mapped out the basic appearance of the UI and took notes for the External Interfaces section of the SRS</br>
 
-**Date**: 10-21-16
-**Purpose**: work out conflicts in the SRS and submit the final version to GitHub
-**Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Gabriel Davis, Julian Plaisance
-**Goals met**: 
+**Date**: 10-21-16</br>
+**Purpose**: work out conflicts in the SRS and submit the final version to GitHub</br>
+**Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Gabriel Davis, Julian Plaisance</br>
+**Goals met**: </br>
 
