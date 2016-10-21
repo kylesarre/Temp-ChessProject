@@ -247,7 +247,7 @@ As stated earlier in the document performance should remain quick and responsive
 As stated earlier it will be a closed system so a security system will not implemented. It will be an offline player 1 vs player 2 system so no user data is being stored or used so in turn no security measures are needed.
 
 ## 5.4 Software Quality Attributes
-##The system will prioritize usability to give users an optimal experience. Ease-of-use will be promoted with simple design elements to keep the game easy to understand.   To eliminate frustration, the entire system will be thoroughly tested for potential glitches and game breaking abilities. Each feature mentioned will have testability. Developers will test each feature, developers will work together to test features together, and all developers will test the whole system to ensure a final product that works as intended. 
+The system will prioritize usability to give users an optimal experience. Ease-of-use will be promoted with simple design elements to keep the game easy to understand.   To eliminate frustration, the entire system will be thoroughly tested for potential glitches and game breaking abilities. Each feature mentioned will have testability. Developers will test each feature, developers will work together to test features together, and all developers will test the whole system to ensure a final product that works as intended. 
 
 ## 5.5 Business Rules
 Not applicable to the system. It is purely academic with no monetary motivations.
