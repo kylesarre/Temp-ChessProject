@@ -1,6 +1,6 @@
-# 0.0 Table of Contents
+# Table of Contents
 
-# 1.0 Introduction
+# 1 Introduction
 ## 1.1 Purpose
 We intend for the following document to elaborate upon and specify the complete set of all functional/non-functional requirements and constraints of V.1.0 of our project "Extreme Chess." 
 The primary purpose of this document is to simplify the job of the programmers who will be implementing the system features specified in this SRS. In order to satisfy this primary purpose,
@@ -11,7 +11,7 @@ pending
 ## 1.3 Intended Audience and Reading Suggestions
 Our intended audience consists of:
 
-* Developer(s) - indviduals who are responsible for designing the software itself.
+* Developer(s) - individuals who are responsible for designing the software itself.
 * Project Manager(s) - individuals who are overseeing the development of the software, establishing deadlines, and managing risks.
 * Tester(s) - individuals who verify that specifications outlined in this document are followed in the software design.
 * Documentation Writer(s) - individuals who need to outline what a feature does, its purpose, and how it will fit into the current system
@@ -25,7 +25,7 @@ Hence, "Extreme Chess" should be designed with the intent of making chess a more
 
 * General chess information: https://en.wikipedia.org/wiki/Rules_of_chess
 * FIDE handbook: https://www.fide.com/fide/handbook.html
-# 2.0 Overall Description
+# 2 Overall Description
 ## 2.1 Product Perspective
 "Extreme Chess" is a game app developed in Unity. It will allow users to play the game of Extreme Chess in a fun and convenient environment by utilizing the collection of key functions intended for this system.
 ## 2.2 Key Functions
@@ -39,25 +39,29 @@ The following key functions to be included in this system are:
 
 ## 2.3 User Classes and Characteristics
 There is only one user class relevant in this version of the system: the end user(s). The end user(s) will use our system to play the game "Ultimate Chess". They will
-expect a software that simulates a consistent reimagining of classic chess, one in which they can navigate  and control with relatively little hastle. Thus,
+expect a software that simulates a consistent reimagining of classic chess, one in which they can navigate  and control with relatively little hassle. Thus,
 all of the features to be included in this iteration of our system will be dedicated to serving the end user(s).
 ## 2.4 Operating  Environment
 As of the most current version, The system shall operate on desktop and laptop computers, on the windows 7 platform and above. The entire system is to be designed and built using the Unity game engine.
 ## 2.5 Design and Implementation Constraints
-* language requirement - Our system utilizes the Unity game engine to avoid the hastles of low level problems (memory management, rendering to screen, sound, etc); however, this decision limits the developers of this project to the languages supported by the Unity API: C#, and Javascript. To conform with Unity requirements, Our team has elected to use C# for the implementation of this project.
-* hardware requirements - This system is designed under the assumption that the user is running our software with a PC running windows 7 or higher. Hence, we expect users to meet the bare minimum requirements necessary to run their operating system on their machine according to microsoft's corresponding hardware specifications. 
+* language requirement - Our system utilizes the Unity game engine to avoid the hassles of low level problems (memory management, rendering to screen, sound, etc.); however, this decision limits the developers of this project to the languages supported by the Unity API: C#, and JavaScript. To conform with Unity requirements, Our team has elected to use C# for the implementation of this project.
+* hardware requirements - This system is designed under the assumption that the user is running our software with a PC running windows 7 or higher. Hence, we expect users to meet the bare minimum requirements necessary to run their operating system on their machine according to Microsoft's corresponding hardware specifications. 
 ## 2.6 User Documentation
-The software will include a tutorial for general gameplaying and maneuvering of the system, which will be accessible from the main menu. 
+The software will include a tutorial for general game-playing and maneuvering of the system, which will be accessible from the main menu. 
 ## 2.7 Assumptions and Dependencies
 The following is a list of assumptions to be made during development:
 
 * Correctness of Unity Libraries - We assume during the development of the system that the C# libraries covered in the Unity handbook function as stated.
 * Users are running the software in its intended environment - We assume that the user will attempt to run the program in the environment for which it was designed, namely on a PC running Windows 7 or higher.
-# 3.0 External Interfaces
-## 3.1 User Interface
-List of user interface components: main menu, control menu, options box, save box, load box, game menu, game over box.
 
-# 4.0 System Features
+# 3 External Interfaces
+## 3.1 User Interfaces
+List of user interface components: main menu, control menu, options box, save box, load box, game menu, game over box.
+## 3.2 Hardware Interfaces
+## 3.3 Software Interfaces
+## 3.4 Communications Interfaces
+
+# 4 System Features
 ## 4.1 Main Menu Screen
 * The Main Menu shall be immediately rendered upon game startup
 * The Main Menu shall consist of the title of the game, centered across the top of the screen, and the following clickable options: New Game, Load Game, Rules, Options, and Quit.
@@ -89,7 +93,7 @@ List of user interface components: main menu, control menu, options box, save bo
   * To move a piece, the player shall click on a piece belonging to their color. When this is done, any available valid moves for that piece will have their destination squares highlighted green. Clicking on a valid destination square moves the piece to that square, checks to see if victory conditions are met, then ends the turn. If an opponent’s piece is on a valid square of capture/movement, moving the piece onto that square will capture the piece, removing it from the game. A piece’s valid moves/captures shall correspond to the Laws of Chess as laid out in the FIDE Handbook, unless altered by a previously activated ability. If an activated ability would allow the opponent’s King to be immediately captured, that move is disallowed.
 
 * Activate an ability:
-  * To activate an ability, the player shall click on the icon representing that ability on their ability display bar. This shall bring up a text box containing a description of the ability’s effects, the ability’s energy cost, and two buttons to activate or cancel the ability’s use. If the player lacks the required energy to activate the ability, the button that confirms the ability’s activation will be grayed out and unselectable. If the player activates the ability, the energy cost will be deducted from their energy display, and the valid moves of the pieces will be altered accordingly.
+  * To activate an ability, the player shall click on the icon representing that ability on their ability display bar. This shall bring up a text box containing a description of the ability’s effects, the ability’s energy cost, and two buttons to activate or cancel the ability’s use. If the player lacks the required energy to activate the ability, the button that confirms the ability’s activation will be grayed out and not selectable. If the player activates the ability, the energy cost will be deducted from their energy display, and the valid moves of the pieces will be altered accordingly.
 
 * Access options:
   * This brings up an options menu which allows the player to offer a draw, which, if accepted, ends the game in a draw, accept a draw offer, if offered on the previous turn, save the game state, allowing the game to be stopped and resumed at a later date, and quit the game, returning to the main menu.
@@ -101,3 +105,45 @@ List of user interface components: main menu, control menu, options box, save bo
   * At the end of each turn, the game will check if victory conditions have been met. If victory (or draw) conditions are met, the game will end, and display the text, “Game Over - <playerName> wins!” or, in the event of a draw, “Game Over – Draw!” The victory condition is to force Checkmate.
   * Checkmate occurs when a player places their opponent in Check, and the opponent has no valid moves that would result in that player no longer being in Check. Check is achieved when, following a move, the opponent’s king is in a square in which a friendly piece can make a valid capture. Check and checkmate are considered at the end of a turn, and only based on standard Chess moves. A piece with its valid moves altered by an ability cannot immediately force check with those altered moves (that is, capture the opponent’s King without a chance for the opponent to respond), though a piece with altered moves can use said moves to achieve a position which then results in check or checkmate under standard rules.
   * A draw occurs under several circumstances: First, if a player whose turn is active is not in check, but has no valid moves that would not result in that player being in check, the game is a draw. Second, if the same pattern of either two or three moves repeats three times in a row, the game is drawn. Third, a game is drawn after 75 moves without a victory (a checkmate on the 75th move overrules this). Finally, a game is drawn if each player agrees to it on their turns.
+
+# 5 Other Nonfunctional Requirements
+
+# 6 Other Requirements
+
+# Appendix A: Glossary
+__Chess:__ a strategy board game played between two players in which each player takes turns maneuvering 16 chess pieces around a chess board, capturing their opponent’s pieces, and ultimately attempting to put the other player into checkmate. Each player is assigned a unique color at the start of the game that corresponds to their game pieces-black or white-and the player who controls the white pieces always makes the first move.
+
+__Piece:__ one of seven unique types of game pieces used in chess; each possessing a different movement pattern and rules specific to itself.
+
+__Board:__ the field of play for the chess; consists of an 8 by 8 grid of squares in which the player may maneuver their pieces-in normal chess, only one piece may occupy one grid square at a time.
+
+__Capture:__ occurs when one piece lands on top of an opponent’s piece, resulting in the removal of the opponent’s piece from the board.
+
+__Pawn:__ the most numerous piece in a chess game; each player begins with 8 pawns positioned in front of the pieces along their back line. Under most conditions, pawns can only move forward a single space each turn or capture a piece diagonally in front of it. On the first move of the pawn, however, it may move two spaces forward. If you choose to move your pawn two spaces on its first move, then your opponent moves the pawn directly across from yours in the same way, your pawn may move diagonally forward one space and capture their pawn. This is the only scenario in the game in which one piece may capture another without landing directly on it. If a pawn is not captured and makes its way to the end of the board, all the way to the back line of the opponent’s side, it may be upgraded. When upgraded, the player controlling the pawn may choose to turn it into another piece of their choosing, namely a rook, knight, bishop, or queen. 
+
+__Rook:__ a piece that may move any number of squares in a straight line-forward, backward, left, or right-as long as its path is not blocked by a piece of the same color.
+
+__Knight:__ a piece that always moves in an ‘L’ shape; it may move two spaces in a straight line-forward, backward, left, or right-then it must move one square at a right angle to its initial movement direction. The knight is the only piece that may jump over other pieces, friend or foe.
+
+__Bishop:__ a piece that may move any number of squares diagonally; of the player’s bishops, one begins on a white space, while the other appears on a dark space. Under normal conditions, a bishop will never move to a square with a different color than the one on which it started.
+
+__Queen:__ often considered the most powerful chess piece, the queen may move any number of squares in any of the cardinal directions, meaning it can choose to move like a rook or a bishop on any given turn.
+
+__King:__ the piece to be protected; the point of the game of chess is to defend the king and ensure the opponent does not capture the piece. One must move their pieces around to prevent the king from being cornered, as the king can move in any of the cardinal directions, like the queen, but it can only move a single space in any direction per turn.
+
+__Check:__ the condition where a king is in danger. If an opponent moves one of their pieces into a position by which it may capture the king on the next turn, the threatened king is considered ‘in check.’ The player with the threatened king then has three options: move the king to a position in which it is not threatened, capture the piece that threatens the king, or move another one of their pieces to obstruct the piece that is threatening the king. 
+
+__Checkmate:__ signals the end of the game; occurs when a king is threatened and the player controlling that king can make no possible moves to get the king out of check
+
+__Castling:__ a special move in standard chess-the only one that allows two pieces to be moved at the same time. If the back line of a player’s side is clear of game pieces between one of their rooks and their king, neither of those pieces have moved in the game yet, and the king is not in check, a player may move their king over one space towards the rook, move the rook next to the king, and then swap the position of the two pieces.
+
+__Power-Ups:__ special bonuses purchased with Energy in Extreme Chess; allows the normal rules of chess to be bent for more a more Extreme gameplay experience
+
+__Energy:__ currency acquired during the gameplay of Extreme Chess at the rate of 1 Energy(E) per turn; used to purchase power-ups 
+
+
+# Appendix B: Analysis Models
+
+# Appendix C: To Be Determined List
+
+
