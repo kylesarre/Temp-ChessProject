@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11498396}
   - 114: {fileID: 114000010041397296}
   - 61: {fileID: 61000011149892900}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: obj_king
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,3 +117,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c716a4967497b1d48a3f1da1f207c1f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tint: 1.3
