@@ -65,5 +65,5 @@ todo
 **Date**: 10-21-16</br>
 **Purpose**: work out conflicts in the SRS and submit the final version to GitHub</br>
 **Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Gabriel Davis, Julian Plaisance</br>
-**Goals met**: </br>
+**Goals met**: finished SRS </br>
 
