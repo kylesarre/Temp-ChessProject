@@ -82,13 +82,9 @@ List of user interface components: main menu, control menu, options box, save bo
 	* scene manager
 	* AI
   By taking advantage of the scripting api provided by Unity, we can utilize these low level tools to aid in the development of our own system (rather than building the system from scratch). 
-=======
-
-By taking advantage of the scripting api provided by Unity, we can utilize these low level tools to aid in the development of our own system (rather than building the system from scratch). 
 
 ## 3.4 Communications Interfaces
 Extreme Chess does not communicate with any external entities.
->>>>>>> origin/master
 
 # 4 System Features
 
