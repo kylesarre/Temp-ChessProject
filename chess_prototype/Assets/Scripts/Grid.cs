@@ -32,31 +32,9 @@ public class Grid : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		UpdateSelection ();
-		drawSelected ();
+		
 	}
-	// retrieves the x and y coordinates of the cell object the mouse is currently hovering over and stores it
-	private void UpdateSelection()
-	{
-		if (!Camera.main) 
-		{
-			Debug.Log ("No main camera, exiting.");
-			return;
-		}
-		RaycastHit2D hit;
-		hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero, LayerMask.GetMask("bottom"));
-		if (hit) {
-			Debug.Log (hit.point);
-			selectionX = Mathf.FloorToInt(hit.point.x);
-			selectionY = Mathf.FloorToInt(hit.point.y);
-
-		} 
-		else 
-		{
-			selectionX = -1;
-			selectionY = -1;
-		}
-	}
+		
 	// instantiates the specified chess piece prefab at the specified location
 	// indexes: 0 [Pawn], 1[rook], 2[knight], 3[Bishop], 4[Queen], 5[King]
 	// location: the cell where the Piece resides
@@ -168,14 +146,7 @@ public class Grid : MonoBehaviour
 		}
 
 	}
-
-	// draws a diagonal red line over a cell whenever the mouse cursor is hovering over it
-	private void drawSelected()
-	{
-		Debug.DrawLine (Vector3.up*selectionY + Vector3.right*selectionX,
-						Vector3.up*(selectionY+1f) + Vector3.right*(selectionX+1f),
-						Color.red);
-	}
+	
 	// updates all of the moves a piece is allowed to make given the piece's position and the set of rules it must conform to given convential chess rules
 	public void updateAllowedMoves(Piece piece)
 	{

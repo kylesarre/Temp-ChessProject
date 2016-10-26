@@ -54,5 +54,5 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   selectedPiece: {fileID: 0}
   grid: {fileID: 0}
-  curGameState: 0
+  curGameState: 1
   curTurnState: 0
