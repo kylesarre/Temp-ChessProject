@@ -26,6 +26,7 @@ We have added numerous features for our user interface for ease of use. The user
 
 ##2.2  Upgrading
 At the beginning of the game, the system will prompt each player to select five upgrades out of a collection provided by the system. Once each player has selected their five upgrades, they will press a button at the bottom of the prompt and the system will set each player's upgrades. At this point the game would begin.
+
 Once a player has selected a piece, every upgrade on their list of upgrades that can be used with the selected piece will be selectable. A player can deselect their upgrade as long as they haven't confirmed a move yet. Each upgrade has a cost. Once they have confirmed a move with an upgrade selected however, the system will deduct the cost of the upgrade from their resource (Energy) and the turn ends.
 ##2.3 Energy
 Energy is a player resource used in upgrading pieces. It has a maximum value of 100 and accumulates in increments of 20 at the beginning of the player's turn. When a player makes a move with an upgraded piece, the system will deduct the cost of the piece from Energy.
