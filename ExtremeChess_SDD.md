@@ -1,4 +1,4 @@
-# Ultimate Chess: Software Design Document
+# Extreme Chess: Software Design Document
 ### Team Members: Robert Anderson, Hanna Cunningham, Gabriel Davis, Julian Plaisance, Kyle Sarre
 
 # Table of Contents
