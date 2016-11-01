@@ -67,3 +67,12 @@ todo
 **Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Gabriel Davis, Julian Plaisance</br>
 **Goals met**: finished SRS </br>
 
+**Date**: 11-1-16</br>
+**Purpose**: finish the SDD</br>
+**Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Julian Plaisance </br>
+**Goals met**: </br>
+
+**Date**: </br>
+**Purpose**: </br>
+**Members in Attendance**: </br>
+**Goals met**: </br>
