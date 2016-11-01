@@ -1,11 +1,11 @@
 # Ultimate Chess: Software Design Document
-### Team Members: Robert Anderson, Hanna Cunningham, Gabriel Davis,Julian Plaisance, Kyle Sarre
+### Team Members: Robert Anderson, Hanna Cunningham, Gabriel Davis, Julian Plaisance, Kyle Sarre
 
 # Table of Contents
-## 2. Conceptual System Architecture ...............(page num)
-### 2.1 Overview....................................(page num)
-### 2.2 Upgrading...................................(page num)
-### 2.3 Energy......................................(page num)
+### 2. Conceptual System Architecture
+#### 2.1 Overview
+#### 2.2 Upgrading
+#### 2.3 Energy
 
 # 1 Introduction
 ## 1.1 Purpose
