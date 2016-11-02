@@ -85,5 +85,6 @@ Include rational for each
 # 8 Work-Assignment View
  * The user interface design will be assigned to Hanna Cunningham and Julian Plaisance. They will be responsible for ensuring that all UI elements are functional, and that all visual transitions and effects work as desired.
  * The game logic will be assigned to Robert Anderson, Kyle Sarre, and Gabriel Davis. They will be responsible for ensuring that the game logic, including the chess moves, ability activations, and win-condition logic all function properly.
+ 
 # 9 Element Catalog
 # 10 User Interfaces
