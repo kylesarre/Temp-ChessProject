@@ -38,9 +38,11 @@ Energy is a player resource used in upgrading pieces. It has a maximum value of 
 ##2.9 Turn Phases
 # 3 Sub-systems Architecture
 Include rational for each
-# 4 Development View
-# 5 Physical View
-# 6 Database View
-# 7 Work-Assignment View
-# 8 Element Catalog
-# 9 User Interfaces
+# 4 Logical View
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/LogicalView.png)
+# 5 Development View
+# 6 Physical View
+# 7 Database View
+# 8 Work-Assignment View
+# 9 Element Catalog
+# 10 User Interfaces
