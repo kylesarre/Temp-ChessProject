@@ -69,6 +69,13 @@ During gameplay, a user can opt to forfeit the game. The system then decides the
 ##2.7 Highlighting
 The system uses a highlighter to highlight elements on the board. The system always highlights board cells underneath the cursor blue to indicate the cursor's position on the board clearly. If their is a piece underneath the cursor, the piece is highlighted yellow. If a piece is selected, the system retains the yellow highlight on the piece and highlights all of the piece's visitable cells green. If there is an opposing piece on a visitable cell, that cell will be highlighted red instead.
 # 3 Sub-systems Architecture
+##3.1 Overview
+Due to our system's dependence on the Unity game engine, our system conforms to the model and structure of Unity. Unity is an Entity-Component driven system, and so all of the scripts that comprise our system are components of some entity in the Unity engine. Hence, we can think of our written scripts as being components of our system. For our system, we decided to go with a MVC architectural approach.
+Our system is comprised of a game controller, which is composed of three specific game controllers: the board controller, the player controller, and the UI controller. The game controller is responsible for controlling messaging between these three sub-controllers and for managing game states. The board controller is responsible for application logic regarding changes to the board, its graveyards, and its pieces. The player controller is responsible for application logic regarding changes to the players and the actions players can make in the game. The UI controller is responsible for updating UI elements throughout the game.
+Additionally, our system is comprised of a model. The model is representative of the entire domain of our system. Components of this model include the board, the pieces, the players, all game states, a move history log, upgrades, and graveyards. 
+Finally, the view of the system is handled entirely by the Unity API. All controllers in our system may communicate with the Unity API to update the view of our system.
+3.2 
+    
 Include rational for each
 # 4 Logical View
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/LogicalView.png)
