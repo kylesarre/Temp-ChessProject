@@ -81,7 +81,11 @@ Include rational for each
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/LogicalView.png)
 # 5 Development View
 # 6 Physical View
+On a physical level, the software will be solely confined to the PC on which the software is installed. This section is reserved in case there is a decision to incorporate other physical entities later on in the project.
+
 # 7 Database View
+There are no plans for the system to include any major database elements. This section is reserved in case there is a decision to implement a database later on in development.
+
 # 8 Work-Assignment View
  * The user interface design will be assigned to Hanna Cunningham and Julian Plaisance. They will be responsible for ensuring that all UI elements are functional, and that all visual transitions and effects work as desired.
  * The game logic will be assigned to Robert Anderson, Kyle Sarre, and Gabriel Davis. They will be responsible for ensuring that the game logic, including the chess moves, ability activations, and win-condition logic all function properly.
