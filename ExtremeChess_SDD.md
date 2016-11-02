@@ -2,10 +2,28 @@
 ### Team Members: Robert Anderson, Hanna Cunningham, Gabriel Davis, Julian Plaisance, Kyle Sarre
 
 # Table of Contents
-### 2. Conceptual System Architecture
+### 1 Introduction
+Gabe needs to add subsections
+### 2 Conceptual System Architecture
 #### 2.1 Overview
 #### 2.2 Upgrading
 #### 2.3 Energy
+#### 2.4 Piece Movement
+#### 2.5 Graveyard
+#### 2.6 Move History
+#### 2.7 The Game Board
+#### 2.8 Pieces
+#### 2.9 Turn Phases
+### 3 Sub-systems Architecture
+add sections for subsystems
+### 4 Logical View
+### 5 Development View
+### 6 Physical View
+### 7 Database View
+### 8 Work-Assignment View
+### 9 Element Catalog
+### 10 User Interfaces
+
 
 # 1 Introduction
 ## 1.1 Purpose
@@ -16,7 +34,7 @@ optional
 optional
 ## 1.5 Overview 
  optional
-# 2. Conceptual System Architecture
+# 2 Conceptual System Architecture
 ## 2.1 Overview
 Extreme Chess is a spin on the game of Chess. As a game application, Extreme Chess must be designed
 around two critical objectives. Firstly, it must reflect our vision for Extreme Chess. Our vision is threefold.
