@@ -187,6 +187,7 @@ Selectable Objects:
 Selectable Objects:
 - Volume: the slider controls the volume of the background music in game
 - Brightness: the slider controls the brightness of the game display
+- Resume: returns player to game
 
 ## 9.5 Help Menu Screen
 The help menu is intended to aid people that are new to chess or its extreme variant. It uses the Glossary of the Extreme Chess SRS for its definitions.
