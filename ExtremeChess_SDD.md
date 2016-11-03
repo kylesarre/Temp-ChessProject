@@ -162,7 +162,7 @@ Selectable Objects:
 - Quit Button: closes the application
 
 ## 9.2 Main Game Screen
-![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(2).png)
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(9).png)
 
 The main game screen serves as the primary window in which the game will operate. It displays the graveyards, the current player's name and energy level, and the previous moves list. The UI Controller will update the graveyard every time a piece is captured. It will also switch the displayed name and energy to match the current player after every turn as well as add the last move to the list of previous moves in the grey box at the bottom of the screen. 
 
@@ -182,7 +182,7 @@ Selectable Objects:
 - Quit: creates a dialog screen asking if the player wishes to quit the game. If they select yes, the game ends without a victor and the title screen is displayed.
 
 ## 9.4 Options Screen
-![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(5).png)
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/options.png)
 
 Selectable Objects:
 - Volume: the slider controls the volume of the background music in game
