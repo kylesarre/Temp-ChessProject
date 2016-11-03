@@ -130,8 +130,7 @@ Connections:
 - board communicates with GC to tell UC to update graveyard
 - player communicates with GC to tell UC to update energy #
 - board communicates with GC to tell UC to update piece location on board
-- || update highlighted location
-- || update previous moves list
+- board communicates with GC to update previous moves list
 
 ### 3.4.2 UI Controller (UC)
 The User Controller uses button clicks to navigate to different screens as well as...
@@ -145,7 +144,7 @@ uses information received from GC to:
 ### 3.4.3 Player Controller (PC)
 The Player Controller is used at the start of the game to store the players' names and colors. During the game, when the GC tells it that a turn has passed for each player, it increases the players' energy by a set amount. Also, if a powerup is used, the player's energy is decremented by the amount dictated by the specific powerup.
 ### 3.4.4 Board Controller (BC)
-The Board Controller keeps track of all the piece locations and how/where they are allowed to move every turn. It also tracks for check and checkmate. If a piece is selected on the user interface, the information is sent to the GC which tells the Board Controller to update the location of the piece on its side. 
+The Board Controller keeps track of all the piece locations and how/where they are allowed to move every turn. It also tracks for check and checkmate. If a piece is selected on the user interface, the information is sent to the GC which tells the Board Controller to update the location of the piece on its side. The Board Controller also keeps track of previous moves and sends them to the GC to display on the user interface.
 # 4 Development View
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/developmentview.PNG)
 # 5 Physical View
