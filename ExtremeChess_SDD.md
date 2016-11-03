@@ -134,11 +134,18 @@ Connections:
 - || update previous moves list
 
 ### 3.4.2 UI Controller (UC)
-updates graveyard, energy amount, piece location on board, hihglighting, and player name at top
+The User Controller uses button clicks to navigate to different screens as well as...
+uses information received from GC to:
+- update graveyard graphic to include captured piece
+- update the player's energy
+- update piece location
+- highlight select cells/pieces on the board
+- ensure player name at top corresponds to current player
+
 ### 3.4.3 Player Controller (PC)
-updates energy and stores intial values of name and color
+The Player Controller is used at the start of the game to store the players' names and colors. During the game, when the GC tells it that a turn has passed for each player, it increases the players' energy by a set amount. Also, if a powerup is used, the player's energy is decremented by the amount dictated by the specific powerup.
 ### 3.4.4 Board Controller (BC)
-controls piece movement, piece powerups, highlighting
+The Board Controller keeps track of all the piece locations and how/where they are allowed to move every turn. It also tracks for check and checkmate. If a piece is selected on the user interface, the information is sent to the GC which tells the Board Controller to update the location of the piece on its side. 
 # 4 Development View
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/developmentview.PNG)
 # 5 Physical View
