@@ -64,7 +64,7 @@ Users should be able to use the software easily and understand the new abilities
 
 4. Development View: This section provides the layout for the organization of the project.
 
-5. Physical View: 
+5. Physical View: This section goes over the pieces of hardware and how they relate within the project.
 
 6. Database View: This section goes over the databases and data which will be used within the project. 
 
