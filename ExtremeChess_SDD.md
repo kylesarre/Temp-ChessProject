@@ -76,8 +76,12 @@ Due to our system's dependence on the Unity game engine, our system conforms to 
 Our system is comprised of a game controller, which is composed of three specific game controllers: the board controller, the player controller, and the UI controller. The game controller is responsible for controlling messaging between these three sub-controllers and for managing game states. The board controller is responsible for application logic regarding changes to the board, its graveyards, and its pieces. The player controller is responsible for application logic regarding changes to the players and the actions players can make in the game. The UI controller is responsible for updating UI elements throughout the game.
 Additionally, our system is comprised of a model. The model is representative of the entire domain of our system. Components of this model include the board, the pieces, the players, all game states, a move history log, upgrades, and graveyards. 
 Finally, the view of the system is handled entirely by the Unity API. All controllers in our system may communicate with the Unity API to update the view of our system.
+
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/LogicalView.png)
-## 3.2 
+## 3.2 Model
+## 3.3 View
+## 3.4 Controllers
+### 3.4.1 Game Controller
 # 4 Development View
 # 5 Physical View
 On a physical level, the software will be solely confined to the PC on which the software is installed. This section is reserved in case there is a decision to incorporate other physical entities later on in the project.
@@ -90,3 +94,13 @@ There are no plans for the system to include any major database elements. This s
  
 # 8 Element Catalog
 # 9 User Interfaces
+## 9.1 Title Screen
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(3).png)
+## 9.2 Main Game Screen
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(2).png)
+## 9.3 Game Dialog Screen
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(4).png)
+## 9.4 Options Screen
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(5).png)
+## 9.5 Other Dialog Screens
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(6).png)
