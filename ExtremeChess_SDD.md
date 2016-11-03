@@ -37,15 +37,10 @@ The purpose of this document is to describe the system design, the rationale beh
 
 ## 1.2 Intended Audience
 Our intended audience consists of:
-
 •	Developer(s) - individuals who are responsible for designing the software itself.
-
 •	Project Manager(s) - individuals who are overseeing the development of the software, establishing deadlines, and managing risks.
-
 •	Tester(s) - individuals who verify that specifications outlined in this document are followed in the software design.
-
 •	Documentation Writer(s) - individuals who need to outline what a feature does, its purpose, and how it will fit into the current system
-
 
 ## 1.3 Scope
 Our intended audience consists of:
@@ -128,10 +123,11 @@ The Model for this program includes all of the data the program stores about the
 The system's View consists of everything the player can see on the screen: basically all of the user interface. More details on the user interface can be found in section 9.
 ## 3.4 Controllers
 The operations and communications between the subsystems of the program are handled by the controllers. They can access and modify data in the Model as well as talk to the user interface to update the visual displayed on the screen.
-### 3.4.1 Game Controller
-The Game Controller(GC) coordinates connections between controllers and handles the GameState
-Possible game states are: ...
-Connections:
+### 3.4.1 Game Controller (GC)
+The Game Controller coordinates connections between controllers and handles the GameState.
+The GameState informs the other controllers who the active player is, signalling who can move and use powerups.
+
+Connections between Controllers handled by the Game Controller:
 - board communicates with GC to tell UC to update graveyard
 - player communicates with GC to tell UC to update energy #
 - board communicates with GC to tell UC to update piece location on board
