@@ -3,7 +3,11 @@
 
 # Table of Contents
 ### 1 Introduction
-Gabe needs to add subsections
+##### 1.1 Purpose
+##### 1.2 Intended Audience
+##### 1.3 Scope
+##### 1.4 Design Summary
+##### 1.5 Overview 
 ### 2 Conceptual System Architecture
 ##### 2.1 Overview
 ##### 2.2 Upgrading
@@ -29,13 +33,48 @@ Gabe needs to add subsections
 
 # 1 Introduction
 ## 1.1 Purpose
+The purpose of this document is to describe the system design, the rationale behind it, and the organization of the information. The overall goal of the SDD is to describe the system architecture.
+
 ## 1.2 Intended Audience
-optional
+Our intended audience consists of:
+•	Developer(s) - individuals who are responsible for designing the software itself.
+•	Project Manager(s) - individuals who are overseeing the development of the software, establishing deadlines, and managing risks.
+•	Tester(s) - individuals who verify that specifications outlined in this document are followed in the software design.
+•	Documentation Writer(s) - individuals who need to outline what a feature does, its purpose, and how it will fit into the current system
+
 ## 1.3 Scope
+Our intended audience consists of:
+
+* Developer(s) - individuals who are responsible for designing the software itself.
+* Project Manager(s) - individuals who are overseeing the development of the software, establishing deadlines, and managing risks.
+* Tester(s) - individuals who verify that specifications outlined in this document are followed in the software design.
+* Documentation Writer(s) - individuals who need to outline what a feature does, its purpose, and how it will fit into the current system
+
 ## 1.4 Design Summary
-optional
+Users should be able to use the software easily and understand the new abilities of the game quickly. This documents outlines the design for “Extreme Chess” as a whole. Based off of the original game of Chess our product will offer a similar yet new experience to the game.
+
 ## 1.5 Overview 
- optional
+ The Software Design Document is divided into 9 sections with subsections. The sections of the Software Design Document are:
+
+1. Introduction: This section gives a brief introduction and summary to the project. 
+
+2. Conceptual System Architecture: This section introduces the main system, subsystems, and their relation in the application. 
+
+3. Subsystems Architecture: This section describes the design of each subsystem. 
+
+4. Development View: This section provides the layout for the organization of the project.
+
+5. Physical View: 
+
+6. Database View: This section goes over the databases and data which will be used within the project. 
+
+7. Work Assignment View: This section presents each task in the application and which developers have been tasked with completing it. 
+
+8. Element Catalog: This section is a reference for all symbols used within the document. 
+
+9. User Interface: This section represents and describes important aspects in the design of the graphical user interface.
+
+ 
 # 2 Conceptual System Architecture
 ## 2.1 Overview
 Extreme Chess is a spin on the game of Chess. As a game application, Extreme Chess must be designed
@@ -101,6 +140,7 @@ updates energy and stores intial values of name and color
 ### 3.4.4 Board Controller (BC)
 controls piece movement, piece powerups, highlighting
 # 4 Development View
+![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/developmentview.PNG)
 # 5 Physical View
 On a physical level, the software will be solely confined to the PC on which the software is installed. This section is reserved in case there is a decision to incorporate other physical entities later on in the project.
 # 6 Database View
