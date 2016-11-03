@@ -90,6 +90,7 @@ Connections:
 - board communicates with GC to tell UC to update piece location on board
 - || update highlighted location
 - || update previous moves list
+
 ### 3.4.2 UI Controller
 updates graveyard, energy amount, piece location on board, hihglighting, and player name at top
 ### 3.4.3 Player Controller
