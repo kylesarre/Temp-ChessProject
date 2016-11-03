@@ -79,10 +79,13 @@ Finally, the view of the system is handled entirely by the Unity API. All contro
 
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/LogicalView.png)
 ## 3.2 Model
+The Model for this program includes all of the data the program stores about the game: things such as playerName, playerColor, pieceLocation, and so on. This information is nested in scripts and handled by the Unity Game Engine. 
 ## 3.3 View
+The system's View consists of everything the player can see on the screen: basically all of the user interface. More details on the user interface can be found in section 9.
 ## 3.4 Controllers
+The operations and communications between the subsystems of the program are handled by the controllers. They can access and modify data in the Model as well as talk to the user interface to update the visual displayed on the screen.
 ### 3.4.1 Game Controller
-coordinates connections between controllers and handles the GameState
+The Game Controller(GC) coordinates connections between controllers and handles the GameState
 Possible game states are: ...
 Connections:
 - board communicates with GC to tell UC to update graveyard
@@ -91,11 +94,11 @@ Connections:
 - || update highlighted location
 - || update previous moves list
 
-### 3.4.2 UI Controller
+### 3.4.2 UI Controller (UC)
 updates graveyard, energy amount, piece location on board, hihglighting, and player name at top
-### 3.4.3 Player Controller
+### 3.4.3 Player Controller (PC)
 updates energy and stores intial values of name and color
-### 3.4.4 Board Controller
+### 3.4.4 Board Controller (BC)
 controls piece movement, piece powerups, highlighting
 # 4 Development View
 # 5 Physical View
