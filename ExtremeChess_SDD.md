@@ -135,5 +135,7 @@ Selectable Objects:
 ## 9.4 Options Screen
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(5).png)
 
-## 9.5 Other Dialog Screens
+## 9.5 Help Menu
+
+## 9.6 Other Dialog Screens
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(6).png)
