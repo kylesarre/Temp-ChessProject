@@ -135,10 +135,35 @@ Selectable Objects:
 ## 9.3 Game Dialog Screen
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(4).png)
 
+Selectable Objects:
+- Resume: returns player to the current game
+- Options: opens the Options Screen
+- Help: opens the Help Menu Screen
+- Quit: creates a dialog screen asking if the player wishes to quit the game. If they select yes, the game ends without a victor and the title screen is displayed.
+
 ## 9.4 Options Screen
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(5).png)
 
-## 9.5 Help Menu
+Selectable Objects:
+- Volume: the slider controls the volume of the background music in game
+- Brightness: the slider controls the brightness of the game display
+
+## 9.5 Help Menu Screen
+The help menu is intended to aid people that are new to chess or its extreme variant. It uses the Glossary of the Extreme Chess SRS for its definitions.
+
+Selectable Objects:
+- Chess Basics: displays the definition of chess with a neat summary of how to play the classic game
+- Chess Pieces: displays a list of pieces which can be selected; once selected, the piece's information and move details are displayed
+- Extreme Powerups: displays a list of in-game powerups; once selected, the piece the powerup can be used on, as well as its cost and effect are shown
+- Back: returns player to game if currently in one
+
 
 ## 9.6 Other Dialog Screens
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(6).png)
+
+The remaining user interface screens consists of multiple dialog boxes that ask a yes or no question. Upon answering no, the game will close the dialog screen and return to its last state. For the sake of simplicity and space, only one example is shown above: the forfeit dialog screen.
+
+Dialog Screens:
+- Forfeit: asks if current player would like to forfeit; if yes, the game ends with a banner showing the opposing player was the victor and then returns to the title screen
+- Quit: asks if the player would like to quit the current game; if yes, the game ends without a victor and returns to the title screen
+- Apply Powerup: asks if the player is sure they want to apply the selected powerup to the selected piece; if yes, the powerup  becomes active on that piece
