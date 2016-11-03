@@ -82,6 +82,20 @@ Finally, the view of the system is handled entirely by the Unity API. All contro
 ## 3.3 View
 ## 3.4 Controllers
 ### 3.4.1 Game Controller
+coordinates connections between controllers and handles the GameState
+Possible game states are: ...
+Connections:
+a) board communicates with GC to tell UC to update graveyard
+b) player communicates with GC to tell UC to update energy #
+c) board communicates with GC to tell UC to update piece location on board
+d) || update highlighted location
+e) || update previous moves list
+### 3.4.2 UI Controller
+updates graveyard, energy amount, piece location on board, hihglighting, and player name at top
+### 3.4.3 Player Controller
+updates energy and stores intial values of name and color
+### 3.4.4 Board Controller
+controls piece movement, piece powerups, highlighting
 # 4 Development View
 # 5 Physical View
 On a physical level, the software will be solely confined to the PC on which the software is installed. This section is reserved in case there is a decision to incorporate other physical entities later on in the project.
@@ -94,13 +108,31 @@ There are no plans for the system to include any major database elements. This s
  
 # 8 Element Catalog
 # 9 User Interfaces
+The user interface windows shown here represent prototypes of the final design and will go through changes before the final product is released. As of now, they serve to model the buttons and corresponding functions of the interface.
 ## 9.1 Title Screen
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(3).png)
+
+Selectable Objects:
+- New Game Button: prompts for the name of Player1 and Player2 then creates a new game instance
+- Help Button: opens the help menu
+- Quit Button: closes the application
+
 ## 9.2 Main Game Screen
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(2).png)
+
+The main game screen serves as the primary window in which the game will operate. It displays the graveyards, the current player's name and energy level, and the previous moves list. The UI Controller will update the graveyard every time a piece is captured. It will also switch the displayed name and energy to match the current player after every turn as well as add the last move to the list of previous moves in the grey box at the bottom of the screen. 
+
+Selectable Objects:
+- Pieces(of the same color as the current player): may be clicked to select; power-ups can then be used, or the piece moved
+- Cells: highlighted when scrolled over; if a piece is selected at this time, the piece is able to be moved to the cell over which the mouse is hovering, and the mouse is clicked on this square, the piece will move to the location
+- Game Dialog Button: brings up the Game Dialog Screen
+- Forfeit Button: creates a dialog screen asking if the current player wishes to forfeit. If they select yes, the game ends with victory for the other player and returns to the title screen.
+
 ## 9.3 Game Dialog Screen
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(4).png)
+
 ## 9.4 Options Screen
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(5).png)
+
 ## 9.5 Other Dialog Screens
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Screenshot%20(6).png)
