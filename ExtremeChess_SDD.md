@@ -37,10 +37,15 @@ The purpose of this document is to describe the system design, the rationale beh
 
 ## 1.2 Intended Audience
 Our intended audience consists of:
+
 •	Developer(s) - individuals who are responsible for designing the software itself.
+
 •	Project Manager(s) - individuals who are overseeing the development of the software, establishing deadlines, and managing risks.
+
 •	Tester(s) - individuals who verify that specifications outlined in this document are followed in the software design.
+
 •	Documentation Writer(s) - individuals who need to outline what a feature does, its purpose, and how it will fit into the current system
+
 
 ## 1.3 Scope
 Our intended audience consists of:
