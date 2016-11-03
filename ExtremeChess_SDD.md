@@ -2,47 +2,29 @@
 ### Team Members: Robert Anderson, Hanna Cunningham, Gabriel Davis, Julian Plaisance, Kyle Sarre
 
 # Table of Contents
-....1 Introduction
-
+### 1 Introduction
 Gabe needs to add subsections
-
-....2 Conceptual System Architecture
-
-........2.1 Overview
-
-........2.2 Upgrading
-
-........2.3 Energy
-
-........2.4 Piece Movement
-
-........2.5 Graveyard
-
-........2.6 Move History
-
-........2.7 The Game Board
-
-........2.8 Pieces
-
-........2.9 Turn Phases
-
-....3 Sub-systems Architecture
-
-add sections for subsystems
-
-....4 Application Views
-
-........4.1 Development View
-
-........4.2 Physical View
-
-........4.3 Database View
-
-........4.4 Work-Assignment View
-
-........4.5 Element Catalog
-
-....5 User Interfaces
+### 2 Conceptual System Architecture
+##### 2.1 Overview
+##### 2.2 Upgrading
+##### 2.3 Energy
+##### 2.4 Piece Movement
+##### 2.5 Graveyard
+##### 2.6 Move History
+##### 2.7 The Game Board
+##### 2.8 Pieces
+##### 2.9 Turn Phases
+### 3 Sub-systems Architecture
+##### 3.1 Overview
+##### 3.2 Model
+##### 3.3 View
+##### 3.4 Controllers
+### 4 Development View
+### 5 Physical View
+### 6 Database View
+### 7 Work-Assignment View
+### 8 Element Catalog
+### 9 User Interfaces
 
 
 # 1 Introduction
@@ -94,18 +76,15 @@ Due to our system's dependence on the Unity game engine, our system conforms to 
 Our system is comprised of a game controller, which is composed of three specific game controllers: the board controller, the player controller, and the UI controller. The game controller is responsible for controlling messaging between these three sub-controllers and for managing game states. The board controller is responsible for application logic regarding changes to the board, its graveyards, and its pieces. The player controller is responsible for application logic regarding changes to the players and the actions players can make in the game. The UI controller is responsible for updating UI elements throughout the game.
 Additionally, our system is comprised of a model. The model is representative of the entire domain of our system. Components of this model include the board, the pieces, the players, all game states, a move history log, upgrades, and graveyards. 
 Finally, the view of the system is handled entirely by the Unity API. All controllers in our system may communicate with the Unity API to update the view of our system.
-## 3.2 
-# 4 Application Views
-## 4.1 Logical View
 ![](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/LogicalView.png)
-
-# 4.2 Development View
-# 4.3 Physical View
+## 3.2 
+# 4 Development View
+# 5 Physical View
 On a physical level, the software will be solely confined to the PC on which the software is installed. This section is reserved in case there is a decision to incorporate other physical entities later on in the project.
-# 4.4 Database View
+# 6 Database View
 There are no plans for the system to include any major database elements. This section is reserved in case there is a decision to implement a database later on in development.
 
-# 4.5 Work-Assignment View
+# 7 Work-Assignment View
  * The user interface design will be assigned to Hanna Cunningham and Julian Plaisance. They will be responsible for ensuring that all UI elements are functional, and that all visual transitions and effects work as desired.
  * The game logic will be assigned to Robert Anderson, Kyle Sarre, and Gabriel Davis. They will be responsible for ensuring that the game logic, including the chess moves, ability activations, and win-condition logic all function properly.
  
