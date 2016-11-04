@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9e580e929dc97fc44ba35336a70837a5
-timeCreated: 1474312056
+timeCreated: 1478239530
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -58,11 +58,14 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 32
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: spr_chess_pieces_0
+    - serializedVersion: 2
+      name: spr_chess_pieces_0
       rect:
         serializedVersion: 2
         x: 0
@@ -70,18 +73,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -3, y: 13}
-        - {x: -7, y: 7}
-        - {x: -10, y: -7}
-        - {x: -10, y: -12}
-        - {x: -8, y: -13}
-        - {x: 9, y: -13}
-        - {x: 9, y: 11}
-        - {x: 4, y: 13}
-    - name: spr_chess_pieces_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_1
       rect:
         serializedVersion: 2
         x: 32
@@ -89,16 +86,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -11, y: 16}
-        - {x: -15, y: -4}
-        - {x: -15, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: -1}
-        - {x: 9, y: 16}
-    - name: spr_chess_pieces_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_2
       rect:
         serializedVersion: 2
         x: 64
@@ -106,18 +99,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 13, y: 8}
-        - {x: 10, y: 16}
-        - {x: -12, y: 16}
-        - {x: -14, y: 7}
-        - {x: -14, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: -11}
-        - {x: 13, y: -8}
-    - name: spr_chess_pieces_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_3
       rect:
         serializedVersion: 2
         x: 96
@@ -125,19 +112,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 10, y: 16}
-        - {x: -10, y: 16}
-        - {x: -12, y: 14}
-        - {x: -15, y: -11}
-        - {x: -15, y: -15}
-        - {x: -14, y: -16}
-        - {x: 14, y: -16}
-        - {x: 15, y: -15}
-        - {x: 15, y: 2}
-    - name: spr_chess_pieces_4
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_4
       rect:
         serializedVersion: 2
         x: 128
@@ -145,16 +125,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -13, y: 16}
-        - {x: -16, y: 6}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: 9}
-        - {x: 13, y: 16}
-    - name: spr_chess_pieces_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_5
       rect:
         serializedVersion: 2
         x: 160
@@ -162,16 +138,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: -1}
-        - {x: 12, y: 16}
-        - {x: -13, y: 16}
-        - {x: -15, y: 12}
-    - name: spr_chess_pieces_6
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_6
       rect:
         serializedVersion: 2
         x: 0
@@ -179,18 +151,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -2, y: 14}
-        - {x: -6, y: 8}
-        - {x: -9, y: -6}
-        - {x: -9, y: -11}
-        - {x: -7, y: -12}
-        - {x: 10, y: -12}
-        - {x: 10, y: 12}
-        - {x: 5, y: 14}
-    - name: spr_chess_pieces_7
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_7
       rect:
         serializedVersion: 2
         x: 32
@@ -198,16 +164,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -11, y: 16}
-        - {x: -15, y: -4}
-        - {x: -15, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: -1}
-        - {x: 9, y: 16}
-    - name: spr_chess_pieces_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_8
       rect:
         serializedVersion: 2
         x: 64
@@ -215,18 +177,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 12, y: 8}
-        - {x: 9, y: 16}
-        - {x: -13, y: 16}
-        - {x: -15, y: 7}
-        - {x: -15, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: -11}
-        - {x: 12, y: -8}
-    - name: spr_chess_pieces_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_9
       rect:
         serializedVersion: 2
         x: 96
@@ -234,19 +190,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 10, y: 16}
-        - {x: -10, y: 16}
-        - {x: -12, y: 14}
-        - {x: -15, y: -11}
-        - {x: -15, y: -15}
-        - {x: -14, y: -16}
-        - {x: 14, y: -16}
-        - {x: 15, y: -15}
-        - {x: 15, y: 2}
-    - name: spr_chess_pieces_10
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_10
       rect:
         serializedVersion: 2
         x: 128
@@ -254,16 +203,12 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -13, y: 16}
-        - {x: -16, y: 6}
-        - {x: -16, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: 9}
-        - {x: 13, y: 16}
-    - name: spr_chess_pieces_11
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spr_chess_pieces_11
       rect:
         serializedVersion: 2
         x: 160
@@ -271,15 +216,10 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: -16}
-        - {x: 15, y: -16}
-        - {x: 15, y: -1}
-        - {x: 12, y: 16}
-        - {x: -13, y: 16}
-        - {x: -15, y: 12}
+      outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 

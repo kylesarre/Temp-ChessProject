@@ -4,14 +4,20 @@ using System.Collections;
 public class Cell : MonoBehaviour 
 {
 	public GameObject myPiece;
-	Vector3 cellCenter;
-	public bool isActive;
+	private Vector3 cellMidPoint;
+	private bool isActive;
+	public int row;
+	public int column;
+
+	void Awake()
+	{
+		cellMidPoint = new Vector3(0, 0, 0);
+		isActive = true;
+	}
 
 	// Use this for initialization
 	void Start () 
-	{
-		cellCenter = CellCenter;
-		isActive = true;
+	{		
 	}
 	
 	// Update is called once per frame
@@ -29,14 +35,12 @@ public class Cell : MonoBehaviour
 		get{ return myPiece; }
 		set{ myPiece = value; }
 	}
-	public Vector3 CellCenter
+	public Vector3 CellMidPoint
 	{
-		get{ return cellCenter;}
-		private set
+		get{ return cellMidPoint;}
+		set
 		{
-			Vector3 origin = transform.position;
-			Vector3 midPoint = new Vector3(origin.x + Grid.distanceBetweenTiles, origin.y + Grid.distanceBetweenTiles, origin.z)*(1/2);
-			cellCenter = midPoint;
+			cellMidPoint = value;
 		}
 	}
 }

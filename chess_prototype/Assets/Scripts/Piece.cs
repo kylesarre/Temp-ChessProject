@@ -16,6 +16,7 @@ public class Piece : MonoBehaviour
 	public void Do_Init()
 	{
 		movementVectors = new List<Vector3>();
+		validCells = new List<Cell> ();
 	}
 
 	public void move (Cell cell)
@@ -37,7 +38,6 @@ public class Piece : MonoBehaviour
 	public List<Vector3> MovementVectors
 	{
 		get{ return movementVectors;}
-		set{ movementVectors = new List<Vector3>();}
 	}
 	public float CurrentX{ get; set;}
 	public float CurrentY{ get; set;}

@@ -20,8 +20,6 @@ public class SpriteDictionary : MonoBehaviour
 	{
 		foreach (Sprite sprite in sprites) 
 		{
-			Debug.Log ("test");
-			Debug.Log (sprite.name);
 			spriteDict.Add (sprite.name, sprite);
 		}
 	}

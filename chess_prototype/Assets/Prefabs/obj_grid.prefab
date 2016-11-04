@@ -10,8 +10,6 @@ GameObject:
   - 224: {fileID: 22499296}
   - 212: {fileID: 21294094}
   - 114: {fileID: 11495752}
-  - 114: {fileID: 11407858}
-  - 114: {fileID: 11487216}
   m_Layer: 0
   m_Name: obj_grid
   m_TagString: Untagged
@@ -19,28 +17,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &11407858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf254738f478e740a97c3a2a6a3bcee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11487216
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 175910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf254738f478e740a97c3a2a6a3bcee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11495752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,18 +28,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1467b7c60585fd04da52ac7b2f3995cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 129524, guid: 0d9802bf935d6d348a4d5729843ec474, type: 2}
   numOfColumns: 0
   numOfRows: 0
-  numOfCells: 0
-  currCells: 0
-  chessPiecePrefab:
-  - {fileID: 152566, guid: 367d77cb2e06e224ca8b143c5488c537, type: 2}
-  - {fileID: 119768, guid: 63807cf5f2e590449bdd008334083c09, type: 2}
-  - {fileID: 124404, guid: e829dc8ae15f9e649ae65dc705d4ba3c, type: 2}
-  - {fileID: 139102, guid: 605462312a7311f42a54777c73e18aaa, type: 2}
-  - {fileID: 196198, guid: 21a91c3cf2561a54798dc0dc018fce19, type: 2}
-  - {fileID: 164234, guid: 51757b819afe9e346aefa53a87086450, type: 2}
+  distanceBetweenTiles: 0
   activeChessPiece: []
 --- !u!212 &21294094
 SpriteRenderer:

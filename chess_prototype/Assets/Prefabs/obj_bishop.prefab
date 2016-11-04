@@ -10,9 +10,8 @@ GameObject:
   - 4: {fileID: 448730}
   - 212: {fileID: 21298194}
   - 114: {fileID: 11438282}
-  - 114: {fileID: 11477624}
-  - 114: {fileID: 114000010633256386}
   - 61: {fileID: 61000012490530568}
+  - 114: {fileID: 114000010338395678}
   m_Layer: 9
   m_Name: obj_bishop
   m_TagString: Untagged
@@ -45,17 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWhite: 0
---- !u!114 &11477624
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19ced47e94a87f4689fe689a8a490ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21298194
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -126,7 +114,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!114 &114000010633256386
+--- !u!114 &114000010338395678
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -134,7 +122,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 139102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c716a4967497b1d48a3f1da1f207c1f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 54a5da3a210acfe459684e420f441348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tint: 1.3
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  prevColor: {r: 0, g: 0, b: 0, a: 0}

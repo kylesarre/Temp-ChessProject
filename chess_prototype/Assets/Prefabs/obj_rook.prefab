@@ -10,9 +10,8 @@ GameObject:
   - 4: {fileID: 467810}
   - 212: {fileID: 21270162}
   - 114: {fileID: 11459290}
-  - 114: {fileID: 11481552}
-  - 114: {fileID: 114000012784774298}
   - 61: {fileID: 61000012626986774}
+  - 114: {fileID: 114000011840500144}
   m_Layer: 9
   m_Name: obj_rook
   m_TagString: Untagged
@@ -46,17 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isWhite: 0
   state: 0
---- !u!114 &11481552
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 119768}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19ced47e94a87f4689fe689a8a490ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21270162
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -127,7 +115,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!114 &114000012784774298
+--- !u!114 &114000011840500144
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -135,7 +123,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 119768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c716a4967497b1d48a3f1da1f207c1f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 54a5da3a210acfe459684e420f441348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tint: 1.3
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  prevColor: {r: 0, g: 0, b: 0, a: 0}

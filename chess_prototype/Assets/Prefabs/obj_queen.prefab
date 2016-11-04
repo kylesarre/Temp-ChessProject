@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 484472}
   - 212: {fileID: 21204584}
   - 114: {fileID: 11432380}
-  - 114: {fileID: 114000013172459788}
   - 61: {fileID: 61000011662216770}
+  - 114: {fileID: 114000013022913898}
   m_Layer: 9
   m_Name: obj_queen
   m_TagString: Untagged
@@ -110,7 +110,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
---- !u!114 &114000013172459788
+--- !u!114 &114000013022913898
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -118,7 +118,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 196198}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c716a4967497b1d48a3f1da1f207c1f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 54a5da3a210acfe459684e420f441348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tint: 1.3
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  prevColor: {r: 0, g: 0, b: 0, a: 0}
