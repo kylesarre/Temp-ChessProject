@@ -6,7 +6,9 @@ To set up your scene, drop the game controller prefab into your scene.
 If you play the scene, you should see the chess board displayed infront of the camera.
 
 ## Vision
-todo
+The core concept of our game is to create a complete game of chess, but in addition, each player has a set of “special abilities” at their disposal they can periodically use to their advantage. Special abilities will be connected to a system of energy that builds up over time and spent to use an ability. Most moves in the game will follow standard chess rules.
+
+We’re choosing this project because Chess is a rigid game that requires years of dedication and study before one can even begin to create any truly new and effective strategies, and the project seeks to add a new strategic dimension of unpredictability, which will act to “level the playing field,” in a way. More unpredictability places more importance on adaptability and improvisation, instead of endless memorization of positions and strategies. Asymmetric design means that no two games will be the same
 
 ## Configuration Management Plan
 todo
