@@ -45,19 +45,20 @@ todo
 **Goals met**: finished brief requirements analysis, rough draft class diagram for iteration 1 of the project.</br>
 
 **Date**: 10-7-16</br>
-**Purpose**: </br>
+**Purpose**: Review each section of the SRS and delegate responsibilities for each section.</br>
 **Members in Attendance**: </br>
-**Goals met**: </br>
+**Goals met**: Didn't meet objective. Realized the group needs time to think about what the SRS covers in terms of our own project
+and that we should meet again at a later date.</br>
 
 **Date**: 10-14-16</br>
-**Purpose**: </br>
+**Purpose**: Review each section of the SRS and delegate responsibilities for each section.</br>
 **Members in Attendance**: Robert Anderson, Kyle Sarre, Gabriel Davis, Julian Plaisance, Hanna Cunningham </br>
-**Goals met**: </br>
+**Goals met**: Kyle will handle sections 1,2 (intro and scope), Julian and Hanna will handle section 3 (User, hardware, and software interfaces), Robert and Kyle, if needed, will work on section 4(functional requirements/system features), and Gabe will work on section 5 (other non-functional requirements).</br>
 
 **Date**: 10-17-16</br>
-**Purpose**: </br>
+**Purpose**: Check in on group member progress towards completion of the SRS. </br>
 **Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Gabriel Davis </br>
-**Goals met**: </br>
+**Goals met**: Section 1 and 2 complete (requires editing). Brainstormed UI ideas for the system, reviewed Robert's take on the major features and their functional requirements.</br>
 
 **Date**: 10-18-16</br>
 **Purpose**: discuss the User Interface</br>
@@ -70,11 +71,11 @@ todo
 **Goals met**: finished SRS </br>
 
 **Date**: 11-1-16</br>
-**Purpose**: finish the SDD</br>
+**Purpose**: Review group's progess on the SDD.</br>
 **Members in Attendance**: Robert Anderson, Kyle Sarre, Hanna Cunningham, Julian Plaisance </br>
-**Goals met**: </br>
+**Goals met**: Each section was dealt with. However, the developer's perspective/system architecture is incomplete and requires attention.</br>
 
-**Date**: </br>
-**Purpose**: </br>
-**Members in Attendance**: </br>
-**Goals met**: </br>
+**Date**: 11/11/16</br>
+**Purpose**: Verify the system can be worked on by other team members. Integrate UI with the rest of the system.  </br>
+**Members in Attendance**: Kyle Sarre, Juilian, Plaisance</br>
+**Goals met**: Realized that the current github configuration was leading to broken prefab and script references in the unity project after pulling, making the project extremely difficult to work on seperately.</br>
