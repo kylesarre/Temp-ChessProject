@@ -262,27 +262,22 @@ public class BoardController : MonoBehaviour
 		Cell cell_scr = piece.GetComponentInParent<Cell>();
 		Grid grid_scr = grid.GetComponent<Grid> ();
 		Piece piece_scr = piece.GetComponent<Piece> ();
-		Debug.Log (piece_scr is Pawn);
-		if (piece_scr is Pawn) 
-		{
+		piece_scr.ValidCells.Clear ();
+		if (piece_scr is Pawn) {
 			Pawn pawn_scr = (Pawn)piece_scr;
-			pawn_scr.ValidCells.Clear ();
 			int scaleMax = 1;
 			if (!pawn_scr.hasMoved)
 				scaleMax = 2;
 			// update the pawn's visitable cells based on its set of movement vectors (default: forward by one or two)
-			foreach (Vector3 vector in piece_scr.MovementVectors)
-			{
-				for (int i = 1; i <= scaleMax; i++) 
-				{
+			foreach (Vector3 vector in piece_scr.MovementVectors) {
+				for (int i = 1; i <= scaleMax; i++) {
 					Vector3 distance = vector * i;
 					// check the boundaries of the board to ensure we are passing a valid range
 					if (cell_scr.row + (int)distance.y < grid_scr.NumOfRows &&
-					   cell_scr.row + (int)distance.y >= 0 &&
-					   cell_scr.column + (int)distance.x < grid_scr.NumOfColumns &&
-					   cell_scr.column + (int)distance.x >= 0) 
-					{
-						GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y , cell_scr.column + (int)distance.x];
+					    cell_scr.row + (int)distance.y >= 0 &&
+					    cell_scr.column + (int)distance.x < grid_scr.NumOfColumns &&
+					    cell_scr.column + (int)distance.x >= 0) {
+						GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y, cell_scr.column + (int)distance.x];
 						Cell destCell_scr = destinationCell.GetComponent<Cell> ();
 						if (destCell_scr.MyPiece == null)
 							pawn_scr.ValidCells.Add (destCell_scr);
@@ -291,23 +286,36 @@ public class BoardController : MonoBehaviour
 				}
 			}
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
-			foreach (Vector3 vector in pawn_scr.captureVectors) 
-			{
+			foreach (Vector3 vector in pawn_scr.captureVectors) {
 				if (cell_scr.row + (int)vector.y < grid_scr.NumOfRows &&
-					cell_scr.row + (int)vector.y >= 0 &&
-					cell_scr.column + (int)vector.x < grid_scr.NumOfColumns &&
-					cell_scr.column + (int)vector.x >= 0) 
-				{
+				    cell_scr.row + (int)vector.y >= 0 &&
+				    cell_scr.column + (int)vector.x < grid_scr.NumOfColumns &&
+				    cell_scr.column + (int)vector.x >= 0) {
 					GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)vector.y, cell_scr.column + (int)vector.x];
 					Cell destCell_scr = destinationCell.GetComponent<Cell> ();
-					if ((destCell_scr.MyPiece != null) && (!doesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
-					{
+					if ((destCell_scr.MyPiece != null) && (!doesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) {
 						pawn_scr.ValidCells.Add (destCell_scr);
 					}
 				}
 
 			}
 
+		} else if (piece_scr is Knight) 
+		{
+			Knight knight_scr = (Knight)piece_scr;
+			foreach (Vector3 vector in piece_scr.MovementVectors) 
+			{
+				if (cell_scr.row + (int)vector.y < grid_scr.NumOfRows &&
+				    cell_scr.row + (int)vector.y >= 0 &&
+				    cell_scr.column + (int)vector.x < grid_scr.NumOfColumns &&
+					cell_scr.column + (int)vector.x >= 0) 
+				{
+					GameObject destCell = grid_scr.grid [cell_scr.row + (int)vector.y, cell_scr.column + (int)vector.x];
+					Cell destCell_scr = destCell.GetComponent<Cell> ();
+					if (destCell_scr.myPiece == null || !doesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
+						knight_scr.ValidCells.Add (destCell_scr);
+				}
+			}
 		}
 	}
 	public bool doesColorMatch(Player curPlayer, Piece piece)
