@@ -18,18 +18,7 @@ public class Piece : MonoBehaviour
 		movementVectors = new List<Vector3>();
 		validCells = new List<Cell> ();
 	}
-
-	public void move (Cell cell)
-	{
-		foreach (Cell validCell in validCells)
-		{
-			if ( cell.GetInstanceID() == validCell.GetInstanceID() ) 
-			{
-				this.GetComponent<Transform> ().position = validCell.GetComponent<Transform> ().position;
-			}
-			return;
-		}			
-	}
+		
 	public List<Cell> ValidCells
 	{
 		get{return validCells;}

@@ -6,11 +6,12 @@ using System.Collections;
 public class GameController : MonoBehaviour 
 {
 	public static GameController gameController;
-	private PlayerController player;
-	private UIController uiController;
-	private GameObject boardController;
+	public GameObject playerController;
+	public UIController uiController;
+	public GameObject boardController;
 	public GameStates curGameState;
 	public TurnStates curTurnState;
+
 	public GameObject mainCamera;
 
 	public enum GameStates
@@ -43,7 +44,6 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		Debug.Log (gameController);
 		mainCamera = (GameObject)Instantiate (Resources.Load ("main_camera"), new Vector3 (0, 0, 0), Quaternion.identity);		
 		curGameState = GameStates.GAME_START;
 		curTurnState = TurnStates.DEFAULT;
@@ -57,35 +57,13 @@ public class GameController : MonoBehaviour
 			case GameStates.MAIN_MENU:
 			break;
 			case GameStates.GAME_START:
-			boardController = (GameObject)Instantiate(Resources.Load("obj_BoardController"), new Vector3 (0, 0, 0), Quaternion.identity);
-			//boardController.grid = (GameObject)Instantiate (Resources.Load ("obj_grid"), new Vector3 (0, 0, 0), Quaternion.identity);
-			// instantiate our two players here
-			// set random player to white, other to black here
-			curGameState = GameStates.IN_GAME;
+			if(boardController == null)
+				boardController = (GameObject)Instantiate (Resources.Load ("obj_BoardController"), new Vector3 (0, 0, 0), Quaternion.identity);
+			if(playerController == null)
+				playerController = (GameObject)Instantiate (Resources.Load ("obj_PlayerController"), new Vector3 (0, 0, 0), Quaternion.identity);
 			break;
 			case GameStates.IN_GAME:
 			CenterCameraToBoard();
-			switch (curTurnState)
-			{
-			case TurnStates.TURN_START:
-				curTurnState = TurnStates.CAN_SELECT;
-				break;
-			case TurnStates.CAN_SELECT:
-				//UpdateCursorPos ();
-				// Layer9 = "PieceLayer"
-				//HighlightOnMouseCollision (8, Color.blue);
-				//HighlightOnMouseCollision (9, Color.yellow);
-				//selectPiece ();
-				break;
-			case TurnStates.CAN_MOVE:
-				//HighlightOnMouseCollision (8, Color.blue);
-				//UpdateCursorPos ();
-				//deselectPiece ();
-				break;
-			case TurnStates.DEFAULT:
-				curTurnState = TurnStates.TURN_START;
-				break;
-			}
 			break;
 			case GameStates.PAUSE:
 			break;
@@ -109,5 +87,13 @@ public class GameController : MonoBehaviour
 			}
 		}
 
+	}
+	public void setGameState(GameStates state)
+	{
+		curGameState = state;
+	}
+	public void setTurnState(TurnStates state)
+	{
+		curTurnState = state;
 	}
 }

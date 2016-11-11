@@ -33,7 +33,7 @@ public class Highlightable : MonoBehaviour
 
 	private void updateHighlight()
 	{
-		if (colorHistory.Count != 0)
+		if (colorHistory != null && colorHistory.Count != 0)
 		{
 			currentColor = colorHistory.Peek ();
 			GetComponent<SpriteRenderer> ().material.color = currentColor;

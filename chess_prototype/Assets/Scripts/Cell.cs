@@ -11,6 +11,7 @@ public class Cell : MonoBehaviour
 
 	void Awake()
 	{
+		myPiece = null;
 		cellMidPoint = new Vector3(0, 0, 0);
 		isActive = true;
 	}
