@@ -44,10 +44,10 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		if (Camera.main != null) 
+		if (Camera.main != null)
 			mainCamera = Camera.main;
 		else
-			mainCamera = (Camera)Instantiate (Resources.Load ("main_camera"), new Vector3 (0, 0, 0), Quaternion.identity);
+			mainCamera = ((GameObject)Instantiate (Resources.Load ("main_camera"), new Vector3 (0, 0, 0), Quaternion.identity)).GetComponent<Camera>();
 		curGameState = GameStates.GAME_START;
 		curTurnState = TurnStates.DEFAULT;
 	}
