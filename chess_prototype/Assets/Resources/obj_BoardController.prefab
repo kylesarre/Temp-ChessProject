@@ -56,8 +56,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedPiece: {fileID: 0}
   grid: {fileID: 0}
-  board_Prefab: {fileID: 1000010589411054, guid: 8b68e1d03aa430a4790d1e3cfff47129,
-    type: 2}
+  board_Prefab: {fileID: 175910, guid: 6989425234caab748bc3dc85096ccf9c, type: 2}
   tile_Prefab: {fileID: 1000011374494466, guid: 5223e73659d54534eb429ce6d7939919,
     type: 2}
   chessPiecePrefab:

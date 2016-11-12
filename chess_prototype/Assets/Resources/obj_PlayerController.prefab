@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b84633b8f6be604782407ceda135b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj_Player: {fileID: 1000013136790664, guid: e6e9c8cedec228c47b67c25c8c437e45, type: 2}
+  obj_Player: {fileID: 1000013136790664, guid: 91ade0eab2edb604690448eb6f1413b0, type: 2}
   player1: {fileID: 0}
   player2: {fileID: 0}
   player1_scr: {fileID: 0}
