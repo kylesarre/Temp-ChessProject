@@ -237,7 +237,7 @@ public class BoardController : MonoBehaviour
 					}
 					if (selectedPiece != null) 
 					{
-						updateVisitableCells (selectedPiece);
+						updateVisitableList (selectedPiece);
 						highlighter.HighlightVisitableCells (selectedPiece);
 						GameController.gameController.curTurnState = GameController.TurnStates.CAN_MOVE;
 					}
@@ -256,13 +256,15 @@ public class BoardController : MonoBehaviour
 		GameController.gameController.curTurnState = GameController.TurnStates.CAN_SELECT;
 	}
 
-	public void updateVisitableCells(GameObject piece)
+	public void updateVisitableList(GameObject piece)
 	{
-		
+		// save relevant components for this calculation
 		Cell cell_scr = piece.GetComponentInParent<Cell>();
 		Grid grid_scr = grid.GetComponent<Grid> ();
 		Piece piece_scr = piece.GetComponent<Piece> ();
+		// clear the list to modify the list for the current piece position
 		piece_scr.ValidCells.Clear ();
+
 		if (piece_scr is Pawn) {
 			Pawn pawn_scr = (Pawn)piece_scr;
 			int scaleMax = 1;
@@ -273,56 +275,85 @@ public class BoardController : MonoBehaviour
 				for (int i = 1; i <= scaleMax; i++) {
 					Vector3 distance = vector * i;
 					// check the boundaries of the board to ensure we are passing a valid range
-					if (cell_scr.row + (int)distance.y < grid_scr.NumOfRows &&
-					    cell_scr.row + (int)distance.y >= 0 &&
-					    cell_scr.column + (int)distance.x < grid_scr.NumOfColumns &&
-					    cell_scr.column + (int)distance.x >= 0) {
-						GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y, cell_scr.column + (int)distance.x];
-						Cell destCell_scr = destinationCell.GetComponent<Cell> ();
-						if (destCell_scr.MyPiece == null)
-							pawn_scr.ValidCells.Add (destCell_scr);
+					if (inRange (cell_scr, distance, grid_scr)) {
+						addCell (cell_scr, distance, grid_scr, pawn_scr);
 					}
 
 				}
 			}
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
-			foreach (Vector3 vector in pawn_scr.captureVectors) {
-				if (cell_scr.row + (int)vector.y < grid_scr.NumOfRows &&
-				    cell_scr.row + (int)vector.y >= 0 &&
-				    cell_scr.column + (int)vector.x < grid_scr.NumOfColumns &&
-				    cell_scr.column + (int)vector.x >= 0) {
-					GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)vector.y, cell_scr.column + (int)vector.x];
+			foreach (Vector3 distance in pawn_scr.captureVectors) {
+				if (inRange (cell_scr, distance, grid_scr)) {
+					// the way a pawn can capture is different from every other piece. i specify what i mean by that here.
+					GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y, cell_scr.column + (int)distance.x];
 					Cell destCell_scr = destinationCell.GetComponent<Cell> ();
 					if ((destCell_scr.MyPiece != null) && (!doesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) {
 						pawn_scr.ValidCells.Add (destCell_scr);
 					}
 				}
-
 			}
 
 		} else if (piece_scr is Knight) 
 		{
 			Knight knight_scr = (Knight)piece_scr;
-			foreach (Vector3 vector in piece_scr.MovementVectors) 
+			foreach (Vector3 distance in piece_scr.MovementVectors) 
 			{
-				if (cell_scr.row + (int)vector.y < grid_scr.NumOfRows &&
-				    cell_scr.row + (int)vector.y >= 0 &&
-				    cell_scr.column + (int)vector.x < grid_scr.NumOfColumns &&
-					cell_scr.column + (int)vector.x >= 0) 
+				if (inRange (cell_scr, distance, grid_scr)) 
 				{
-					GameObject destCell = grid_scr.grid [cell_scr.row + (int)vector.y, cell_scr.column + (int)vector.x];
-					Cell destCell_scr = destCell.GetComponent<Cell> ();
-					if (destCell_scr.myPiece == null || !doesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
-						knight_scr.ValidCells.Add (destCell_scr);
+					addCell (cell_scr, distance, grid_scr, knight_scr);
 				}
 			}
+		} 
+		else if (piece_scr is Rook) 
+		{
+			foreach (Vector3 distance in piece_scr.MovementVectors) 
+			{
+				int scale = 1;
+				Vector3 newDistance = distance;
+				bool PieceOccupies = false;
+				while (inRange (cell_scr, newDistance, grid_scr) && !PieceOccupies) 
+				{
+					addCell (cell_scr, newDistance, grid_scr, piece_scr);
+					GameObject destCell = grid_scr.grid [cell_scr.row + (int)newDistance.y, cell_scr.column + (int)newDistance.x];
+					Cell destCell_scr = destCell.GetComponent<Cell> ();
+					if (destCell_scr.MyPiece != null) 
+					{
+						PieceOccupies = true;
+					}
+					scale++;
+					newDistance = distance * scale;
+					Debug.Log (PieceOccupies);
+				}
+			}
+		}
+	}
+	private bool inRange(Cell cell_scr, Vector3 vector, Grid grid_scr)
+	{
+		return (cell_scr.row + (int)vector.y < grid_scr.NumOfRows &&
+		cell_scr.row + (int)vector.y >= 0 &&
+		cell_scr.column + (int)vector.x < grid_scr.NumOfColumns &&
+		cell_scr.column + (int)vector.x >= 0);
+	}
+	private void addCell(Cell sourceCell_scr, Vector3 distance, Grid grid_scr, Piece somePiece)
+	{
+		GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)distance.y, sourceCell_scr.column + (int)distance.x];
+		Cell destCell_scr = destCell.GetComponent<Cell> ();
+		if (somePiece is Pawn) 
+		{
+			if (destCell_scr.myPiece == null )
+				somePiece.ValidCells.Add (destCell_scr);
+		} 
+		else 
+		{
+			if (destCell_scr.myPiece == null || !doesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
+				somePiece.ValidCells.Add (destCell_scr);
 		}
 	}
 	public bool doesColorMatch(Player curPlayer, Piece piece)
 	{
 		return (!( curPlayer.IsWhite^piece.isWhite) );  
 	}
-	public void move (GameObject destCell)
+	private void move (GameObject destCell)
 	{
 		Cell destCell_scr = destCell.GetComponent<Cell> ();
 		if ( selectedPiece.GetComponent<Piece>().ValidCells.Contains(destCell_scr) ) 

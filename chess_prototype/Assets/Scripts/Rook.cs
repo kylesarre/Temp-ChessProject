@@ -18,8 +18,12 @@ public class Rook : Piece
 		state = RookState.NeverMoved;
 		base.Do_Init();
 		Sprite temp = null;
+
 		movementVectors.Add (new Vector3 (0, 1, 0));
 		movementVectors.Add (new Vector3 (0, -1, 0));
+		movementVectors.Add (new Vector3 (1, 0, 0));
+		movementVectors.Add (new Vector3 (-1, 0, 0));
+
 		if (!isWhite) 
 		{			
 			gameObject.GetComponent<SpriteRenderer> ().sprite = GetComponentInParent<SpriteDictionary> ().SpriteDict["spr_chess_pieces_2"];

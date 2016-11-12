@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 	public GameStates curGameState;
 	public TurnStates curTurnState;
 
-	public GameObject mainCamera;
+	public Camera mainCamera;
 
 	public enum GameStates
 	{
@@ -44,7 +44,10 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		mainCamera = (GameObject)Instantiate (Resources.Load ("main_camera"), new Vector3 (0, 0, 0), Quaternion.identity);		
+		if (Camera.main != null) 
+			mainCamera = Camera.main;
+		else
+			mainCamera = (Camera)Instantiate (Resources.Load ("main_camera"), new Vector3 (0, 0, 0), Quaternion.identity);
 		curGameState = GameStates.GAME_START;
 		curTurnState = TurnStates.DEFAULT;
 	}
