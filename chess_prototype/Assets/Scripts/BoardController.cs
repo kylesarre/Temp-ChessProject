@@ -293,7 +293,8 @@ public class BoardController : MonoBehaviour
 				}
 			}
 
-		} else if (piece_scr is Knight) 
+		} 
+		else if (piece_scr is Knight) 
 		{
 			Knight knight_scr = (Knight)piece_scr;
 			foreach (Vector3 distance in piece_scr.MovementVectors) 
@@ -304,7 +305,10 @@ public class BoardController : MonoBehaviour
 				}
 			}
 		} 
-		else if (piece_scr is Rook) 
+		else if (piece_scr is King) 
+		{
+		} 
+		else 
 		{
 			foreach (Vector3 distance in piece_scr.MovementVectors) 
 			{
