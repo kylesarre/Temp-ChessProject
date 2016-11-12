@@ -265,24 +265,18 @@ public class BoardController : MonoBehaviour
 		// clear the list to modify the list for the current piece position
 		piece_scr.ValidCells.Clear ();
 
-		if (piece_scr is Pawn) {
+		if (piece_scr is Pawn) 
+		{
+			// update the pawn's visitable cells based on its set of movement vectors (default: forward by one or two) and whether or not it has moved before
 			Pawn pawn_scr = (Pawn)piece_scr;
 			int scaleMax = 1;
 			if (!pawn_scr.hasMoved)
 				scaleMax = 2;
-			// update the pawn's visitable cells based on its set of movement vectors (default: forward by one or two)
-			foreach (Vector3 vector in piece_scr.MovementVectors) {
-				for (int i = 1; i <= scaleMax; i++) {
-					Vector3 distance = vector * i;
-					// check the boundaries of the board to ensure we are passing a valid range
-					if (inRange (cell_scr, distance, grid_scr)) {
-						addCell (cell_scr, distance, grid_scr, pawn_scr);
-					}
-
-				}
-			}
+			bool doScaling = true;
+			populateVisitableList( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
-			foreach (Vector3 distance in pawn_scr.captureVectors) {
+			foreach (Vector3 distance in pawn_scr.captureVectors) 
+			{
 				if (inRange (cell_scr, distance, grid_scr)) {
 					// the way a pawn can capture is different from every other piece. i specify what i mean by that here.
 					GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y, cell_scr.column + (int)distance.x];
@@ -294,40 +288,39 @@ public class BoardController : MonoBehaviour
 			}
 
 		} 
-		else if (piece_scr is Knight) 
+		else if (piece_scr is King || piece_scr is Knight) 
 		{
-			Knight knight_scr = (Knight)piece_scr;
-			foreach (Vector3 distance in piece_scr.MovementVectors) 
-			{
-				if (inRange (cell_scr, distance, grid_scr)) 
-				{
-					addCell (cell_scr, distance, grid_scr, knight_scr);
-				}
-			}
-		} 
-		else if (piece_scr is King) 
-		{
+			populateVisitableList(cell_scr, grid_scr, piece_scr, false, 1);
 		} 
 		else 
 		{
-			foreach (Vector3 distance in piece_scr.MovementVectors) 
+			populateVisitableList(cell_scr, grid_scr, piece_scr, true, 8);
+		}
+	}
+	private void populateVisitableList( Cell sourceCell_scr, Grid grid_scr, Piece selectedPiece_scr, bool doScaling, int maxScale)
+	{
+		foreach (Vector3 distance in selectedPiece_scr.MovementVectors) 
+		{
+			int scale = 1;
+			Vector3 newDistance = distance;
+			bool pieceOccupies = false;
+			bool applyScale = true;
+			while (inRange (sourceCell_scr, newDistance, grid_scr) && !pieceOccupies && applyScale && (scale <= maxScale)) 
 			{
-				int scale = 1;
-				Vector3 newDistance = distance;
-				bool PieceOccupies = false;
-				while (inRange (cell_scr, newDistance, grid_scr) && !PieceOccupies) 
+				addCell (sourceCell_scr, newDistance, grid_scr, selectedPiece_scr);
+				GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)newDistance.y, sourceCell_scr.column + (int)newDistance.x];
+				Cell destCell_scr = destCell.GetComponent<Cell> ();
+				if (destCell_scr.MyPiece != null) 
 				{
-					addCell (cell_scr, newDistance, grid_scr, piece_scr);
-					GameObject destCell = grid_scr.grid [cell_scr.row + (int)newDistance.y, cell_scr.column + (int)newDistance.x];
-					Cell destCell_scr = destCell.GetComponent<Cell> ();
-					if (destCell_scr.MyPiece != null) 
-					{
-						PieceOccupies = true;
-					}
+					pieceOccupies = true;
+				}
+				if (doScaling) 
+				{
 					scale++;
 					newDistance = distance * scale;
-					Debug.Log (PieceOccupies);
-				}
+				} 
+				else
+					applyScale = false;		
 			}
 		}
 	}
