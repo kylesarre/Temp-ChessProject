@@ -36,7 +36,11 @@ public class BoardController : MonoBehaviour
 		{
 			UpdateCursorPos ();
 			if(GameController.gameController.curTurnState == GameController.TurnStates.DEFAULT)
-				GameController.gameController.setTurnState (GameController.TurnStates.CAN_SELECT);	
+				GameController.gameController.setTurnState (GameController.TurnStates.TURN_START);	
+		}
+		if (GameController.gameController.curTurnState == GameController.TurnStates.TURN_START) 
+		{
+			GameController.gameController.curTurnState = GameController.TurnStates.CAN_SELECT;
 		}
 		if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_SELECT) 
 		{
@@ -49,11 +53,28 @@ public class BoardController : MonoBehaviour
 			SelectCell ();
 			highlighter.UpdateHighlightableOnMouseCollision (8, Color.blue);
 			bool mouseClicked = Input.GetMouseButtonDown (1);
-			if (mouseClicked) 
-			{	
+			if (mouseClicked) {	
 				DeselectPiece ();
 			}
+		} 
+		else if (GameController.gameController.curTurnState == GameController.TurnStates.HAS_MOVED) 
+		{
+			// updating pieces relevant to the move and their corresponding threat table entries would occur here
+			GameController.gameController.curTurnState = GameController.TurnStates.END_TURN;
 		}
+		else if(GameController.gameController.curTurnState == GameController.TurnStates.END_TURN)
+		{
+			switchPlayer ();
+		}
+	}
+	public void switchPlayer()
+	{
+		PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
+		if (playerTurn == playerController.player1_scr)
+			playerTurn = playerController.player2_scr;
+		else
+			playerTurn = playerController.player1_scr;
+		GameController.gameController.curTurnState = GameController.TurnStates.TURN_START;
 	}
 	public void gameStart()
 	{
@@ -264,7 +285,6 @@ public class BoardController : MonoBehaviour
 		Piece piece_scr = piece.GetComponent<Piece> ();
 		// clear the list to modify the list for the current piece position
 		piece_scr.ValidCells.Clear ();
-
 		if (piece_scr is Pawn) 
 		{
 			// update the pawn's visitable cells based on its set of movement vectors (default: forward by one or two) and whether or not it has moved before
@@ -277,16 +297,17 @@ public class BoardController : MonoBehaviour
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
 			foreach (Vector3 distance in pawn_scr.captureVectors) 
 			{
-				if (inRange (cell_scr, distance, grid_scr)) {
+				if (inRange (cell_scr, distance, grid_scr)) 
+				{
 					// the way a pawn can capture is different from every other piece. i specify what i mean by that here.
 					GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y, cell_scr.column + (int)distance.x];
 					Cell destCell_scr = destinationCell.GetComponent<Cell> ();
-					if ((destCell_scr.MyPiece != null) && (!doesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) {
+					if ((destCell_scr.MyPiece != null) && (!doesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
+					{
 						pawn_scr.ValidCells.Add (destCell_scr);
 					}
 				}
 			}
-
 		} 
 		else if (piece_scr is King || piece_scr is Knight) 
 		{
@@ -364,6 +385,7 @@ public class BoardController : MonoBehaviour
 			//updateMoveLog ();
 			updatePiece(selectedPiece);
 			DeselectPiece ();
+			GameController.gameController.curTurnState = GameController.TurnStates.HAS_MOVED;
 		}
 	}
 	public void updatePiece(GameObject piece)
