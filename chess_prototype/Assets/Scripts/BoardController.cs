@@ -29,7 +29,7 @@ public class BoardController : MonoBehaviour
 	{
 		if (GameController.gameController.curGameState == GameController.GameStates.GAME_START) 
 		{
-			gameStart ();
+			GameStart ();
 			GameController.gameController.setGameState (GameController.GameStates.IN_GAME);
 		} 
 		else if (GameController.gameController.curGameState == GameController.GameStates.IN_GAME) 
@@ -45,7 +45,6 @@ public class BoardController : MonoBehaviour
 		if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_SELECT) 
 		{
 			SelectCell ();
-			highlighter.UpdateHighlightableOnMouseCollision (9, Color.yellow);
 			highlighter.UpdateHighlightableOnMouseCollision (8, Color.blue);
 		} 
 		else if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_MOVE) 
@@ -64,10 +63,10 @@ public class BoardController : MonoBehaviour
 		}
 		else if(GameController.gameController.curTurnState == GameController.TurnStates.END_TURN)
 		{
-			switchPlayer ();
+			SwitchPlayer ();
 		}
 	}
-	public void switchPlayer()
+	public void SwitchPlayer()
 	{
 		PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
 		if (playerTurn == playerController.player1_scr)
@@ -76,10 +75,10 @@ public class BoardController : MonoBehaviour
 			playerTurn = playerController.player1_scr;
 		GameController.gameController.curTurnState = GameController.TurnStates.TURN_START;
 	}
-	public void gameStart()
+	public void GameStart()
 	{
 		if (grid == null) 
-			createBoard ();
+			CreateBoard ();
 		PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
 		playerTurn = playerController.assignRandomColor ();
 	}
@@ -91,7 +90,7 @@ public class BoardController : MonoBehaviour
 	{
 		
 	}
-	private void createBoard()
+	private void CreateBoard()
 	{
 		grid = (GameObject)Instantiate (board_Prefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
 		grid.transform.parent = transform;
@@ -109,7 +108,7 @@ public class BoardController : MonoBehaviour
 				// instantiate board cells, assign associated sprite
 				grid_scr.grid [i,j] = (GameObject)Instantiate (tile_Prefab, new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), transform.rotation);
 				grid_scr.grid [i, j].transform.parent = grid.transform;
-				setCellCenter (grid_scr.grid [i, j]);
+				SetCellCenter (grid_scr.grid [i, j]);
 				grid_scr.grid [i, j].GetComponent<Cell> ().row = i;
 				grid_scr.grid [i, j].GetComponent<Cell>().column = j;
 				grid_scr.grid [i, j].name = (char)('a' + j) + "" + (i+1);
@@ -178,7 +177,7 @@ public class BoardController : MonoBehaviour
 
 	}
 
-	private void setCellCenter(GameObject cell)
+	private void SetCellCenter(GameObject cell)
 	{
 		Grid grid_scr = grid.GetComponent<Grid> ();
 		Cell cell_scr = cell.GetComponent<Cell> ();
@@ -249,23 +248,36 @@ public class BoardController : MonoBehaviour
 			    mouseClicked) 
 			{
 				GameObject cell = scr_Grid.grid [selectionY, selectionX];
+				Cell scr_Cell = cell.GetComponent<Cell>();
 				if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_SELECT) 
 				{
-					Cell scr_Cell = cell.GetComponent<Cell>();
-					if( scr_Cell.MyPiece != null && doesColorMatch(playerTurn, scr_Cell.MyPiece.GetComponent<Piece>()) )
+					if( scr_Cell.MyPiece != null && DoesColorMatch(playerTurn, scr_Cell.MyPiece.GetComponent<Piece>()) )
 					{
 						selectedPiece = scr_Cell.MyPiece;
-					}
-					if (selectedPiece != null) 
-					{
-						updateVisitableList (selectedPiece);
+						UpdateVisitableList (selectedPiece);
 						highlighter.HighlightVisitableCells (selectedPiece);
+						highlighter.AddHighlight (selectedPiece, Color.yellow);
 						GameController.gameController.curTurnState = GameController.TurnStates.CAN_MOVE;
 					}
 				} 
 				else if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_MOVE) 
 				{
-					move (cell);
+					// if the player clicks on one of their own pieces while a piece is selected
+					if (scr_Cell.MyPiece != null && DoesColorMatch (playerTurn, scr_Cell.MyPiece.GetComponent<Piece> ())) {
+						if (scr_Cell.MyPiece.Equals (selectedPiece)) {
+							// if the player clicks on the piece that's already selected, deselect piece
+							DeselectPiece ();
+						} else {
+							// if the player clicks on a different piece of the same color, deselect piece
+							// then select the new piece
+							DeselectPiece ();
+							SelectCell ();
+						}
+					} else {
+						// else, if the player clicks an empty cell, attempt to move to the cell.
+						// invalid moves are handled by the Move method
+						Move (cell);
+					}
 				}
 			}
 		}
@@ -273,11 +285,12 @@ public class BoardController : MonoBehaviour
 	public void DeselectPiece()
 	{
 		highlighter.UndoHighlightVisitableCells (selectedPiece);
+		highlighter.RemoveHighlight (selectedPiece);
 		selectedPiece = null;
 		GameController.gameController.curTurnState = GameController.TurnStates.CAN_SELECT;
 	}
 
-	public void updateVisitableList(GameObject piece)
+	public void UpdateVisitableList(GameObject piece)
 	{
 		// save relevant components for this calculation
 		Cell cell_scr = piece.GetComponentInParent<Cell>();
@@ -293,16 +306,16 @@ public class BoardController : MonoBehaviour
 			if (!pawn_scr.hasMoved)
 				scaleMax = 2;
 			bool doScaling = true;
-			populateVisitableList( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
+			PopulateVisitableList( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
 			foreach (Vector3 distance in pawn_scr.captureVectors) 
 			{
-				if (inRange (cell_scr, distance, grid_scr)) 
+				if (InRange (cell_scr, distance, grid_scr)) 
 				{
 					// the way a pawn can capture is different from every other piece. i specify what i mean by that here.
 					GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y, cell_scr.column + (int)distance.x];
 					Cell destCell_scr = destinationCell.GetComponent<Cell> ();
-					if ((destCell_scr.MyPiece != null) && (!doesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
+					if ((destCell_scr.MyPiece != null) && (!DoesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
 					{
 						pawn_scr.ValidCells.Add (destCell_scr);
 					}
@@ -311,14 +324,14 @@ public class BoardController : MonoBehaviour
 		} 
 		else if (piece_scr is King || piece_scr is Knight) 
 		{
-			populateVisitableList(cell_scr, grid_scr, piece_scr, false, 1);
+			PopulateVisitableList(cell_scr, grid_scr, piece_scr, false, 1);
 		} 
 		else 
 		{
-			populateVisitableList(cell_scr, grid_scr, piece_scr, true, 8);
+			PopulateVisitableList(cell_scr, grid_scr, piece_scr, true, 8);
 		}
 	}
-	private void populateVisitableList( Cell sourceCell_scr, Grid grid_scr, Piece selectedPiece_scr, bool doScaling, int maxScale)
+	private void PopulateVisitableList( Cell sourceCell_scr, Grid grid_scr, Piece selectedPiece_scr, bool doScaling, int maxScale)
 	{
 		foreach (Vector3 distance in selectedPiece_scr.MovementVectors) 
 		{
@@ -326,9 +339,9 @@ public class BoardController : MonoBehaviour
 			Vector3 newDistance = distance;
 			bool pieceOccupies = false;
 			bool applyScale = true;
-			while (inRange (sourceCell_scr, newDistance, grid_scr) && !pieceOccupies && applyScale && (scale <= maxScale)) 
+			while (InRange (sourceCell_scr, newDistance, grid_scr) && !pieceOccupies && applyScale && (scale <= maxScale)) 
 			{
-				addCell (sourceCell_scr, newDistance, grid_scr, selectedPiece_scr);
+				AddCell (sourceCell_scr, newDistance, grid_scr, selectedPiece_scr);
 				GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)newDistance.y, sourceCell_scr.column + (int)newDistance.x];
 				Cell destCell_scr = destCell.GetComponent<Cell> ();
 				if (destCell_scr.MyPiece != null) 
@@ -345,14 +358,14 @@ public class BoardController : MonoBehaviour
 			}
 		}
 	}
-	private bool inRange(Cell cell_scr, Vector3 vector, Grid grid_scr)
+	private bool InRange(Cell cell_scr, Vector3 vector, Grid grid_scr)
 	{
 		return (cell_scr.row + (int)vector.y < grid_scr.NumOfRows &&
 		cell_scr.row + (int)vector.y >= 0 &&
 		cell_scr.column + (int)vector.x < grid_scr.NumOfColumns &&
 		cell_scr.column + (int)vector.x >= 0);
 	}
-	private void addCell(Cell sourceCell_scr, Vector3 distance, Grid grid_scr, Piece somePiece)
+	private void AddCell(Cell sourceCell_scr, Vector3 distance, Grid grid_scr, Piece somePiece)
 	{
 		GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)distance.y, sourceCell_scr.column + (int)distance.x];
 		Cell destCell_scr = destCell.GetComponent<Cell> ();
@@ -363,15 +376,15 @@ public class BoardController : MonoBehaviour
 		} 
 		else 
 		{
-			if (destCell_scr.myPiece == null || !doesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
+			if (destCell_scr.myPiece == null || !DoesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
 				somePiece.ValidCells.Add (destCell_scr);
 		}
 	}
-	public bool doesColorMatch(Player curPlayer, Piece piece)
+	public bool DoesColorMatch(Player curPlayer, Piece piece)
 	{
 		return (!( curPlayer.IsWhite^piece.isWhite) );  
 	}
-	private void move (GameObject destCell)
+	private void Move (GameObject destCell)
 	{
 		Cell destCell_scr = destCell.GetComponent<Cell> ();
 		if ( selectedPiece.GetComponent<Piece>().ValidCells.Contains(destCell_scr) ) 
@@ -383,12 +396,12 @@ public class BoardController : MonoBehaviour
 			selectedPiece.transform.SetParent(destCell.transform, false);
 			destCell_scr.MyPiece = selectedPiece;
 			//updateMoveLog ();
-			updatePiece(selectedPiece);
+			UpdatePiece(selectedPiece);
 			DeselectPiece ();
 			GameController.gameController.curTurnState = GameController.TurnStates.HAS_MOVED;
 		}
 	}
-	public void updatePiece(GameObject piece)
+	public void UpdatePiece(GameObject piece)
 	{
 		if (selectedPiece.GetComponent<Pawn> ()) 
 		{
