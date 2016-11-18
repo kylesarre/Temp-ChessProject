@@ -17,7 +17,6 @@ public class Rook : Piece
 	{
 		state = RookState.NeverMoved;
 		base.Do_Init();
-		Sprite temp = null;
 
 		movementVectors.Add (new Vector3 (0, 1, 0));
 		movementVectors.Add (new Vector3 (0, -1, 0));

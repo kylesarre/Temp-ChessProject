@@ -1,17 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/****************************************************************************************/
+/*
+/* FILE NAME: Highlighter
+/*
+/* DESCRIPTION: This is a utility class of the board controller for highlighting game objects. 
+/* It includes methods that modify the stack of the highlightable component of a gameobject
+/* REFERENCE:
+/* Dependency: Requires a highlightable component on any gameObjects being modified
+/* DATE BY CHANGE REF DESCRIPTION
+/* ======== ======= =========== =============
+/* 
+/* 
+/*
+/*
+/*
+/****************************************************************************************/
 public class Highlighter : MonoBehaviour 
 {
 	private RaycastHit2D[,] collisionTable;
-	private BoardController boardController;
 	// Use this for initialization
 	void Start () 
 	{
 		int Layers = 32;
 		int collisions = 2;
 		collisionTable = new RaycastHit2D[Layers,collisions];
-		boardController = this.gameObject.GetComponent<BoardController> ();
 	}
 	
 	// Update is called once per frame
@@ -42,10 +55,11 @@ public class Highlighter : MonoBehaviour
 			return;
 	}
 	// calls Highlight() whenever the cursor touches a gameObject on the specified layer.
-	// if the cursor is touching the same object, no calls are made.
-	// if the cursor is no longer touching the object, it calls removeHighlight() on the object.
-	// if the cursor is touching a new object, it calls addHighlight() on the new object
-	// params: layer1 - the layer we want raycast to pay attention to, col - the color we wish to highlight the objects on this layer with.
+	// if the cursor is touching the same object from the previous frame, nothing occurs
+	// if the cursor is not touching the same object from the previous frame and is not currently touching any object, it calls removeHighlight() on the previous object.
+	// if the cursor is not touching the same object from the previous frame but is touching a new object in the current frame, it calls addHighlight() on the new object
+	// @params: layer1 - the layer(an attribute of all game obejcts) we want raycasts to specifically collide with, 
+	// @param: col - the highlight color we wish to use
 	public void UpdateHighlightableOnMouseCollision(int layer1, Color col)
 	{
 		// ensure that the input to this function is in a valid range. Layers = [0,31]
@@ -90,6 +104,8 @@ public class Highlighter : MonoBehaviour
 			collisionTable [layer1, 1] = collisionTable [layer1, 0];
 		}
 	}
+	// highlights the cells inside the visitable cells list of a piece green
+	// @param the piece whose visitable cells list we wish to highlight
 	public void HighlightVisitableCells(GameObject piece)
 	{
 		Piece piece_script = piece.GetComponent<Piece> ();
@@ -98,6 +114,8 @@ public class Highlighter : MonoBehaviour
 			AddHighlight(visitableCell.gameObject, Color.green);
 		}
 	}
+	// removes all highlights from the cells in a piece's visitable cells list
+	// @param the piece whose visitable cells list highlights we wish to undo.
 	public void UndoHighlightVisitableCells(GameObject piece)
 	{
 		Piece piece_script = piece.GetComponent<Piece> ();

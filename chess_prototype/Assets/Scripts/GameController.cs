@@ -22,11 +22,11 @@ public class GameController : MonoBehaviour
 	public enum TurnStates
 	{
 		TURN_START, CAN_SELECT, CAN_MOVE,
-		IS_MOVING, HAS_MOVED, END_TURN,
+		HAS_MOVED, END_TURN,
 		DEFAULT
 	};
-
-	// Runs regardless of whether the script is enabled or not (using for singleton behavior).
+		
+	// ensures exactly one instance of this controller is instantiated before game starts
 	void Awake()
 	{
 		if (gameController == null) {
@@ -40,8 +40,9 @@ public class GameController : MonoBehaviour
 			DestroyImmediate (this.gameObject);
 		}	
 	}
+		
 
-	// Use this for initialization
+	//Initializes class variables upon instantiation 
 	void Start () 
 	{
 		if (Camera.main != null)
@@ -74,7 +75,8 @@ public class GameController : MonoBehaviour
 			break;
 
 		}
-	}			
+	}
+	// If a camera is found in the scene and we are in a game, this function centers the camera to the board in the game
 	private void CenterCameraToBoard()
 	{
 		BoardController boardController_scr = boardController.GetComponent<BoardController> ();
@@ -91,10 +93,14 @@ public class GameController : MonoBehaviour
 		}
 
 	}
+	// sets the game state to the specified game state
+	// @param state - the gamestate the system should transition to.
 	public void setGameState(GameStates state)
 	{
 		curGameState = state;
 	}
+	// sets the turn state to the specified turn state
+	// @param state - the turn state the system should transition to.
 	public void setTurnState(TurnStates state)
 	{
 		curTurnState = state;

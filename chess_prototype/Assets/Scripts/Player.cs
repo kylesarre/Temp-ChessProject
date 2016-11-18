@@ -5,12 +5,14 @@ public class Player : MonoBehaviour
 {
 	private string playerName;
 	private bool isWhite;
+	private Dictionary<string, Cell> myPieces;
 	private List<Upgrade> upgrades;
+	private bool inCheck;
 
 	// Use this for initialization
 	void Start () 
 	{
-		
+		inCheck = false;
 	}
 	
 	// Update is called once per frame
@@ -29,5 +31,15 @@ public class Player : MonoBehaviour
 	{
 		get{return isWhite;}
 		set{isWhite = value;}
+	}
+
+	public bool InCheck
+	{
+		get{ return inCheck;}
+		set{ inCheck = value;}
+	}
+	public Dictionary<string, Cell> MyPieces
+	{
+		get{return myPieces;}
 	}
 }

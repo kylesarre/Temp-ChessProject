@@ -19,7 +19,6 @@ public class Pawn : Piece
 	{
 		// initialize data structures defined in parent class
 		base.Do_Init();
-		Sprite temp = null;
 		if (!isWhite) 
 		{
 			// a pawn ca move in the forward direction
