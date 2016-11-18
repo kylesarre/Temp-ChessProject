@@ -47,7 +47,7 @@ public class BoardController : MonoBehaviour
 	{
 		if (GameController.gameController.curGameState == GameController.GameStates.GAME_START) 
 		{
-			gameStart ();
+			GameStart ();
 			GameController.gameController.setGameState (GameController.GameStates.IN_GAME);
 		} 
 		else if (GameController.gameController.curGameState == GameController.GameStates.IN_GAME) 
@@ -63,7 +63,6 @@ public class BoardController : MonoBehaviour
 		if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_SELECT) 
 		{
 			SelectCell ();
-			highlighter.UpdateHighlightableOnMouseCollision (9, Color.yellow);
 			highlighter.UpdateHighlightableOnMouseCollision (8, Color.blue);
 		} 
 		else if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_MOVE) 
@@ -88,28 +87,16 @@ public class BoardController : MonoBehaviour
 			GameController.gameController.curTurnState = GameController.TurnStates.TURN_START;
 		}
 	}
-		
-	public void switchPlayer()
-	{
-		PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
-		if (playerTurn == playerController.player1_scr)
-			playerTurn = playerController.player2_scr;
-		else
-			playerTurn = playerController.player1_scr;
-		GameController.gameController.curTurnState = GameController.TurnStates.TURN_START;
-	}
-
 	// instantiates crucial game elements for our game
-	public void gameStart()
+	public void GameStart()
 	{
 		if (grid == null) 
-			createBoard ();	
-		generateThreatTable ();
+			CreateBoard ();
 		PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
 		playerTurn = playerController.WhoseTurn ();
 	}
 	// generates an 8x8 chess board and all chess pieces; sets up the board and pieces 
-	private void createBoard()
+	private void CreateBoard()
 	{
 		grid = (GameObject)Instantiate (board_Prefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
 		grid.transform.parent = transform;
@@ -127,7 +114,7 @@ public class BoardController : MonoBehaviour
 				// instantiate board cells, assign associated sprite
 				grid_scr.grid [i,j] = (GameObject)Instantiate (tile_Prefab, new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z), transform.rotation);
 				grid_scr.grid [i, j].transform.parent = grid.transform;
-				setCellCenter (grid_scr.grid [i, j]);
+				SetCellCenter (grid_scr.grid [i, j]);
 				grid_scr.grid [i, j].GetComponent<Cell> ().row = i;
 				grid_scr.grid [i, j].GetComponent<Cell>().column = j;
 				grid_scr.grid [i, j].name = (char)('a' + j) + "" + (i+1);
@@ -197,7 +184,7 @@ public class BoardController : MonoBehaviour
 	}
 	// calculates the midpoint of the specified cell in world space
 	// @param cell - a cell of the board
-	private void setCellCenter(GameObject cell)
+	private void SetCellCenter(GameObject cell)
 	{
 		Grid grid_scr = grid.GetComponent<Grid> ();
 		Cell cell_scr = cell.GetComponent<Cell> ();
@@ -205,7 +192,6 @@ public class BoardController : MonoBehaviour
 		Vector3 endPoint = origin + new Vector3(grid_scr.distanceBetweenTiles, grid_scr.distanceBetweenTiles, 0);
 		cell_scr.CellMidPoint = (origin + endPoint) / 2;
 	}
-
 	// instantiates the specified chess piece prefab at the specified location
 	// @param - indexes: 0 [Pawn], 1[rook], 2[knight], 3[Bishop], 4[Queen], 5[King]
 	// @param - location: the cell where the Piece resides
@@ -269,23 +255,39 @@ public class BoardController : MonoBehaviour
 			    mouseClicked) 
 			{
 				GameObject cell = scr_Grid.grid [selectionY, selectionX];
+				Cell scr_Cell = cell.GetComponent<Cell>();
 				if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_SELECT) 
 				{
-					Cell scr_Cell = cell.GetComponent<Cell>();
-					if( scr_Cell.MyPiece != null && doesColorMatch(playerTurn, scr_Cell.MyPiece.GetComponent<Piece>()) )
+					if( scr_Cell.MyPiece != null && DoesColorMatch(playerTurn, scr_Cell.MyPiece.GetComponent<Piece>()) )
 					{
 						selectedPiece = scr_Cell.MyPiece;
 					}
 					if (selectedPiece != null) 
 					{
-						updatePieceLists (selectedPiece.GetComponent<Piece>());
+						UpdateVisitableList (selectedPiece.GetComponent<Piece>());
 						highlighter.HighlightVisitableCells (selectedPiece);
+						highlighter.AddHighlight (selectedPiece, Color.yellow);
 						GameController.gameController.curTurnState = GameController.TurnStates.CAN_MOVE;
 					}
 				} 
 				else if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_MOVE) 
 				{
-					move (cell);
+					// if the player clicks on one of their own pieces while a piece is selected
+					if (scr_Cell.MyPiece != null && DoesColorMatch (playerTurn, scr_Cell.MyPiece.GetComponent<Piece> ())) {
+						if (scr_Cell.MyPiece.Equals (selectedPiece)) {
+							// if the player clicks on the piece that's already selected, deselect piece
+							DeselectPiece ();
+						} else {
+							// if the player clicks on a different piece of the same color, deselect piece
+							// then select the new piece
+							DeselectPiece ();
+							SelectCell ();
+						}
+					} else {
+						// else, if the player clicks an empty cell, attempt to move to the cell.
+						// invalid moves are handled by the Move method
+						Move (cell);
+					}
 				}
 			}
 		}
@@ -294,11 +296,12 @@ public class BoardController : MonoBehaviour
 	public void DeselectPiece()
 	{
 		highlighter.UndoHighlightVisitableCells (selectedPiece);
+		highlighter.RemoveHighlight (selectedPiece);
 		selectedPiece = null;
 		GameController.gameController.curTurnState = GameController.TurnStates.CAN_SELECT;
 	}
 	// updates the piece model to reflect the current state of the game (visitable cells, threatened cells)
-	public void updatePieceLists(Piece piece_scr)
+	public void UpdateVisitableList(Piece piece_scr)
 	{
 		// save relevant components for this calculation
 		Cell cell_scr = piece_scr.gameObject.GetComponentInParent<Cell>();
@@ -313,16 +316,16 @@ public class BoardController : MonoBehaviour
 			if (!pawn_scr.hasMoved)
 				scaleMax = 2;
 			bool doScaling = true;
-			addCells( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
+			PopulateVisitableList( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
 			foreach (Vector3 distance in pawn_scr.captureVectors) 
 			{
-				if (inRange (cell_scr, distance, grid_scr)) 
+				if (InRange (cell_scr, distance, grid_scr)) 
 				{
 					// the way a pawn can capture is different from every other piece. i specify what i mean by that here.
 					GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y, cell_scr.column + (int)distance.x];
 					Cell destCell_scr = destinationCell.GetComponent<Cell> ();
-					if ((destCell_scr.MyPiece != null) && (!doesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
+					if ((destCell_scr.MyPiece != null) && (!DoesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
 					{
 						pawn_scr.ValidCells.Add (destCell_scr);
 					}
@@ -331,11 +334,11 @@ public class BoardController : MonoBehaviour
 		} 
 		else if (piece_scr is King || piece_scr is Knight) 
 		{
-			addCells(cell_scr, grid_scr, piece_scr, false, 1);
+			PopulateVisitableList(cell_scr, grid_scr, piece_scr, false, 1);
 		} 
 		else 
 		{
-			addCells(cell_scr, grid_scr, piece_scr, true, 8);
+			PopulateVisitableList(cell_scr, grid_scr, piece_scr, true, 8);
 		}
 	}
 	// adds all cells that a piece can move to to its visitable cells list
@@ -344,7 +347,7 @@ public class BoardController : MonoBehaviour
 	// @param Piece selectedPiece_scr the script attatched to the selected piece
 	// @param bool doScaling - true if we wish to scale the movement vectors of the selected piece
 	// @param int maxScale - the maximum value we will scale a given vector by.
-	private void addCells( Cell sourceCell_scr, Grid grid_scr, Piece selectedPiece_scr, bool doScaling, int maxScale)
+	private void PopulateVisitableList( Cell sourceCell_scr, Grid grid_scr, Piece selectedPiece_scr, bool doScaling, int maxScale)
 	{
 		foreach (Vector3 distance in selectedPiece_scr.MovementVectors) 
 		{
@@ -352,9 +355,9 @@ public class BoardController : MonoBehaviour
 			Vector3 newDistance = distance;
 			bool pieceOccupies = false;
 			bool applyScale = true;
-			while (inRange (sourceCell_scr, newDistance, grid_scr) && !pieceOccupies && applyScale && (scale <= maxScale)) 
+			while (InRange (sourceCell_scr, newDistance, grid_scr) && !pieceOccupies && applyScale && (scale <= maxScale)) 
 			{
-				addCell (sourceCell_scr, newDistance, grid_scr, selectedPiece_scr);
+				AddCell (sourceCell_scr, newDistance, grid_scr, selectedPiece_scr);
 				GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)newDistance.y, sourceCell_scr.column + (int)newDistance.x];
 				Cell destCell_scr = destCell.GetComponent<Cell> ();
 				if (destCell_scr.MyPiece != null) 
@@ -376,7 +379,7 @@ public class BoardController : MonoBehaviour
 	// @param Vector3 vector - a 3-dimensional vector (the scaled movement vector of the piece)
 	// @param Grid grid_scr - the script attached to the grid game object
 	// @return bool - if not within the board space, return false; if within the board space, return true
-	private bool inRange(Cell cell_scr, Vector3 vector, Grid grid_scr)
+	private bool InRange(Cell cell_scr, Vector3 vector, Grid grid_scr)
 	{
 		return (cell_scr.row + (int)vector.y < grid_scr.NumOfRows &&
 		cell_scr.row + (int)vector.y >= 0 &&
@@ -388,9 +391,9 @@ public class BoardController : MonoBehaviour
 	// @param Cell destCell_scr - the cell that the piece is moving to
 	// @param Grid grid_scr - the grid in which the move is occuring
 	// @param Piece somePiece - the piece to be moved
-	private void addCell(Cell sourceCell_scr, Vector3 distance, Grid grid_scr, Piece somePiece)
+
+	private void AddCell(Cell sourceCell_scr, Vector3 distance, Grid grid_scr, Piece somePiece)
 	{
-		
 		GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)distance.y, sourceCell_scr.column + (int)distance.x];
 		Cell destCell_scr = destCell.GetComponent<Cell> ();
 		if (somePiece is Pawn) 
@@ -404,7 +407,7 @@ public class BoardController : MonoBehaviour
 		else 
 		{
 			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
-			if (destCell_scr.myPiece == null || !doesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
+			if (destCell_scr.myPiece == null || !DoesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
 			{
 				somePiece.ValidCells.Add (destCell_scr);
 			}
@@ -414,14 +417,14 @@ public class BoardController : MonoBehaviour
 	// @param Player curPlayer - the player who is taking their turn
 	// @param Piece piece - the piece to be compared with the player
 	// @return true if the color matches, false if the color doesn't match
-	public bool doesColorMatch(Player curPlayer, Piece piece)
+	public bool DoesColorMatch(Player curPlayer, Piece piece)
 	{
 		Debug.Log (curPlayer);
 		return (!( curPlayer.IsWhite^piece.isWhite) );  
 	}
 	// moves the selected cell to the specified destination cell
 	// @param destCell - the destination cell
-	private void move (GameObject destCell)
+	private void Move (GameObject destCell)
 	{
 		Cell destCell_scr = destCell.GetComponent<Cell> ();
 		if ( selectedPiece.GetComponent<Piece>().ValidCells.Contains(destCell_scr) ) 
@@ -434,12 +437,12 @@ public class BoardController : MonoBehaviour
 			selectedPiece.transform.SetParent(destCell.transform, false);
 			destCell_scr.MyPiece = selectedPiece;
 			//updateMoveLog ();
-			updatePiece(selectedPiece);
+			UpdatePiece(selectedPiece);
 			DeselectPiece ();
 			GameController.gameController.curTurnState = GameController.TurnStates.HAS_MOVED;
 		}
 	}
-	public void updatePiece(GameObject piece)
+	public void UpdatePiece(GameObject piece)
 	{
 		if (selectedPiece.GetComponent<Pawn> ()) 
 		{
@@ -491,28 +494,28 @@ public class BoardController : MonoBehaviour
 //	}
 	// verifies that a piece at a given cell is locked in place (not allowed to move according to chess rules)
 	// @return true if the cell is locked, false if the piece is not locked
-	public bool isLocked(Cell cell)
-	{
-		Cell kingCell;
-		bool found1 = playerTurn.MyPieces.TryGetValue ("King(Clone)", out kingCell);
-		List<Piece> thrPieces; 
-		bool found2 = threatTable.TryGetValue (cell.name, out thrPieces);
-		GameObject temp = cell.MyPiece;
-		cell.MyPiece = null;
-		foreach (Piece piece in thrPieces) 
-		{
-			updatePieceLists (piece);
-			Cell threatCell;
-			if (piece.ThreatenedCells.TryGetValue (kingCell.gameObject.name, out threatCell)) 
-			{
-				cell.MyPiece = temp;
-				updatePieceLists (piece);
-				return true;
-			}
-			cell.MyPiece = temp;
-			updatePieceLists (piece);
-		}
-
-		return false;
-	}
+//	public bool isLocked(Cell cell)
+//	{
+//		Cell kingCell;
+//		bool found1 = playerTurn.MyPieces.TryGetValue ("King(Clone)", out kingCell);
+//		List<Piece> thrPieces; 
+//		bool found2 = threatTable.TryGetValue (cell.name, out thrPieces);
+//		GameObject temp = cell.MyPiece;
+//		cell.MyPiece = null;
+//		foreach (Piece piece in thrPieces) 
+//		{
+//			UpdatePieceLists (piece);
+//			Cell threatCell;
+//			if (piece.ThreatenedCells.TryGetValue (kingCell.gameObject.name, out threatCell)) 
+//			{
+//				cell.MyPiece = temp;
+//				UpdatePieceLists (piece);
+//				return true;
+//			}
+//			cell.MyPiece = temp;
+//			UpdatePieceLists (piece);
+//		}
+//
+//		return false;
+//	}
 }
