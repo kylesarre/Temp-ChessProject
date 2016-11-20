@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start ()  
 	{
-		assignRandomColor ();
-		populateQueue ();
+		AssignRandomColor ();
+		PopulateQueue ();
 	}
 	
 	// Update is called once per frame
@@ -60,12 +60,12 @@ public class PlayerController : MonoBehaviour
 	// assigns a name to the player class
 	// @param: Player player - the player whose name we wish to assign
 	// @param String name - the name we wish to assign to this player
-	public void assignName(Player player, string name)
+	public void AssignName(Player player, string name)
 	{
 		player.PlayerName = name;
 	}
 	// flips a coin and determines which player is white depending on outcome
-	public void assignRandomColor()
+	public void AssignRandomColor()
 	{
 		int randomInt = Random.Range (0, 2);
 		if (randomInt == 0) 
@@ -84,14 +84,52 @@ public class PlayerController : MonoBehaviour
 
 		}
 	}
+	// builds a dictionary of pieces for each player, which can be looked up by the name of the piece.
+	public void AssignPieces()
+	{
+		Grid grid = GameController.gameController.boardController.GetComponent<BoardController> ().grid.GetComponent<Grid> ();
+		Debug.Log (grid);
+		for (int i = 0; i < grid.NumOfColumns-6; i++) 
+		{
+			for (int j = 0; j < grid.NumOfColumns; j++) 
+			{
+				Cell cell = grid.grid [i, j].GetComponent<Cell>();
+				Piece piece = cell.MyPiece.GetComponent<Piece> ();
+				black.MyPieces.Add (piece.name, piece);
+			}
+		}
+		for (int i = 6; i < grid.NumOfRows; i++) 
+		{
+			for (int j = 0; j < grid.NumOfColumns; j++) 
+			{
+				Cell cell = grid.grid [i, j].GetComponent<Cell>();
+				Piece piece = cell.MyPiece.GetComponent<Piece> ();
+				white.MyPieces.Add (piece.name, piece);
+			}
+		}
+		//printMyPieces (white);
+		//printMyPieces (black);
+	}
+	// logs the MyPieces table that corresponds to the specified player
+	public void printMyPieces(Player player)
+	{
+		foreach (string key in player.MyPieces.Keys) 
+		{
+			Piece piece;
+			if(player.MyPieces.TryGetValue (key, out piece))
+			{
+				Debug.Log ("Looking up piece by " + key + ", found piece by the name:" + piece.name);
+			}
+		}
+	}
 	// adds both players to the queue, starting with whichever player is currently White
-	public void populateQueue()
+	public void PopulateQueue()
 	{
 		players.Enqueue (white);
 		players.Enqueue (black);
 	}
 	// moves the next player to the beginning of the queue, while moving the current player to the back
-	public void nextPlayer()
+	public void NextPlayer()
 	{
 		players.Enqueue (players.Dequeue ());
 	}

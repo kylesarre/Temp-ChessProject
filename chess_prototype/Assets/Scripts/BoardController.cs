@@ -33,7 +33,7 @@ public class BoardController : MonoBehaviour
 	private int selectionX;
 	private int selectionY;
 
-	private Dictionary<string, List<Piece>> threatTable;
+	private Dictionary<string, List<string>> threatTable;
 
 	// Use this for initialization
 	void Start () 
@@ -82,7 +82,7 @@ public class BoardController : MonoBehaviour
 		else if(GameController.gameController.curTurnState == GameController.TurnStates.END_TURN)
 		{
 			PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
-			playerController.nextPlayer ();
+			playerController.NextPlayer ();
 			playerTurn = playerController.WhoseTurn ();
 			GameController.gameController.curTurnState = GameController.TurnStates.TURN_START;
 		}
@@ -93,6 +93,7 @@ public class BoardController : MonoBehaviour
 		if (grid == null) 
 			CreateBoard ();
 		PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
+		playerController.AssignPieces ();
 		playerTurn = playerController.WhoseTurn ();
 	}
 	// generates an 8x8 chess board and all chess pieces; sets up the board and pieces 
@@ -146,33 +147,33 @@ public class BoardController : MonoBehaviour
 				{
 				case 0:
 					if (j == 0 || j == 7)
-						InstantiateChessPiece (1, grid_scr.grid [i, j], false);
+						InstantiateChessPiece (1, grid_scr.grid [i, j], false,j);
 					else if (j == 1 || j == 6)
-						InstantiateChessPiece (2, grid_scr.grid [i, j], false);
+						InstantiateChessPiece (2, grid_scr.grid [i, j], false,j);
 					else if (j == 2 || j == 5)
-						InstantiateChessPiece (3, grid_scr.grid [i, j], false);
+						InstantiateChessPiece (3, grid_scr.grid [i, j], false,j);
 					else if (j == 4)
-						InstantiateChessPiece (4, grid_scr.grid [i, j], false);
+						InstantiateChessPiece (4, grid_scr.grid [i, j], false,j);
 					else
-						InstantiateChessPiece (5, grid_scr.grid [i, j], false);
+						InstantiateChessPiece (5, grid_scr.grid [i, j], false,j);
 					break;
 				case 1:
-					InstantiateChessPiece (0, grid_scr.grid [i, j], false);
+					InstantiateChessPiece (0, grid_scr.grid [i, j], false,j);
 					break;
 				case 6:
-					InstantiateChessPiece (0, grid_scr.grid [i, j], true);
+					InstantiateChessPiece (0, grid_scr.grid [i, j], true,j);
 					break;
 				case 7:
 					if (j == 0 || j == 7)
-						InstantiateChessPiece (1, grid_scr.grid [i, j], true);
+						InstantiateChessPiece (1, grid_scr.grid [i, j], true,j);
 					else if (j == 1 || j == 6)
-						InstantiateChessPiece (2, grid_scr.grid [i, j], true);
+						InstantiateChessPiece (2, grid_scr.grid [i, j], true,j);
 					else if (j == 2 || j == 5)
-						InstantiateChessPiece (3, grid_scr.grid [i, j], true);
+						InstantiateChessPiece (3, grid_scr.grid [i, j], true,j);
 					else if (j == 4)
-						InstantiateChessPiece (4, grid_scr.grid [i, j], true);
+						InstantiateChessPiece (4, grid_scr.grid [i, j], true,j);
 					else
-						InstantiateChessPiece (5, grid_scr.grid [i, j], true);
+						InstantiateChessPiece (5, grid_scr.grid [i, j], true,j);
 					break;
 				}
 				xOffset += grid_scr.distanceBetweenTiles;
@@ -196,7 +197,7 @@ public class BoardController : MonoBehaviour
 	// @param - indexes: 0 [Pawn], 1[rook], 2[knight], 3[Bishop], 4[Queen], 5[King]
 	// @param - location: the cell where the Piece resides
 	// @param - isWhite: true whenever the piece is for player White, false when the piece is for player Black
-	private void InstantiateChessPiece(int index, GameObject cell, bool isWhite)
+	private void InstantiateChessPiece(int index, GameObject cell, bool isWhite, int pieceID)
 	{
 		Cell cell_scr = cell.GetComponent<Cell> ();
 		// we want the piece to spawn at the center of its specified cell, so we call this function and store the data
@@ -214,6 +215,59 @@ public class BoardController : MonoBehaviour
 		else
 		{
 			Debug.LogError("Error: the prefab at chessPiecePrefab["+index+"] does not contain a Piece script. Objects in this collection must have a Piece component.");
+		}
+		if (isWhite)
+			newPiece.name = index + "White" + pieceID;
+		else
+			newPiece.name = index + "Black" + pieceID;
+	}
+	private void BuildThreatTable()
+	{
+		Grid grid_scr = grid.GetComponent<Grid> ();
+		// add all of the cells of the board and their corresponding list containers to our table
+		foreach (GameObject cell in grid_scr.grid) 
+		{
+			threatTable.Add (cell.name, new List<string>());
+		}
+
+		PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController>();
+		foreach (string keyA in playerController.white.MyPieces.Keys) 
+		{
+			// iterate through each piece of the white player
+			Piece piece;
+			// grab the cell corresponding to the piece name
+			playerController.white.MyPieces.TryGetValue (keyA, out piece);
+			// get the piece from the cell
+			foreach(string keyB in piece.ThreatenedCells.Keys)
+			{
+				List<string> threatList;
+				threatTable.TryGetValue (keyB, out threatList);
+				threatList.Sort ();
+				if (!threatList.Contains(piece.name)) 
+				{
+					threatList.Add (piece.name);
+				}
+				threatTable [keyB] = threatList;
+			}
+		}
+		foreach (string keyA in playerController.black.MyPieces.Keys) 
+		{
+			// iterate through each piece of the white player
+			Piece piece;
+			// grab the cell corresponding to the piece name
+			playerController.black.MyPieces.TryGetValue (keyA, out piece);
+			// get the piece from the cell
+			foreach(string keyB in piece.ThreatenedCells.Keys)
+			{
+				List<string> threatList;
+				threatTable.TryGetValue (keyB, out threatList);
+				threatList.Sort ();
+				if (!threatList.Contains(piece.name)) 
+				{
+					threatList.Add (piece.name);
+				}
+				threatTable [keyB] = threatList;
+			}
 		}
 	}
 
@@ -419,7 +473,6 @@ public class BoardController : MonoBehaviour
 	// @return true if the color matches, false if the color doesn't match
 	public bool DoesColorMatch(Player curPlayer, Piece piece)
 	{
-		Debug.Log (curPlayer);
 		return (!( curPlayer.IsWhite^piece.isWhite) );  
 	}
 	// moves the selected cell to the specified destination cell
@@ -448,21 +501,6 @@ public class BoardController : MonoBehaviour
 		{
 			Pawn pawn_scr = selectedPiece.GetComponent<Pawn> ();
 			pawn_scr.hasMoved = true;
-		}
-	}
-	public void generateThreatTable()
-	{
-		Grid grid_scr = grid.GetComponent<Grid> ();
-
-		threatTable = new Dictionary<string, List<Piece>> ();
-		for(int i = 0; i < grid_scr.NumOfRows; i++)
-		{
-			for(int j = 0; j < grid_scr.NumOfColumns; j++)
-			{
-				Debug.Log (grid_scr.grid[i,j].name);
-				Cell cell = grid_scr.grid[i,j].GetComponent<Cell>();
-				threatTable.Add (cell.name, new List<Piece>());
-			}
 		}
 	}
 //	public void AddToThreatTable(Cell cell, Piece piece)
