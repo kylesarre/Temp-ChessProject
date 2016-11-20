@@ -109,3 +109,21 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
+Test Case #: | Test Case Name: Check/Checkmate - Piece Interposition
+---|---
+System: Main Gameplay | Subsystem: Piece Movement
+Designed by: Robert Anderson | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Test case for piece interposition - The method of escaping check by moving a friendly piece to block the path of the opposing piece laying check
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| At game start, move White's e-file pawn to e4 | Game executes 1. e4 | | 
+2| Move Black's d-file pawn to d5 | Game executes 1. ... d5 | | 	
+3| Capture Black's d5 pawn with White's e4 pawn | Game executes 2. exd5 | | 
+4| Capture White's d5 pawn with Black's queen | Game executes 2. ... Qxd5 | | 
+5| Move one of White's remaining pawns forward one square (essentially, pass turn to black) | Game executes the move | | 
+6| Move Black's queen to e5, creating check on the white king| Game executes 3. ... Qe5+, declares check | | 
+7| Move White's kingside bishop to e2, interposing it between the White king and the Black queen. | Game executes 4. Be2, removes the check | | 
+Post-conditions: White's bishop at e2 should not be able to move from its position until either the Black queen or the White king move away from the e-file, or another piece interposes between the Black king and White bishop.
