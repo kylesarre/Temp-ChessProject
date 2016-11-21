@@ -109,6 +109,25 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
+Test Case #: | Test Case Name: Check/Checkmate: Fool's Mate
+---|---
+System: | Subsystem:
+Designed by: | Design Date:
+Executed by: | Execution Date:
+Short Description:
+A simple test case for the checkmate system. Plays out the fastest checkmate possible in a game of chess.
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Upon game start, move White's c-file pawn to c3. | Game executes 1. c3 | | 
+2| Move Black's e-file pawn to e5. | Game executes 1. ... e5 | | 	
+3| Move White's g-file pawn to g4. | Game executes 2. g4 | | 
+4| Move Black's queen to h4. | Game executes 2. ... Qh4#, declares checkmate. | | 
+5| | | | 
+6| | | | 
+7| | | | 
+Post-conditions:
+
 Test Case #: | Test Case Name: Check/Checkmate - Piece Interposition
 ---|---
 System: Main Gameplay | Subsystem: Piece Movement
@@ -134,6 +153,7 @@ System: Main Gameplay | Subsystem: Piece Movement
 Designed by: Robert Anderson | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
+Test case for piece locking - in which a piece's moves are restricted due to the threat of check.
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -142,6 +162,6 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 3| Select White's bishop on e2. | No squares are highlighted. The bishop cannot move. | | 
 4| Move White's King to f1. This removes the pin on White's bishop. | Game executes 5. Kf1 | | 
 5| Move Black's Queen to c4. This again pins White's bishop. | Game executes 5. ... Qc4 | | 
-6| Select White's bishop. | The squares d3 and c4 should be highlighted. The bishop has no other valid moves, or else the White king would be placed in check. | | 
+6| Select White's bishop. | The squares d3 and c4 should be highlighted. These are the bishop's only valid moves, or else the White king would be placed in check. | | 
 Post-conditions:
 None
