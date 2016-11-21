@@ -81,6 +81,6 @@ and that we should meet again at a later date.</br>
 **Goals met**: Realized that the current github configuration was leading to broken prefab and script references in the unity project after pulling, making the project extremely difficult to work on seperately.</br>
 
 **Date**: 11/18/16</br>
-**Purpose**: Split up the testing documentation amongst the group.
-**Members in Attendance**: Robert Anderson, Hanna Cunningham, Gabriel Davis, Julian Plaisance, Kyle Sarre
-**Goals met**: Delegated sections of the testing document based on what parts of the system people had worked on. 
+**Purpose**: Split up the testing documentation amongst the group.</br>
+**Members in Attendance**: Robert Anderson, Hanna Cunningham, Gabriel Davis, Julian Plaisance, Kyle Sarre</br>
+**Goals met**: Delegated sections of the testing document based on what parts of the system people had worked on. </br>
