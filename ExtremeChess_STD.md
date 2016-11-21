@@ -109,7 +109,6 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-<<<<<<< HEAD
 Test Case #: MG-BBT-G.1| Test Case Name: Check declaration
 ---|---
 System: Main Gameplay| Subsystem: Check/Checkmate
