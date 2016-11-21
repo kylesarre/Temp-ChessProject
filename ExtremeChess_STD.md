@@ -127,3 +127,21 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 6| Move Black's queen to e5, creating check on the white king| Game executes 3. ... Qe5+, declares check | | 
 7| Move White's kingside bishop to e2, interposing it between the White king and the Black queen. | Game executes 4. Be2, removes the check | | 
 Post-conditions: White's bishop at e2 should not be able to move from its position until either the Black queen or the White king move away from the e-file, or another piece interposes between the Black king and White bishop.
+
+Test Case #: | Test Case Name: Check/Checkmate: Piece Locking
+---|---
+System: Main Gameplay | Subsystem: Piece Movement
+Designed by: Robert Anderson | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Execute the steps of Test Case: Check/Checkmate - Piece Interposition | Expected responses from previous test case | | 
+2| Move Black's Queen to e4. This maintains the pin on White's bishop. | Game executes 4. ... Qe4 | | 	
+3| Select White's bishop on e2. | No squares are highlighted. The bishop cannot move. | | 
+4| Move White's King to f1. This removes the pin on White's bishop. | Game executes 5. Kf1 | | 
+5| Move Black's Queen to c4. This again pins White's bishop. | Game executes 5. ... Qc4 | | 
+6| Select White's bishop. | The squares d3 and c4 should be highlighted. The bishop has no other valid moves, or else the White king would be placed in check. | | 
+Post-conditions:
+None
