@@ -109,7 +109,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: MG-BBT-G.1| Test Case Name: Check declaration
+Test Case #: MG-BBT-G.1| Test Case Name: Check Declaration
 ---|---
 System: Main Gameplay| Subsystem: Check/Checkmate
 Designed by: Kyle Sarre| Design Date: 11/20/2016
@@ -157,8 +157,8 @@ White is no longer in check, the black rook is no longer in play, and the king i
 
 Test Case #: | Test Case Name: Check/Checkmate: Fool's Mate
 ---|---
-System: | Subsystem:
-Designed by: | Design Date:
+System: Main Game | Subsystem: Check/Checkmate
+Designed by: Robert Anderson | Design Date: 11/21/2016
 Executed by: | Execution Date:
 Short Description:
 A simple test case for the checkmate system. Plays out the fastest checkmate possible in a game of chess.
@@ -169,9 +169,6 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 2| Move Black's e-file pawn to e5. | Game executes 1. ... e5 | | 	
 3| Move White's g-file pawn to g4. | Game executes 2. g4 | | 
 4| Move Black's queen to h4. | Game executes 2. ... Qh4#, declares checkmate. | | 
-5| | | | 
-6| | | | 
-7| | | | 
 Post-conditions:
 None
 
