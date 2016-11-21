@@ -265,3 +265,111 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 6| Select White's bishop. | The squares d3 and c4 should be highlighted. These are the bishop's only valid moves, or else the White king would be placed in check. | | 
 Post-conditions:
 None
+
+Test Case #: | Test Case Name: Main Menu
+---|---
+System: Extreme Chess | Subsystem: UI
+Designed by: Hanna Cunningham | Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: The main menu must load at startup.
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Select and run game icon/executable | display main menu | | 
+Post-conditions: The items in the main menu can be selected.
+
+Test Case #: | Test Case Name: New Game
+---|---
+System: UI | Subsystem: 
+Designed by: Hanna Cunningham | Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: Create a new game from the main menu.
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click New Game in Main Menu| Prompts for Player 1’s name| | 
+2| Enter name for Player 1 and click OK |Prompts for Player 2’s name| | 	
+3| Enter name for Player 2 and click OK |Loads the game board with all pieces in their default locations| | 
+Post-conditions: The game board will now be in a playable state.
+
+Test Case #: | Test Case Name: Help Menu
+---|---
+System: UI | Subsystem: 
+Designed by: Hanna Cunningham | Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: Provides players with the knowledge to understand the game system and its powerups, allowing people new to chess to grasp the basic principles of the game. 
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click Help in either the Main Menu or Game Dialog Screen| Load Help Menu| |
+2a|Click How to Play| Loads screen with description on how chess works| |
+2b| Click Back button| Returns to Help Menu| |
+3a| Click Chess Pieces| Loads screen that displays pieces| |
+3b| Select a Piece| Shows description of the piece| |
+3c| Click Back button| Returns to Piece Selection| | 
+3d| Click Back button| Returns to Help Menu| | 
+4a| Click Powerups| Loads screen that displays powerups| |
+4b| Select a Powerup| Shows description of the powerup| |
+4c| Click Back button| Returns to Powerup Selection| | 
+4d| Click Back button| Returns to Help Menu| |
+5a| Click Special Moves and Restrictions| Loads screen with description on the special moves of chess and the rules to which the game does not conform| |
+5b| Click Back button| Returns to Help Menu| |
+6a| Click Glossary| Loads screen with glossary of chess terms sorted alphabetically| |
+6b| Click Back button| Returns to Help Menu| |
+7| Click Resume| Returns player to previous menu, either Main Menu or the Game Dialog Screen| |
+
+Test Case #: | Test Case Name: Brightness Test #1
+---|---
+System: UI |Subsystem: Options
+Designed by: Hanna Cunningham | Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: 
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click Options in the Game Dialog Screen| Displays Options Menu| | 
+2| Move slider labeled Brightness to the left| Game screen darkens| | 
+3| Click Resume | Returns to Game Dialog Screen| | 
+Post-conditions: Game remains at this brightness unless adjusted
+
+Test Case #: | Test Case Name: Brightness Test #2
+---|---
+System: UI |Subsystem: Options
+Designed by: Hanna Cunningham | Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: 
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click Options in the Game Dialog Screen| Displays Options Menu| | 
+2| Move slider labeled Brightness to the right| Game screen gets lighter| | 
+3| Click Resume | Returns to Game Dialog Screen| | 
+Post-conditions: Game remains at this brightness unless adjusted
+
+Test Case #: | Test Case Name: Volume Test #1
+---|---
+System: UI |Subsystem: Options
+Designed by: Hanna Cunningham | Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: 
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click Options in the Game Dialog Screen| Displays Options Menu| | 
+2| Move slider labeled Volume to the left| Music volume gets quieter| | 
+3| Click Resume | Returns to Game Dialog Screen| | 
+Post-conditions: Game remains at this volume level unless adjusted
+
+Test Case #: | Test Case Name: Volume Test #2
+---|---
+System: UI |Subsystem: Options
+Designed by: Hanna Cunningham | Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: 
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click Options in the Game Dialog Screen| Displays Options Menu| | 
+2| Move slider labeled Volume to the right| Music volume gets louder| | 
+3| Click Resume | Returns to Game Dialog Screen| | 
+Post-conditions: Game remains at this volume level unless adjusted
