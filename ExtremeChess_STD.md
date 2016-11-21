@@ -119,7 +119,7 @@ A test to determine that a king being threatened by an opposing piece (an opposi
 Suppose we have the black king at D4, and the white queen at E6, and it is the white player's turn.
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| Attempt to move white queen to E5| System moves white queen to E5; declares player black is in check| P/F | 
+1| Attempt to move white queen to E5| System moves white queen to E5; declares player black is in check| P/F 
 Post-conditions:
 The white queen should be at E5 and threatening to capture the black king at D4. When the white player attempts to move, their moves should be limited to preventing the queen from threatening the king.
 
@@ -204,11 +204,11 @@ Test case for normal piece movement outside of check. Pieces should move accordi
 movement is generated exactly the same way, except for the pawn. Assume all pieces are at their default positions.
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| Attempt to move the white pawn from C2 to C4| System moves the pawn to C4| P/F| 
-2| Attempt to move the white pawn from C4 to C6| System fails to move the pawn to C6| P/F| 	
-3| Attempt to move the white pawn from D4 to D5| Sysem moves the pawn to C5| P/F| 
-4| Attempt to move the queen from D1 to A4| System moves the queen to A4| P/F| 
-5| Attempt to move the queen from A4 to A8| System fails to move the queen to A4 | P/F | 
+1| Attempt to move the white pawn from C2 to C4| System moves the pawn to C4| P/F
+2| Attempt to move the white pawn from C4 to C6| System fails to move the pawn to C6| P/F
+3| Attempt to move the white pawn from D4 to D5| Sysem moves the pawn to C5| P/F
+4| Attempt to move the queen from D1 to A4| System moves the queen to A4| P/F
+5| Attempt to move the queen from A4 to A8| System fails to move the queen to A4 | P/F 
 Post-conditions:
 The pawn should be at cell C5 and the queen should be at cell A4.
 
@@ -221,10 +221,10 @@ Short Description:
 Test if the king cannot make a move that would put itself in check
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| Attempt to move black king to D4| Game executes the move| P/F| 
-2| Attempt to move white rook to C5| Game executes the move| P/F| 	
-3| Attempt to move black king to C5| Game does not execute the move| P/F| 
-4| Attempt to move black king to E3| Game executes the move| P/F|  
+1| Attempt to move black king to D4| Game executes the move| P/F 
+2| Attempt to move white rook to C5| Game executes the move| P/F 	
+3| Attempt to move black king to C5| Game does not execute the move| P/F
+4| Attempt to move black king to E3| Game executes the move| P/F  
 Post-conditions:
 White rook should remain on C5, black king should end up on E3
 
