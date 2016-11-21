@@ -109,6 +109,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
+<<<<<<< HEAD
 Test Case #: MG-BBT-G.1| Test Case Name: Check declaration
 ---|---
 System: Main Gameplay| Subsystem: Check/Checkmate
@@ -122,22 +123,6 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 1| Attempt to move white queen to E5| System moves white queen to E5; declares player black is in check| P/F | 
 Post-conditions:
 The white queen should be at E5 and threatening to capture the black king at D4. When the white player attempts to move, their moves should be limited to preventing the queen from threatening the king.
-
-Test Case #: MG-BBT-G.2| Test Case Name: Checkmate Declaration
----|---
-System: Main Gameplay| Subsystem: Check/Checkmate
-Designed by: Kyle Sarre| Design Date: 11/20/2016
-Executed by: | Execution Date:
-Short Description:
-Test if, whenever a player is in check and they no longer have any valid moves, the system declares a checkmate. We will use the fool's checkmate to test the system. Assume we have all pieces at their default positions.
-Step|Action|Expected System Response|Pass/Fail|Comment
----|---|---|---|---
-1| Attempt to move pawn at F2 to F3| System moves pawn to F3| P/F| 
-2| Attempt to move pawn at E7 to E5| System moves pawn to E5| P/F| 	
-3| Attempt to move pawn at G2 to G4| System moves pawn to G4| P/F| 
-4| Attempt to move queen at D8 to H4| System moves queen to H4 and declares a checkmate| P/F| 
-Post-conditions:
-The game ends; the player in checkmate loses.
 
 Test Case #: MG-BBT-G.3| Test Case Name: Stalemate Declaration
 ---|---
@@ -170,7 +155,27 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 White is no longer in check, the black rook is no longer in play, and the king is now located at E4.
 
-Test Case #: MG-BBT-G.5| Test Case Name: Check/Checkmate - Piece Interposition
+Test Case #: | Test Case Name: Check/Checkmate: Fool's Mate
+---|---
+System: | Subsystem:
+Designed by: | Design Date:
+Executed by: | Execution Date:
+Short Description:
+A simple test case for the checkmate system. Plays out the fastest checkmate possible in a game of chess.
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Upon game start, move White's c-file pawn to c3. | Game executes 1. c3 | | 
+2| Move Black's e-file pawn to e5. | Game executes 1. ... e5 | | 	
+3| Move White's g-file pawn to g4. | Game executes 2. g4 | | 
+4| Move Black's queen to h4. | Game executes 2. ... Qh4#, declares checkmate. | | 
+5| | | | 
+6| | | | 
+7| | | | 
+Post-conditions:
+None
+
+Test Case #: | Test Case Name: Check/Checkmate - Piece Interposition
 ---|---
 System: Main Gameplay | Subsystem: Piece Movement
 Designed by: Robert Anderson | Design Date: 11/20/2016
@@ -241,3 +246,22 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 Black bishop is on cell F5. The white bishop is captured. White rook and pawn remain in their default positions.
 The black bishop should reside on the F5 cell and the white bishop should no longer be in play.
+
+Test Case #: | Test Case Name: Check/Checkmate: Piece Locking
+---|---
+System: Main Gameplay | Subsystem: Piece Movement
+Designed by: Robert Anderson | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Test case for piece locking - in which a piece's moves are restricted due to the threat of check.
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Execute the steps of Test Case: Check/Checkmate - Piece Interposition | Expected responses from previous test case | | 
+2| Move Black's Queen to e4. This maintains the pin on White's bishop. | Game executes 4. ... Qe4 | | 	
+3| Select White's bishop on e2. | No squares are highlighted. The bishop cannot move. | | 
+4| Move White's King to f1. This removes the pin on White's bishop. | Game executes 5. Kf1 | | 
+5| Move Black's Queen to c4. This again pins White's bishop. | Game executes 5. ... Qc4 | | 
+6| Select White's bishop. | The squares d3 and c4 should be highlighted. These are the bishop's only valid moves, or else the White king would be placed in check. | | 
+Post-conditions:
+None
