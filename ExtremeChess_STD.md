@@ -219,6 +219,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1| Attempt to move black king to D4| Game executes the move| P/F| 
 2| Attempt to move white rook to C5| Game executes the move| P/F| 	
+3| Attempt to move black king to C5| Game does not execute the move| P/F| 
 4| Attempt to move black king to E3| Game executes the move| P/F|  
 Post-conditions:
 White rook should remain on C5, black king should end up on E3
