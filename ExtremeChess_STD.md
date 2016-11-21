@@ -127,6 +127,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 6| | | | 
 7| | | | 
 Post-conditions:
+None
 
 Test Case #: | Test Case Name: Check/Checkmate - Piece Interposition
 ---|---
