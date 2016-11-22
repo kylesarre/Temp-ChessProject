@@ -57,8 +57,18 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 7| Click Resume| Returns player to previous menu, either Main Menu or the Game Dialog Menu| |
 
 ####1.3 Quit
-1.3.1 Quit from Main Menu
-...
+Test Case #: 1.3.1| Test Case Name: Quit Game
+---|---
+System: Extreme Chess| Subsystem: UI
+Designed by: Hanna Cunningham| Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: Ends game and closes executable
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click Quit Button| Closes software| | 
+Post-conditions: Software has been closed
+
 
 ###1.4 Main Game
 
@@ -443,7 +453,7 @@ Post-conditions:
 None
 
 ###2.3 Turn Handling
-Test Case #:2.3.1 | Test Case Name: Turn Swap
+Test Case #: 2.3.1 | Test Case Name: Turn Swap
 ---|---
 System: Main Game| Subsystem: Turn handling
 Designed by:Kyle Sarre | Design Date:11/21/2016
@@ -462,7 +472,7 @@ Post-conditions:
 It should now be black's turn. White should have a pawn at F1 and at F2. Black should have a pawn at C1.
 
 ###2.4 Powerups
-Test Case #:2.4.1 | Test Case Name: Pawn Reinforcements
+Test Case #: 2.4.1 | Test Case Name: Pawn Reinforcements
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -478,7 +488,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 A pawn will exist on a previously vacant pawn starting square.
 
-Test Case #:2.4.2 | Test Case Name: Queen/King Swap
+Test Case #: 2.4.2 | Test Case Name: Queen/King Swap
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -494,7 +504,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The Queen and King will have swapped positions
 
-Test Case #:2.4.3 | Test Case Name: Pawn Shift
+Test Case #: 2.4.3 | Test Case Name: Pawn Shift
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -510,7 +520,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The pawn shall have moved horizontaly or backwards.
 
-Test Case #:2.4.4 | Test Case Name: Bishop Color Swap
+Test Case #: 2.4.4 | Test Case Name: Bishop Color Swap
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -526,7 +536,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The bishop will be existing on the opposite color it started on.
 
-Test Case #:2.4.5 | Test Case Name: Pawn+1
+Test Case #: 2.4.5 | Test Case Name: Pawn+1
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -542,7 +552,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The pawn will have the ability to move forward each turn.
 
-Test Case #:2.4.6 | Test Case Name: Pawn Reverse
+Test Case #: 2.4.6 | Test Case Name: Pawn Reverse
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -558,7 +568,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The pawns movement and capture options will be changed now.
 
-Test Case #:2.4.7 | Test Case Name: Knight Queen A
+Test Case #: 2.4.7 | Test Case Name: Knight Queen A
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -574,7 +584,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The movement vectors of the pieces above shall be changed.
 
-Test Case #:2.4.8 | Test Case Name: Knight Queen B
+Test Case #: 2.4.8 | Test Case Name: Knight Queen B
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -590,7 +600,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The movement vectors of the pieces above shall be changed.
 
-Test Case #:2.4.9 | Test Case Name: Knight Extend
+Test Case #: 2.4.9 | Test Case Name: Knight Extend
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -606,7 +616,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The knights forward movement will be extended by one cell.
 
-Test Case #:2.4.10 | Test Case Name: Charging Knight
+Test Case #: 2.4.10 | Test Case Name: Charging Knight
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
@@ -622,7 +632,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The knight has the abilty to move forward 3 spaces in addition to its original moveset.
 
-Test Case #:2.4.11 | Test Case Name: Mini Queen Bishop
+Test Case #: 2.4.11 | Test Case Name: Mini Queen Bishop
 ---|---
 System: Main Gameplay| Subsystem: Powerups
 Designed by: Gabriel Davis | Design Date: 11/20/2016
