@@ -377,6 +377,8 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 6| Select White's bishop. | The squares d3 and c4 should be highlighted. These are the bishop's only valid moves, or else the White king would be placed in check. | | 
 Post-conditions:
 None
+###2.3 Powerups
+#####2.3.1 ...
 
 Template:
 
