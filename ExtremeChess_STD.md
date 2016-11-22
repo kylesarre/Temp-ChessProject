@@ -377,8 +377,26 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 6| Select White's bishop. | The squares d3 and c4 should be highlighted. These are the bishop's only valid moves, or else the White king would be placed in check. | | 
 Post-conditions:
 None
-###2.3 Powerups
-#####2.3.1 ...
+
+###2.3 Turn Handling
+Test Case #:2.3.1 | Test Case Name: Turn Swap
+---|---
+System: Main Game| Subsystem: Turn handling
+Designed by:Kyle Sarre | Design Date:11/21/2016
+Executed by: | Execution Date:
+Short Description:
+Test to determine whether or not the system will cycle between the two players when awaiting a move.
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| White moves white pawn from G1 to F1| System moves white pawn to F1| | 
+2| White moves white pawn from G2 to F2| System fails to move white pawn to F2| | 	
+3| Black moves black pawn from B1 to C1| System moves black pawn to C1| | 
+4| Black moves black pawn from B2 to C2| System fails to move black pawn to C2| | 
+5| White moves white pawn from G2 to F2| System moves white pawn to F2| | 
+Post-conditions:
+It should now be black's turn. White should have a pawn at F1 and at F2. Black should have a pawn at C1.
+###2.4 Powerups
+#####2.4.1 ...
 
 Template:
 
