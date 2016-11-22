@@ -56,7 +56,8 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 6b| Click Back button| Returns to Help Menu| |
 7| Click Resume| Returns player to previous menu, either Main Menu or the Game Dialog Menu| |
 
-###1.3 Quit
+####1.3 Quit
+1.3.1 Quit from Main Menu
 ...
 
 ###1.4 Main Game
@@ -154,6 +155,10 @@ Post-conditions:
 None
 
 ###1.5 Game Dialog Screen
+#####1.5.1 Resume
+#####1.5.2 Options
+#####1.5.3 Help
+#####1.5.4 Quit
 
 ###1.6 Options
 
@@ -299,23 +304,6 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 7| Move White's kingside bishop to e2, interposing it between the White king and the Black queen. | Game executes 4. Be2, removes the check | | 
 Post-conditions: White's bishop at e2 should not be able to move from its position until either the Black queen or the White king move away from the e-file, or another piece interposes between the Black king and White bishop.
 
-Test Case #: 2.1.6| Test Case Name: King Movement Behavior
----|---
-System: Main Gameplay| Subsystem: Piece Movement
-Designed by:Kyle Sarre | Design Date: 11/20/2016
-Executed by: | Execution Date:
-Short Description:
-Test if the king cannot make a move that would put itself in check
-
-Step|Action|Expected System Response|Pass/Fail|Comment
----|---|---|---|---
-1| Attempt to move black king to D4| Game executes the move| P/F |
-2| Attempt to move white rook to C5| Game executes the move| P/F |
-3| Attempt to move black king to C5| Game does not execute the move| P/F |
-4| Attempt to move black king to E3| Game executes the move| P/F |
-Post-conditions:
-White rook should remain on C5, black king should end up on E3
-
 ###2.2 Basic Movement
 
 Test Case #: 2.2.1| Test Case Name: Default Piece Movement Behavior (Outside of check, excluding king, not locked in place)
@@ -336,7 +324,24 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The pawn should be at cell C5 and the queen should be at cell A4.
 
-Test Case #: 2.2.2| Test Case Name: Capturing a Piece
+Test Case #: 2.2.2| Test Case Name: King Movement Behavior
+---|---
+System: Main Gameplay| Subsystem: Piece Movement
+Designed by:Kyle Sarre | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Test if the king cannot make a move that would put itself in check
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Attempt to move black king to D4| Game executes the move| P/F |
+2| Attempt to move white rook to C5| Game executes the move| P/F |
+3| Attempt to move black king to C5| Game does not execute the move| P/F |
+4| Attempt to move black king to E3| Game executes the move| P/F |
+Post-conditions:
+White rook should remain on C5, black king should end up on E3
+
+Test Case #: 2.2.3| Test Case Name: Capturing a Piece
 ---|---
 System: Main Gameplay| Subsystem: Piece Movement
 Designed by: Kyle Sarre | Design Date:11/20/2016
@@ -354,7 +359,7 @@ Post-conditions:
 Black bishop is on cell F5. The white bishop is captured. White rook and pawn remain in their default positions.
 The black bishop should reside on the F5 cell and the white bishop should no longer be in play.
 
-Test Case #: 2.2.3| Test Case Name: Check/Checkmate: Piece Locking
+Test Case #: 2.2.4| Test Case Name: Piece Locking
 ---|---
 System: Main Gameplay | Subsystem: Piece Movement
 Designed by: Robert Anderson | Design Date: 11/20/2016
