@@ -57,17 +57,8 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 7| Click Resume| Returns player to previous menu, either Main Menu or the Game Dialog Menu| |
 
 ####1.3 Quit
-Test Case #: 1.3.1| Test Case Name: Quit Game
----|---
-System: UI| Subsystem: 
-Designed by: Hanna Cunningham| Design Date: 11/21/16
-Executed by: | Execution Date:
-Short Description: Choosing the quit button exits the program.
-
-Step|Action|Expected System Response|Pass/Fail|Comment
----|---|---|---|---
-1| Click quit button| Exits Main Menu, closing the executable | | 
-Post-conditions: None
+1.3.1 Quit from Main Menu
+...
 
 ###1.4 Main Game
 
@@ -228,7 +219,7 @@ Black-Box Testing case for the game dialogue Quit Button
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| Click at/inside the button boundaries | Exits current game and returns to Main Menu | p/f | 	
+1| Click at/inside the button boundaries | Closes the game | p/f | 	
 3| Click near but outside the button boundaries | Nothing | p/f |  
 Post-conditions:
 None
@@ -240,7 +231,7 @@ Test Case #: 1.6.1.1| Test Case Name: Brightness Test #1
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
 Executed by: | Execution Date:
-Short Description: Lower the screen brightness from options
+Short Description: 
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -254,7 +245,7 @@ Test Case #: 1.6.1.2| Test Case Name: Brightness Test #2
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
 Executed by: | Execution Date:
-Short Description: Increase the game brightness from options
+Short Description: 
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -268,7 +259,7 @@ Test Case #: 1.6.2.1| Test Case Name: Volume Test #1
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
 Executed by: | Execution Date:
-Short Description: Lower the game volume from options
+Short Description: 
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -282,7 +273,7 @@ Test Case #: 1.6.2.2| Test Case Name: Volume Test #2
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
 Executed by: | Execution Date:
-Short Description: Increase the game volume from options
+Short Description: 
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -471,24 +462,168 @@ Post-conditions:
 It should now be black's turn. White should have a pawn at F1 and at F2. Black should have a pawn at C1.
 
 ###2.4 Powerups
-#####2.4.1 ...
-
-Template:
-
-Test Case #: | Test Case Name:
+Test Case #:2.4.1 | Test Case Name: Pawn Reinforcements
 ---|---
-System: | Subsystem:
-Designed by: | Design Date:
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
+For the turn this ability is activated, instead of making a move, the player may place a new friendly pawn on a vacant square in which a pawn would be placed at the start of a new game. Energy Cost: 12
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| | | | 
-2| | | | 	
-3| | | | 
-4| | | | 
-5| | | | 
-6| | | | 
-7| | | | 
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3|Player chooses the space they want the pawn to spawn on |The pawn is spawned on that space |P/F| 
 Post-conditions:
+A pawn will exist on a previously vacant pawn starting square.
+
+Test Case #:2.4.2 | Test Case Name: Queen/King Swap
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+For one turn, if the king and queen are within three squares of each other, either horizontally, vertically, or diagonally, they may swap positions. This ability cannot be used to escape check. Energy Cost: 15
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3|The power is activated | If the rules above are respected then the king and queen are swapped|P/F | 
+Post-conditions:
+The Queen and King will have swapped positions
+
+Test Case #:2.4.3 | Test Case Name: Pawn Shift
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+For one turn, a pawn may move a single square horizontally or backwards. A pawn moving in this way cannot capture another piece while doing so. Energy Cost: 5
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3|Player chooses a pawn to power up |The pawn gains the ability of Pawn Shift |P/F | 
+Post-conditions:
+The pawn shall have moved horizontaly or backwards.
+
+Test Case #:2.4.4 | Test Case Name: Bishop Color Swap
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+For one turn, a bishop may move one square horizontally or vertically, changing the color of the squares it can normally travel. Energy Cost: 7
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3|Player chooses a bishop to power up |The bishop color swaps by moving 1 space horizontally or vertically | P/F|  
+Post-conditions:
+The bishop will be existing on the opposite color it started on.
+
+Test Case #:2.4.5 | Test Case Name: Pawn+1
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Allows a pawn to move 2 spaces forward each turn. Energy Cost: 4
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 		
+3|Player chooses a pawn to power up |The pawn is granted Pawn+1 and can move 2 spaces each turn |P/F |  
+Post-conditions:
+The pawn will have the ability to move forward each turn.
+
+Test Case #:2.4.6 | Test Case Name: Pawn Reverse
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Switches capture and move vectors on a pawn. Pawns move diagonally and capture forward now. Energy Cost: 8
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3|Player chooses a pawn to power up|The pawn is granted Pawn Reverse| P/F| 
+Post-conditions:
+The pawns movement and capture options will be changed now.
+
+Test Case #:2.4.7 | Test Case Name: Knight Queen A
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Substitute the movement vector of bishops for the movement vector of a knight on your queen. Energy cost: 6
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3| Player activates the power| The Queen gains a different movement vector|P/F |
+Post-conditions:
+The movement vectors of the pieces above shall be changed.
+
+Test Case #:2.4.8 | Test Case Name: Knight Queen B
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Substitute the movement vector of rook for the movement vector of a knight on your queen. Energy Cost: 6
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3| Player activates the power| The Queen gains a different movement vector|P/F |
+Post-conditions:
+The movement vectors of the pieces above shall be changed.
+
+Test Case #:2.4.9 | Test Case Name: Knight Extend
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Extends the forward movement of a knight by 1 cell. Energy Cost: 7
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3|Player selects the knight they want to power up |The selected knight has extended movement of 1 cell |P/F | 
+Post-conditions:
+The knights forward movement will be extended by one cell.
+
+Test Case #:2.4.10 | Test Case Name: Charging Knight
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Allows the knight to move in the standard way, except that it can now move forward 3 spaces as well. Energy Cost: 8
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3|Player selects the knight they want to power up |The selected knight can move forward 3 spaces as well |P/F |  
+Post-conditions:
+The knight has the abilty to move forward 3 spaces in addition to its original moveset.
+
+Test Case #:2.4.11 | Test Case Name: Mini Queen Bishop
+---|---
+System: Main Gameplay| Subsystem: Powerups
+Designed by: Gabriel Davis | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Allows a bishop to convert to a miniature version of the queen. Changes all move vectors on the piece to move 3 spaces in any direction. It can no longer move infinitely diagonally. Energy Cost: 9
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
+2|Powerup is selected |System acknowledges and proceeds to next step |P/F | 	
+3|Player selects the bishop they want to power up |Selected bishop has different move vectors as stated above |P/F | 
+Post-conditions:
+The bishop will have been converted into a miniature queen
