@@ -62,13 +62,13 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 
 ###1.4 Main Game
 
-Test Case #: 1.4.1| Test Case Name: InGameMenu – Settings Button
+Test Case #: 1.4.1| Test Case Name: Settings Button
 ---|---
-System: UI| Subsystem:
+System: UI| Subsystem: In game menu
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
 Executed by: | Execution Date:
 Short Description:
-Black-Box Testing case for the InGame Menu Settings Button
+Black-Box Testing case for the in game menu Settings Button
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -78,13 +78,13 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: 1.4.2| Test Case Name: InGameMenu – Forfeit Button
+Test Case #: 1.4.2| Test Case Name: Forfeit Button
 ---|---
-System: UI| Subsystem:
+System: UI| Subsystem: In game menu
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
 Executed by: | Execution Date:
 Short Description:
-Black-Box Testing case for the InGame Menu Forfeit Button
+Black-Box Testing case for the in game menu Forfeit Button
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -94,27 +94,27 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: 1.4.3| Test Case Name: InGameMenu – Energy amount
+Test Case #: 1.4.3| Test Case Name: Energy amount
 ---|---
-System: UI| Subsystem:
+System: UI| Subsystem: In game menu
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
 Executed by: | Execution Date:
 Short Description:
-Black-Box Testing case for the InGame Menu Energy UI representation
+Black-Box Testing case for the in game menu Energy UI representation
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| White then Black move | Energy goes up by amount specified by game logic team | p/f |
+1| White and then Black end turn | Energy goes up by amount specified by game logic team | p/f |
 Post-conditions:
 None
 
-Test Case #: 1.4.4| Test Case Name: InGameMenu – Graveyard Display
+Test Case #: 1.4.4| Test Case Name: Graveyard Display
 ---|---
-System: UI| Subsystem:
+System: UI| Subsystem: In game menu
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
 Executed by: | Execution Date:
 Short Description:
-Black-Box Testing case for the InGame Menu Graveyard Display
+Black-Box Testing case for the in game menu Graveyard Display
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -124,13 +124,13 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: 1.4.5| Test Case Name: InGameMenu – Previous moves display
+Test Case #: 1.4.5| Test Case Name: Previous moves display
 ---|---
-System: UI| Subsystem:
+System: UI| Subsystem: In game menu
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
 Executed by: | Execution Date:
 Short Description:
-Black-Box Testing case for the InGame Menu Previous moves display
+Black-Box Testing case for the in game menu Previous moves display
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -138,13 +138,13 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: 1.4.6| Test Case Name: InGameMenu – Player’s turn
+Test Case #: 1.4.6| Test Case Name: Player’s turn
 ---|---
-System: UI| Subsystem:
+System: UI| Subsystem: In game menu
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
 Executed by: | Execution Date:
 Short Description:
-Black-Box Testing case for the InGame Text displaying whose turn it is.
+Black-Box Testing case for the in game text displaying whose turn it is.
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
