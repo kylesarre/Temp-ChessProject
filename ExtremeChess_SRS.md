@@ -236,9 +236,7 @@ References|Sec 1.5: FIDE manual
 This list is subject to change and addition, as laid out in Appendix C.
 
 * __Bishop Color Swap:__ For one turn, a bishop may move one square horizontally or vertically, changing the color of the squares it can normally travel. Energy Cost: 7
-* __Pawn Straight Capture:__ For one turn, a pawn may capture a piece one square directly ahead of it, however, when it does this, the pawn is immediately sacrificed. Energy Cost: 5
 * __Pawn Shift:__ For one turn, a pawn may move a single square horizontally or backwards. A pawn moving in this way cannot capture another piece while doing so. Energy Cost: 5
-* __Knight/Rook Merge:__ For one turn, a knight may move onto the same square as a friendly rook, or vice versa. The pieces remain on the same square after the turn, though if one piece moves on a future turn, they separate. If the square is captured by an enemy piece, both pieces are lost. Energy Cost: 8
 * __Queen/King Swap:__ For one turn, if the king and queen are within three squares of each other, either horizontally, vertically, or diagonally, they may swap positions. This ability cannot be used to escape check. Energy Cost: 15
 * __Pawn Reinforcements:__ For the turn this ability is activated, instead of making a move, the player may place a new friendly pawn on a vacant square in which a pawn would be placed at the start of a new game. The player must have no existing pawns on the file in which the new pawn is placed, and the player must have less than 8 total pawns in order to activate this ability. This ability cannot be used to escape check. Energy Cost: 12
 
