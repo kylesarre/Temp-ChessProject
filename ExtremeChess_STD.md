@@ -485,6 +485,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 For one turn, if the king and queen are within three squares of each other, either horizontally, vertically, or diagonally, they may swap positions. This ability cannot be used to escape check. Energy Cost: 15
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -500,6 +501,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 For one turn, a pawn may move a single square horizontally or backwards. A pawn moving in this way cannot capture another piece while doing so. Energy Cost: 5
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -515,6 +517,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 For one turn, a bishop may move one square horizontally or vertically, changing the color of the squares it can normally travel. Energy Cost: 7
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -530,6 +533,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 Allows a pawn to move 2 spaces forward each turn. Energy Cost: 4
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -545,6 +549,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 Switches capture and move vectors on a pawn. Pawns move diagonally and capture forward now. Energy Cost: 8
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -560,6 +565,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 Substitute the movement vector of bishops for the movement vector of a knight on your queen. Energy cost: 6
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -575,6 +581,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 Substitute the movement vector of rook for the movement vector of a knight on your queen. Energy Cost: 6
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -590,6 +597,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 Extends the forward movement of a knight by 1 cell. Energy Cost: 7
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -605,6 +613,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 Allows the knight to move in the standard way, except that it can now move forward 3 spaces as well. Energy Cost: 8
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
@@ -620,6 +629,7 @@ Designed by: Gabriel Davis | Design Date: 11/20/2016
 Executed by: | Execution Date:
 Short Description:
 Allows a bishop to convert to a miniature version of the queen. Changes all move vectors on the piece to move 3 spaces in any direction. It can no longer move infinitely diagonally. Energy Cost: 9
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1|Hover cursor over the wanted powerup|Powerup will light up |P/F | 
