@@ -73,7 +73,7 @@ Black-Box Testing case for the in game menu Settings Button
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1| Click at/inside the button boundaries | Brings up the Game dialogue menu | p/f | 
-3| Click near but outside the button boundaries | Nothing | p/f |  
+2| Click near but outside the button boundaries | Nothing | p/f |  
 Post-conditions:
 None
 
@@ -88,7 +88,7 @@ Black-Box Testing case for the in game menu Forfeit Button
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1| Click at/inside the button boundaries | Brings up the forfeit dialogue box | p/f | 	
-3| Click near but outside the button boundaries | Nothing | p/f |  
+2| Click near but outside the button boundaries | Nothing | p/f |  
 Post-conditions:
 None
 
