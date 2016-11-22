@@ -57,8 +57,17 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 7| Click Resume| Returns player to previous menu, either Main Menu or the Game Dialog Menu| |
 
 ####1.3 Quit
-1.3.1 Quit from Main Menu
-...
+Test Case #: 1.3.1| Test Case Name: Quit Game
+---|---
+System: UI| Subsystem: 
+Designed by: Hanna Cunningham| Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description: Choosing the quit button exits the program.
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click quit button| Exits Main Menu, closing the executable | | 
+Post-conditions: None
 
 ###1.4 Main Game
 
@@ -219,7 +228,7 @@ Black-Box Testing case for the game dialogue Quit Button
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| Click at/inside the button boundaries | Closes the game | p/f | 	
+1| Click at/inside the button boundaries | Exits current game and returns to Main Menu | p/f | 	
 3| Click near but outside the button boundaries | Nothing | p/f |  
 Post-conditions:
 None
@@ -231,7 +240,7 @@ Test Case #: 1.6.1.1| Test Case Name: Brightness Test #1
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
 Executed by: | Execution Date:
-Short Description: 
+Short Description: Lower the screen brightness from options
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -245,7 +254,7 @@ Test Case #: 1.6.1.2| Test Case Name: Brightness Test #2
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
 Executed by: | Execution Date:
-Short Description: 
+Short Description: Increase the game brightness from options
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -259,7 +268,7 @@ Test Case #: 1.6.2.1| Test Case Name: Volume Test #1
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
 Executed by: | Execution Date:
-Short Description: 
+Short Description: Lower the game volume from options
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
@@ -273,7 +282,7 @@ Test Case #: 1.6.2.2| Test Case Name: Volume Test #2
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
 Executed by: | Execution Date:
-Short Description: 
+Short Description: Increase the game volume from options
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
