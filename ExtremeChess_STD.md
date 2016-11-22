@@ -1,6 +1,8 @@
-##User Interface
-###Startup and Main Menu
-Test Case #: 1| Test Case Name: Main Menu
+##1. User Interface
+
+###1.1 Startup and Main Menu
+
+Test Case #: 1.1.1| Test Case Name: Main Menu
 ---|---
 System: Extreme Chess | Subsystem: UI
 Designed by: Hanna Cunningham | Design Date: 11/21/16
@@ -12,7 +14,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 1| Select and run game icon/executable | display main menu | | 
 Post-conditions: The items in the main menu can be selected.
 
-Test Case #: | Test Case Name: New Game
+Test Case #: 1.1.2| Test Case Name: New Game
 ---|---
 System: UI | Subsystem: 
 Designed by: Hanna Cunningham | Design Date: 11/21/16
@@ -26,9 +28,9 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 3| Enter name for Player 2 and click OK |Loads the game board with all pieces in their default locations| | 
 Post-conditions: The game board will now be in a playable state.
 
-###Help Menu
+###1.2 Help Menu
 
-Test Case #: | Test Case Name: Help Menu
+Test Case #: 1.2.1| Test Case Name: Help Menu
 ---|---
 System: UI | Subsystem: 
 Designed by: Hanna Cunningham | Design Date: 11/21/16
@@ -54,11 +56,12 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 6b| Click Back button| Returns to Help Menu| |
 7| Click Resume| Returns player to previous menu, either Main Menu or the Game Dialog Menu| |
 
-###Quit
+###1.3 Quit
 ...
 
-###Main Game
-Test Case #: | Test Case Name: InGameMenu – Settings Button
+###1.4 Main Game
+
+Test Case #: 1.4.1| Test Case Name: InGameMenu – Settings Button
 ---|---
 System: UI| Subsystem:
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
@@ -74,7 +77,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: | Test Case Name: InGameMenu – Forfeit Button
+Test Case #: 1.4.2| Test Case Name: InGameMenu – Forfeit Button
 ---|---
 System: UI| Subsystem:
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
@@ -90,7 +93,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: | Test Case Name: InGameMenu – Energy amount
+Test Case #: 1.4.3| Test Case Name: InGameMenu – Energy amount
 ---|---
 System: UI| Subsystem:
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
@@ -104,7 +107,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: | Test Case Name: InGameMenu – Graveyard Display
+Test Case #: 1.4.4| Test Case Name: InGameMenu – Graveyard Display
 ---|---
 System: UI| Subsystem:
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
@@ -120,7 +123,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: | Test Case Name: InGameMenu – Previous moves display
+Test Case #: 1.4.5| Test Case Name: InGameMenu – Previous moves display
 ---|---
 System: UI| Subsystem:
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
@@ -134,7 +137,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: | Test Case Name: InGameMenu – Player’s turn
+Test Case #: 1.4.6| Test Case Name: InGameMenu – Player’s turn
 ---|---
 System: UI| Subsystem:
 Designed by: Julian Dane Plaisance| Design Date: 11/19/16
@@ -150,10 +153,11 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-###Game Dialog Screen
+###1.5 Game Dialog Screen
 
-###Options
-Test Case #: | Test Case Name: Brightness Test #1
+###1.6 Options
+
+Test Case #: 1.6.1.1| Test Case Name: Brightness Test #1
 ---|---
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
@@ -167,7 +171,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 3| Click Resume | Returns to Game Dialog Screen| | 
 Post-conditions: Game remains at this brightness unless adjusted
 
-Test Case #: | Test Case Name: Brightness Test #2
+Test Case #: 1.6.1.2| Test Case Name: Brightness Test #2
 ---|---
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
@@ -181,7 +185,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 3| Click Resume | Returns to Game Dialog Screen| | 
 Post-conditions: Game remains at this brightness unless adjusted
 
-Test Case #: | Test Case Name: Volume Test #1
+Test Case #: 1.6.2.1| Test Case Name: Volume Test #1
 ---|---
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
@@ -195,7 +199,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 3| Click Resume | Returns to Game Dialog Screen| | 
 Post-conditions: Game remains at this volume level unless adjusted
 
-Test Case #: | Test Case Name: Volume Test #2
+Test Case #: 1.6.2.2| Test Case Name: Volume Test #2
 ---|---
 System: UI |Subsystem: Options
 Designed by: Hanna Cunningham | Design Date: 11/21/16
@@ -208,9 +212,12 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 2| Move slider labeled Volume to the right| Music volume gets louder| | 
 3| Click Resume | Returns to Game Dialog Screen| | 
 Post-conditions: Game remains at this volume level unless adjusted
----
 
-Test Case #: MG-BBT-G.1| Test Case Name: Check Declaration
+##2. Main Game
+
+###2.1 Check/Checkmate
+
+Test Case #: 2.1.1| Test Case Name: Check Declaration
 ---|---
 System: Main Gameplay| Subsystem: Check/Checkmate
 Designed by: Kyle Sarre| Design Date: 11/20/2016
@@ -224,7 +231,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The white queen should be at E5 and threatening to capture the black king at D4. When the white player attempts to move, their moves should be limited to preventing the queen from threatening the king.
 
-Test Case #: MG-BBT-G.3| Test Case Name: Stalemate Declaration
+Test Case #: 2.1.2| Test Case Name: Stalemate Declaration
 ---|---
 System: Main Gameplay | Subsystem: Check/Checkmate
 Designed by: Kyle Sarre| Design Date: 11/20/2016
@@ -239,7 +246,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The game ends; both players lose.
 
-Test Case #: MG-BBT-G.4| Test Case Name: Two Piece Check
+Test Case #: 2.1.3| Test Case Name: Two Piece Check
 ---|---
 System: Main Gameplay| Subsystem: Check/Checkmate
 Designed by: Kyle Sarre| Design Date:
@@ -256,7 +263,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 White is no longer in check, the black rook is no longer in play, and the king is now located at E4.
 
-Test Case #: | Test Case Name: Check/Checkmate: Fool's Mate
+Test Case #: 2.1.4| Test Case Name: Check/Checkmate: Fool's Mate
 ---|---
 System: Main Game | Subsystem: Check/Checkmate
 Designed by: Robert Anderson | Design Date: 11/21/2016
@@ -273,7 +280,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 None
 
-Test Case #: | Test Case Name: Check/Checkmate - Piece Interposition
+Test Case #: 2.1.5| Test Case Name: Check/Checkmate - Piece Interposition
 ---|---
 System: Main Gameplay | Subsystem: Piece Movement
 Designed by: Robert Anderson | Design Date: 11/20/2016
@@ -292,7 +299,26 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 7| Move White's kingside bishop to e2, interposing it between the White king and the Black queen. | Game executes 4. Be2, removes the check | | 
 Post-conditions: White's bishop at e2 should not be able to move from its position until either the Black queen or the White king move away from the e-file, or another piece interposes between the Black king and White bishop.
 
-Test Case #: MG-BBT-G.6| Test Case Name: Default Piece Movement Behavior (Outside of check, excluding king, not locked in place)
+Test Case #: 2.1.6| Test Case Name: King Movement Behavior
+---|---
+System: Main Gameplay| Subsystem: Piece Movement
+Designed by:Kyle Sarre | Design Date: 11/20/2016
+Executed by: | Execution Date:
+Short Description:
+Test if the king cannot make a move that would put itself in check
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Attempt to move black king to D4| Game executes the move| P/F |
+2| Attempt to move white rook to C5| Game executes the move| P/F |
+3| Attempt to move black king to C5| Game does not execute the move| P/F |
+4| Attempt to move black king to E3| Game executes the move| P/F |
+Post-conditions:
+White rook should remain on C5, black king should end up on E3
+
+###2.2 Basic Movement
+
+Test Case #: 2.2.1| Test Case Name: Default Piece Movement Behavior (Outside of check, excluding king, not locked in place)
 ---|---
 System: Main Gameplay| Subsystem: Piece Movement
 Designed by: Kyle Sarre| Design Date: 11/20/2016
@@ -310,24 +336,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 Post-conditions:
 The pawn should be at cell C5 and the queen should be at cell A4.
 
-Test Case #: MG-BBT-G.7| Test Case Name: King Movement Behavior
----|---
-System: Main Gameplay| Subsystem: Piece Movement
-Designed by:Kyle Sarre | Design Date: 11/20/2016
-Executed by: | Execution Date:
-Short Description:
-Test if the king cannot make a move that would put itself in check
-
-Step|Action|Expected System Response|Pass/Fail|Comment
----|---|---|---|---
-1| Attempt to move black king to D4| Game executes the move| P/F |
-2| Attempt to move white rook to C5| Game executes the move| P/F |
-3| Attempt to move black king to C5| Game does not execute the move| P/F |
-4| Attempt to move black king to E3| Game executes the move| P/F |
-Post-conditions:
-White rook should remain on C5, black king should end up on E3
-
-Test Case #: MG-BBT-G.8| Test Case Name: Capturing a Piece
+Test Case #: 2.2.2| Test Case Name: Capturing a Piece
 ---|---
 System: Main Gameplay| Subsystem: Piece Movement
 Designed by: Kyle Sarre | Design Date:11/20/2016
@@ -345,7 +354,7 @@ Post-conditions:
 Black bishop is on cell F5. The white bishop is captured. White rook and pawn remain in their default positions.
 The black bishop should reside on the F5 cell and the white bishop should no longer be in play.
 
-Test Case #: | Test Case Name: Check/Checkmate: Piece Locking
+Test Case #: 2.2.3| Test Case Name: Check/Checkmate: Piece Locking
 ---|---
 System: Main Gameplay | Subsystem: Piece Movement
 Designed by: Robert Anderson | Design Date: 11/20/2016
@@ -363,9 +372,6 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 6| Select White's bishop. | The squares d3 and c4 should be highlighted. These are the bishop's only valid moves, or else the White king would be placed in check. | | 
 Post-conditions:
 None
-
-
-
 
 Template:
 Test Case #: | Test Case Name:
