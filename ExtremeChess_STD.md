@@ -72,8 +72,7 @@ Black-Box Testing case for the in game menu Settings Button
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| Click inside the button boundaries | Brings up the Game dialogue menu | p/f | 
-2| Click at the button boundaries | Brings up the Game dialogue menu| p/f | 	
+1| Click at/inside the button boundaries | Brings up the Game dialogue menu | p/f | 
 3| Click near but outside the button boundaries | Nothing | p/f |  
 Post-conditions:
 None
@@ -88,8 +87,7 @@ Black-Box Testing case for the in game menu Forfeit Button
 
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
-1| Click inside the button boundaries | Brings up the forfeit dialogue box | p/f | 
-2| Click at the button boundaries | Brings up the forfeit dialogue | p/f | 	
+1| Click at/inside the button boundaries | Brings up the forfeit dialogue box | p/f | 	
 3| Click near but outside the button boundaries | Nothing | p/f |  
 Post-conditions:
 None
@@ -156,9 +154,75 @@ None
 
 ###1.5 Game Dialog Screen
 #####1.5.1 Resume
+
+Test Case #: 1.4.2| Test Case Name: Resume Button
+---|---
+System: UI| Subsystem: Game dialogue
+Designed by: Julian Dane Plaisance| Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description:
+Black-Box Testing case for the game dialogue Resume Button
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click at/inside the button boundaries | Closes the game dialogue box | p/f | 	
+3| Click near but outside the button boundaries | Nothing | p/f |  
+Post-conditions:
+None
+
 #####1.5.2 Options
+
+
+Test Case #: 1.4.2| Test Case Name: Options Button
+---|---
+System: UI| Subsystem: Game dialogue
+Designed by: Julian Dane Plaisance| Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description:
+Black-Box Testing case for the game dialogue Options Button
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click at/inside the button boundaries | open the Options menu | p/f | 	
+3| Click near but outside the button boundaries | Nothing | p/f |  
+Post-conditions:
+None
+
 #####1.5.3 Help
+
+
+Test Case #: 1.4.2| Test Case Name: Help Button
+---|---
+System: UI| Subsystem: Game dialogue
+Designed by: Julian Dane Plaisance| Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description:
+Black-Box Testing case for the game dialogue Help Button
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click at/inside the button boundaries | open the Help menu | p/f | 	
+3| Click near but outside the button boundaries | Nothing | p/f |  
+Post-conditions:
+None
+
 #####1.5.4 Quit
+
+
+Test Case #: 1.4.2| Test Case Name: Quit Button
+---|---
+System: UI| Subsystem: Game dialogue
+Designed by: Julian Dane Plaisance| Design Date: 11/21/16
+Executed by: | Execution Date:
+Short Description:
+Black-Box Testing case for the game dialogue Quit Button
+
+Step|Action|Expected System Response|Pass/Fail|Comment
+---|---|---|---|---
+1| Click at/inside the button boundaries | Closes the game | p/f | 	
+3| Click near but outside the button boundaries | Nothing | p/f |  
+Post-conditions:
+None
 
 ###1.6 Options
 
