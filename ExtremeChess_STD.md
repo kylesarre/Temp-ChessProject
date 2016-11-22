@@ -386,6 +386,7 @@ Designed by:Kyle Sarre | Design Date:11/21/2016
 Executed by: | Execution Date:
 Short Description:
 Test to determine whether or not the system will cycle between the two players when awaiting a move.
+
 Step|Action|Expected System Response|Pass/Fail|Comment
 ---|---|---|---|---
 1| White moves white pawn from G1 to F1| System moves white pawn to F1| | 
@@ -395,6 +396,7 @@ Step|Action|Expected System Response|Pass/Fail|Comment
 5| White moves white pawn from G2 to F2| System moves white pawn to F2| | 
 Post-conditions:
 It should now be black's turn. White should have a pawn at F1 and at F2. Black should have a pawn at C1.
+
 ###2.4 Powerups
 #####2.4.1 ...
 
