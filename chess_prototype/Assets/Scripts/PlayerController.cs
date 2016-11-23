@@ -88,7 +88,6 @@ public class PlayerController : MonoBehaviour
 	public void AssignPieces()
 	{
 		Grid grid = GameController.gameController.boardController.GetComponent<BoardController> ().grid.GetComponent<Grid> ();
-		Debug.Log (grid);
 		for (int i = 0; i < grid.NumOfColumns-6; i++) 
 		{
 			for (int j = 0; j < grid.NumOfColumns; j++) 

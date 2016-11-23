@@ -33,7 +33,7 @@ public class BoardController : MonoBehaviour
 	private int selectionX;
 	private int selectionY;
 
-	private Dictionary<string, List<string>> threatTable;
+	public Dictionary<string, List<string>> threatTable;
 
 	// Use this for initialization
 	void Start () 
@@ -95,6 +95,7 @@ public class BoardController : MonoBehaviour
 		PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
 		playerController.AssignPieces ();
 		playerTurn = playerController.WhoseTurn ();
+		BuildThreatTable ();
 	}
 	// generates an 8x8 chess board and all chess pieces; sets up the board and pieces 
 	private void CreateBoard()
@@ -224,6 +225,7 @@ public class BoardController : MonoBehaviour
 	private void BuildThreatTable()
 	{
 		Grid grid_scr = grid.GetComponent<Grid> ();
+		threatTable = new Dictionary<string, List<string>>();
 		// add all of the cells of the board and their corresponding list containers to our table
 		foreach (GameObject cell in grid_scr.grid) 
 		{
@@ -237,6 +239,12 @@ public class BoardController : MonoBehaviour
 			Piece piece;
 			// grab the cell corresponding to the piece name
 			playerController.white.MyPieces.TryGetValue (keyA, out piece);
+			UpdatePiece (piece);
+			foreach(string key in piece.ThreatenedCells.Keys)
+			{
+				Cell cell;
+				piece.ThreatenedCells.TryGetValue (key, out cell);
+			}
 			// get the piece from the cell
 			foreach(string keyB in piece.ThreatenedCells.Keys)
 			{
@@ -256,6 +264,7 @@ public class BoardController : MonoBehaviour
 			Piece piece;
 			// grab the cell corresponding to the piece name
 			playerController.black.MyPieces.TryGetValue (keyA, out piece);
+			UpdatePiece (piece);
 			// get the piece from the cell
 			foreach(string keyB in piece.ThreatenedCells.Keys)
 			{
@@ -267,6 +276,16 @@ public class BoardController : MonoBehaviour
 					threatList.Add (piece.name);
 				}
 				threatTable [keyB] = threatList;
+			}
+		}
+		foreach (string key in threatTable.Keys) 
+		{
+			List<string> thrPieces = new List<string> ();
+			threatTable.TryGetValue (key, out thrPieces);
+			Debug.Log (key);
+			foreach (string piece in thrPieces) 
+			{
+				Debug.Log (piece);
 			}
 		}
 	}
@@ -318,7 +337,7 @@ public class BoardController : MonoBehaviour
 					}
 					if (selectedPiece != null) 
 					{
-						UpdateVisitableList (selectedPiece.GetComponent<Piece>());
+						UpdatePiece (selectedPiece.GetComponent<Piece>());
 						highlighter.HighlightVisitableCells (selectedPiece);
 						highlighter.AddHighlight (selectedPiece, Color.yellow);
 						GameController.gameController.curTurnState = GameController.TurnStates.CAN_MOVE;
@@ -355,13 +374,14 @@ public class BoardController : MonoBehaviour
 		GameController.gameController.curTurnState = GameController.TurnStates.CAN_SELECT;
 	}
 	// updates the piece model to reflect the current state of the game (visitable cells, threatened cells)
-	public void UpdateVisitableList(Piece piece_scr)
+	public void UpdatePiece(Piece piece_scr)
 	{
 		// save relevant components for this calculation
 		Cell cell_scr = piece_scr.gameObject.GetComponentInParent<Cell>();
 		Grid grid_scr = grid.GetComponent<Grid> ();
 		// clear the list to modify the list for the current piece position
 		piece_scr.ValidCells.Clear ();
+		piece_scr.ThreatenedCells.Clear();
 		if (piece_scr is Pawn) 
 		{
 			// update the pawn's visitable cells based on its set of movement vectors (default: forward by one or two) and whether or not it has moved before
@@ -370,7 +390,7 @@ public class BoardController : MonoBehaviour
 			if (!pawn_scr.hasMoved)
 				scaleMax = 2;
 			bool doScaling = true;
-			PopulateVisitableList( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
+			GenerateVisitableCells( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
 			foreach (Vector3 distance in pawn_scr.captureVectors) 
 			{
@@ -388,11 +408,11 @@ public class BoardController : MonoBehaviour
 		} 
 		else if (piece_scr is King || piece_scr is Knight) 
 		{
-			PopulateVisitableList(cell_scr, grid_scr, piece_scr, false, 1);
+			GenerateVisitableCells(cell_scr, grid_scr, piece_scr, false, 1);
 		} 
 		else 
 		{
-			PopulateVisitableList(cell_scr, grid_scr, piece_scr, true, 8);
+			GenerateVisitableCells(cell_scr, grid_scr, piece_scr, true, 8);
 		}
 	}
 	// adds all cells that a piece can move to to its visitable cells list
@@ -401,9 +421,10 @@ public class BoardController : MonoBehaviour
 	// @param Piece selectedPiece_scr the script attatched to the selected piece
 	// @param bool doScaling - true if we wish to scale the movement vectors of the selected piece
 	// @param int maxScale - the maximum value we will scale a given vector by.
-	private void PopulateVisitableList( Cell sourceCell_scr, Grid grid_scr, Piece selectedPiece_scr, bool doScaling, int maxScale)
+	private void GenerateVisitableCells( Cell sourceCell_scr, Grid grid_scr, Piece piece_scr, bool doScaling, int maxScale)
 	{
-		foreach (Vector3 distance in selectedPiece_scr.MovementVectors) 
+		//Debug.Log (piece_scr.MovementVectors.Count);
+		foreach (Vector3 distance in piece_scr.MovementVectors) 
 		{
 			int scale = 1;
 			Vector3 newDistance = distance;
@@ -411,9 +432,12 @@ public class BoardController : MonoBehaviour
 			bool applyScale = true;
 			while (InRange (sourceCell_scr, newDistance, grid_scr) && !pieceOccupies && applyScale && (scale <= maxScale)) 
 			{
-				AddCell (sourceCell_scr, newDistance, grid_scr, selectedPiece_scr);
+				AddCell (sourceCell_scr, newDistance, grid_scr, piece_scr);
 				GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)newDistance.y, sourceCell_scr.column + (int)newDistance.x];
 				Cell destCell_scr = destCell.GetComponent<Cell> ();
+				piece_scr.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
+				Cell cell;
+				piece_scr.ThreatenedCells.TryGetValue (destCell_scr.gameObject.name, out cell);
 				if (destCell_scr.MyPiece != null) 
 				{
 					pieceOccupies = true;

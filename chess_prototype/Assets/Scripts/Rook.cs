@@ -8,12 +8,7 @@ public class Rook : Piece
 	{
 		NeverMoved, Moved
 	}
-	void awake()
-	{
-		enabled = false;
-	}
-	// Use this for initialization
-	void Start () 
+	void Awake()
 	{
 		state = RookState.NeverMoved;
 		base.Do_Init();
@@ -22,7 +17,11 @@ public class Rook : Piece
 		movementVectors.Add (new Vector3 (0, -1, 0));
 		movementVectors.Add (new Vector3 (1, 0, 0));
 		movementVectors.Add (new Vector3 (-1, 0, 0));
-
+		enabled = false;
+	}
+	// Use this for initialization
+	void Start () 
+	{
 		if (!isWhite) 
 		{			
 			gameObject.GetComponent<SpriteRenderer> ().sprite = GetComponentInParent<SpriteDictionary> ().SpriteDict["spr_chess_pieces_2"];

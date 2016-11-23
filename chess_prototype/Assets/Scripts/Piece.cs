@@ -3,22 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 public class Piece : MonoBehaviour 
 {
-	protected List<Cell> visitableCells;
-	protected Dictionary<string, Cell> threatenedCells;
-	protected List<Vector3> movementVectors;
+	protected List<Cell> visitableCells = new List<Cell> ();
+	public Dictionary<string, Cell> threatenedCells = new Dictionary<string, Cell>();
+	protected List<Vector3> movementVectors = new List<Vector3>();
 	public bool isWhite;
 	protected float currentX;
 	protected float currentY;
 
-	void start()
+	void Awake()
 	{
-		Do_Init ();
+		
+	}
+	void Start()
+	{
 	}
 	public void Do_Init()
 	{
-		movementVectors = new List<Vector3>();
-		visitableCells = new List<Cell> ();
-		threatenedCells = new Dictionary<string, Cell>();
 	}
 		
 	public List<Cell> ValidCells
