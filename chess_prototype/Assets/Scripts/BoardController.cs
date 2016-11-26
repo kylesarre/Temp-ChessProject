@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 /****************************************************************************************/
@@ -211,6 +210,11 @@ public class BoardController : MonoBehaviour
 		{
 			Piece pieceScript = newPiece.GetComponent<Piece> ();
 			pieceScript.isWhite = isWhite;
+            if(pieceScript is Pawn)
+            {
+                Pawn pawnScript = (Pawn)pieceScript;
+                pawnScript.assignMovementVectors();
+            }
 			pieceScript.enabled = true;
 		}
 		else
@@ -240,11 +244,6 @@ public class BoardController : MonoBehaviour
 			// grab the cell corresponding to the piece name
 			playerController.white.MyPieces.TryGetValue (keyA, out piece);
 			UpdatePiece (piece);
-			foreach(string key in piece.ThreatenedCells.Keys)
-			{
-				Cell cell;
-				piece.ThreatenedCells.TryGetValue (key, out cell);
-			}
 			// get the piece from the cell
 			foreach(string keyB in piece.ThreatenedCells.Keys)
 			{
@@ -282,11 +281,6 @@ public class BoardController : MonoBehaviour
 		{
 			List<string> thrPieces = new List<string> ();
 			threatTable.TryGetValue (key, out thrPieces);
-			Debug.Log (key);
-			foreach (string piece in thrPieces) 
-			{
-				Debug.Log (piece);
-			}
 		}
 	}
 
@@ -337,7 +331,8 @@ public class BoardController : MonoBehaviour
 					}
 					if (selectedPiece != null) 
 					{
-						UpdatePiece (selectedPiece.GetComponent<Piece>());
+                        //UpdatePiece (selectedPiece.GetComponent<Piece>());
+                        List<Cell> vcells = selectedPiece.GetComponent<Piece>().VisitableCells;
 						highlighter.HighlightVisitableCells (selectedPiece);
 						highlighter.AddHighlight (selectedPiece, Color.yellow);
 						GameController.gameController.curTurnState = GameController.TurnStates.CAN_MOVE;
@@ -380,7 +375,7 @@ public class BoardController : MonoBehaviour
 		Cell cell_scr = piece_scr.gameObject.GetComponentInParent<Cell>();
 		Grid grid_scr = grid.GetComponent<Grid> ();
 		// clear the list to modify the list for the current piece position
-		piece_scr.ValidCells.Clear ();
+		piece_scr.VisitableCells.Clear ();
 		piece_scr.ThreatenedCells.Clear();
 		if (piece_scr is Pawn) 
 		{
@@ -389,7 +384,7 @@ public class BoardController : MonoBehaviour
 			int scaleMax = 1;
 			if (!pawn_scr.hasMoved)
 				scaleMax = 2;
-			bool doScaling = true;
+			bool doScaling = true; 
 			GenerateVisitableCells( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
 			foreach (Vector3 distance in pawn_scr.captureVectors) 
@@ -401,7 +396,7 @@ public class BoardController : MonoBehaviour
 					Cell destCell_scr = destinationCell.GetComponent<Cell> ();
 					if ((destCell_scr.MyPiece != null) && (!DoesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
 					{
-						pawn_scr.ValidCells.Add (destCell_scr);
+						pawn_scr.VisitableCells.Add (destCell_scr);
 					}
 				}
 			}
@@ -436,6 +431,11 @@ public class BoardController : MonoBehaviour
 				GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)newDistance.y, sourceCell_scr.column + (int)newDistance.x];
 				Cell destCell_scr = destCell.GetComponent<Cell> ();
 				piece_scr.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
+                Debug.Log(piece_scr.name);
+                foreach(Cell vcell in piece_scr.VisitableCells)
+                {
+                    Debug.Log(vcell.name);
+                }
 				Cell cell;
 				piece_scr.ThreatenedCells.TryGetValue (destCell_scr.gameObject.name, out cell);
 				if (destCell_scr.MyPiece != null) 
@@ -479,16 +479,20 @@ public class BoardController : MonoBehaviour
 			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
 			if (destCell_scr.myPiece == null )
 			{
-				somePiece.ValidCells.Add (destCell_scr);
+				somePiece.VisitableCells.Add (destCell_scr);
 			}
 		} 
 		else 
 		{
 			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
-			if (destCell_scr.myPiece == null || !DoesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
+			if (destCell_scr.myPiece != null && !DoesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
 			{
-				somePiece.ValidCells.Add (destCell_scr);
+				somePiece.VisitableCells.Add (destCell_scr);
 			}
+            else if(destCell_scr.myPiece == null)
+            {
+                somePiece.VisitableCells.Add(destCell_scr);
+            }
 		}
 	}
 	// determines if the color of the player and the piece are the same
@@ -504,29 +508,45 @@ public class BoardController : MonoBehaviour
 	private void Move (GameObject destCell)
 	{
 		Cell destCell_scr = destCell.GetComponent<Cell> ();
-		if ( selectedPiece.GetComponent<Piece>().ValidCells.Contains(destCell_scr) ) 
+		if ( selectedPiece.GetComponent<Piece>().VisitableCells.Contains(destCell_scr) ) 
 		{
-			Cell sourceCell = selectedPiece.GetComponentInParent<Cell> ();
+            if (selectedPiece.GetComponent<Pawn>())
+            {
+                Pawn pawn_scr = selectedPiece.GetComponent<Pawn>();
+                pawn_scr.hasMoved = true;
+            }
+            Cell sourceCell = selectedPiece.GetComponentInParent<Cell> ();
 			// destroy is just for testing purposes; needs to be replaced with correct capturing code
 			Destroy (destCell_scr.MyPiece);
 			sourceCell.MyPiece = null;
-			//
-			selectedPiece.transform.SetParent(destCell.transform, false);
+            //
+            selectedPiece.transform.SetParent(destCell.transform, false);
 			destCell_scr.MyPiece = selectedPiece;
-			//updateMoveLog ();
-			UpdatePiece(selectedPiece);
-			DeselectPiece ();
-			GameController.gameController.curTurnState = GameController.TurnStates.HAS_MOVED;
+            Piece piece_scr = selectedPiece.GetComponent<Piece>();
+            DeselectPiece();
+            MoveUpdate(sourceCell);
+            //updateMoveLog ();
+            UpdatePiece(piece_scr);
+            MoveUpdate(destCell_scr);
+            GameController.gameController.curTurnState = GameController.TurnStates.HAS_MOVED;
 		}
 	}
-	public void UpdatePiece(GameObject piece)
-	{
-		if (selectedPiece.GetComponent<Pawn> ()) 
-		{
-			Pawn pawn_scr = selectedPiece.GetComponent<Pawn> ();
-			pawn_scr.hasMoved = true;
-		}
-	}
+    // updates all pieces threatening the specified cell (to be used on the source and destination cell of a move)
+    public void MoveUpdate(Cell cell)
+    {
+        List<string> threatList;
+        if(threatTable.TryGetValue(cell.name, out threatList))
+        {
+            foreach(string pieceID in threatList)
+            {
+                GameObject piece = GameObject.Find(pieceID);
+                Debug.Log(piece.name);
+                Piece piece_scr = piece.GetComponent<Piece>();
+                UpdatePiece(piece_scr);
+            }
+        }
+
+    }
 //	public void AddToThreatTable(Cell cell, Piece piece)
 //	{
 //		List<Piece> threateningPieces = threatTable.TryGetValue (cell.name);

@@ -109,7 +109,7 @@ public class Highlighter : MonoBehaviour
 	public void HighlightVisitableCells(GameObject piece)
 	{
 		Piece piece_script = piece.GetComponent<Piece> ();
-		foreach (Cell visitableCell in piece_script.ValidCells) 
+		foreach (Cell visitableCell in piece_script.VisitableCells) 
 		{
 			AddHighlight(visitableCell.gameObject, Color.green);
 		}
@@ -119,7 +119,7 @@ public class Highlighter : MonoBehaviour
 	public void UndoHighlightVisitableCells(GameObject piece)
 	{
 		Piece piece_script = piece.GetComponent<Piece> ();
-		foreach (Cell visitableCell in piece_script.ValidCells) 
+		foreach (Cell visitableCell in piece_script.VisitableCells) 
 		{
 			RemoveHighlight(visitableCell.gameObject);
 		}

@@ -21,7 +21,7 @@ public class Piece : MonoBehaviour
 	{
 	}
 		
-	public List<Cell> ValidCells
+	public List<Cell> VisitableCells
 	{
 		get{return visitableCells;}
 		set{visitableCells = new List<Cell>();}
