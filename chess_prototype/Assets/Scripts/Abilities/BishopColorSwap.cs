@@ -15,6 +15,9 @@ public class BishopColorSwap : Upgrade
 	}
 
 	public override void ApplyUpgrade () {
+		if (!SpendEnergy())
+			return;
+
 		Dictionary<string, Piece> playerPieces = boardController.PlayerTurn.MyPieces;
 
 		// go through each piece belonging to the player of the current turn

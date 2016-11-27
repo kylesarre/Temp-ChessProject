@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PawnShift : Upgrade
 {
+	int energyCost = 5;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -13,7 +15,9 @@ public class PawnShift : Upgrade
 	}
 
 	public override void ApplyUpgrade () {
-
+		if (!SpendEnergy())
+			return;
+		
 		Dictionary<string, Piece> playerPieces = boardController.PlayerTurn.MyPieces;
 
 		// go through each piece belonging to the player of the current turn

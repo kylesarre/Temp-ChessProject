@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PawnStraightCapture : Upgrade
 {
+	int energyCost = 10;
+
 	// Use this for initialization
 	void Start () {
 
@@ -15,6 +17,9 @@ public class PawnStraightCapture : Upgrade
 	}
 
 	public override void ApplyUpgrade () {
+		if (!SpendEnergy())
+			return;
+
 		Dictionary<string, Piece> playerPieces = boardController.PlayerTurn.MyPieces;
 
 		// go through each piece belonging to the player of the current turn

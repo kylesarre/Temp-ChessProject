@@ -6,15 +6,23 @@ public abstract class Upgrade : MonoBehaviour
 {
 	public int energyCost;
 
-	public BoardController boardController = GameController.gameController.boardController.GetComponent<BoardController>();
-	public PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController>();
+	protected BoardController boardController = GameController.gameController.boardController.GetComponent<BoardController>();
+	protected PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController>();
 
 	public virtual void ApplyUpgrade() {}
 
 	public virtual void RemoveUpgrade() {}
 
-	public int EnergyCost
-	{
+	public int EnergyCost {
 		get { return energyCost; } 
+	}
+
+	public bool SpendEnergy () {
+		if (playerController.WhoseTurn ().Energy >= energyCost) {
+			playerController.EnergyDecrease (energyCost);
+			return true;
+		}
+		else
+			return false;
 	}
 }
