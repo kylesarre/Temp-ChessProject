@@ -387,19 +387,6 @@ public class BoardController : MonoBehaviour
 			bool doScaling = true; 
 			GenerateVisitableCells( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
 			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
-			foreach (Vector3 distance in pawn_scr.captureVectors) 
-			{
-				if (InRange (cell_scr, distance, grid_scr)) 
-				{
-					// the way a pawn can capture is different from every other piece. i specify what i mean by that here.
-					GameObject destinationCell = grid_scr.grid [cell_scr.row + (int)distance.y, cell_scr.column + (int)distance.x];
-					Cell destCell_scr = destinationCell.GetComponent<Cell> ();
-					if ((destCell_scr.MyPiece != null) && (!DoesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
-					{
-						pawn_scr.VisitableCells.Add (destCell_scr);
-					}
-				}
-			}
 		} 
 		else if (piece_scr is King || piece_scr is Knight) 
 		{
@@ -409,6 +396,35 @@ public class BoardController : MonoBehaviour
 		{
 			GenerateVisitableCells(cell_scr, grid_scr, piece_scr, true, 8);
 		}
+	}
+
+	public void TableRemove(Dictionary<string, Cell> dict, Piece piece_scr)
+	{
+		Dictionary<string, Cell> tempDict = piece_scr.ThreatenedCells;
+		UpdatePiece (piece_scr);
+		Dictionary<string, Cell> newDict = piece_scr.ThreatenedCells;
+		Dictionary<string, Cell> interDict = new Dictionary<string, Cell> ();
+		foreach(string key in tempDict.Keys)
+		{
+			Cell thrCell;
+			if (newDict.TryGetValue (key, out thrCell)) 
+			{
+				interDict.Add (thrCell.name, thrCell);
+			}
+		}
+		foreach (string key in interDict.Keys) 
+		{
+			Cell thrCell;
+			if (tempDict.TryGetValue (key, out thrCell)) 
+			{
+				interDict.Add (thrCell.name, thrCell);
+			}
+		}
+		Dictionary<string, Cell> DictRemove = new Dictionary<string, Cell> ();
+	}
+	public void TableAdd(Dictionary<string, Cell>, Piece piece_scr)
+	{
+		
 	}
 	// adds all cells that a piece can move to to its visitable cells list
 	// @param Cell sourceCell_scr - the script attatched to the cell where the selected piece resides
@@ -431,13 +447,11 @@ public class BoardController : MonoBehaviour
 				GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)newDistance.y, sourceCell_scr.column + (int)newDistance.x];
 				Cell destCell_scr = destCell.GetComponent<Cell> ();
 				piece_scr.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
-                Debug.Log(piece_scr.name);
+                //Debug.Log(piece_scr.name);
                 foreach(Cell vcell in piece_scr.VisitableCells)
                 {
-                    Debug.Log(vcell.name);
+//                    Debug.Log(vcell.name);
                 }
-				Cell cell;
-				piece_scr.ThreatenedCells.TryGetValue (destCell_scr.gameObject.name, out cell);
 				if (destCell_scr.MyPiece != null) 
 				{
 					pieceOccupies = true;
@@ -449,6 +463,25 @@ public class BoardController : MonoBehaviour
 				} 
 				else
 					applyScale = false;		
+			}
+		}
+		foreach (Vector3 capVec in piece_scr.CaptureVectors) 
+		{
+			if (InRange (sourceCell_scr, capVec, grid_scr)) 
+			{
+				// the way a pawn can capture is different from every other piece. i specify what i mean by that here.
+				GameObject destinationCell = grid_scr.grid [sourceCell_scr.row + (int)capVec.y, sourceCell_scr.column + (int)capVec.x];
+				Cell destCell_scr = destinationCell.GetComponent<Cell> ();
+//				Debug.Log ((destCell_scr.MyPiece != null) && (!DoesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ())));
+				if ((destCell_scr.MyPiece != null) && (!DoesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
+				{
+					Debug.Log (piece_scr.name);
+					piece_scr.VisitableCells.Add (destCell_scr);
+					GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)capVec.y, sourceCell_scr.column + (int)capVec.x];
+					destCell_scr = destCell.GetComponent<Cell> ();
+					piece_scr.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
+
+				}
 			}
 		}
 	}
@@ -540,13 +573,17 @@ public class BoardController : MonoBehaviour
             foreach(string pieceID in threatList)
             {
                 GameObject piece = GameObject.Find(pieceID);
-                Debug.Log(piece.name);
+//                Debug.Log(piece.name);
                 Piece piece_scr = piece.GetComponent<Piece>();
                 UpdatePiece(piece_scr);
             }
         }
 
     }
+	public Player PlayerTurn
+	{
+		get{return playerTurn;}
+	}
 //	public void AddToThreatTable(Cell cell, Piece piece)
 //	{
 //		List<Piece> threateningPieces = threatTable.TryGetValue (cell.name);

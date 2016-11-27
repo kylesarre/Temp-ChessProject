@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Piece : MonoBehaviour 
 {
 	protected List<Cell> visitableCells = new List<Cell> ();
+	protected List<Vector3> captureVectors = new List<Vector3> ();
 	public Dictionary<string, Cell> threatenedCells = new Dictionary<string, Cell>();
 	protected List<Vector3> movementVectors = new List<Vector3>();
 	public bool isWhite;
@@ -29,6 +30,10 @@ public class Piece : MonoBehaviour
 	public List<Vector3> MovementVectors
 	{
 		get{ return movementVectors;}
+	}
+	public List<Vector3> CaptureVectors
+	{
+		get{ return captureVectors;}
 	}
 	public Dictionary<string, Cell> ThreatenedCells
 	{

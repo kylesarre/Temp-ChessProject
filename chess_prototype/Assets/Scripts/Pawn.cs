@@ -5,17 +5,15 @@ public class Pawn : Piece
 {
 	
 	public bool hasMoved;
-	public List<Vector3> captureVectors;
 
 	// awake occurs before start
 	void Awake()
-	{
-        captureVectors = new List<Vector3>();		
+	{		
+		base.Do_Init();
 		hasMoved = false;
 		// ensures that we can set this Piece's isWhite field before trying to access it Do_Init()
 		enabled = false;
-        // initialize data structures defined in parent class
-        base.Do_Init();       
+        // initialize data structures defined in parent class             
     }
 	// Use this for initialization
 	void Start () 
