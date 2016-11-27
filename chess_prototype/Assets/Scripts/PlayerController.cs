@@ -131,11 +131,23 @@ public class PlayerController : MonoBehaviour
 	public void NextPlayer()
 	{
 		players.Enqueue (players.Dequeue ());
-		WhoseTurn ().Energy++;
+		EnergyIncrease(1);
 		Debug.Log (WhoseTurn().IsWhite + " " + WhoseTurn().Energy);
 	}
 	public Player WhoseTurn()
 	{
 		return players.Peek ();
+	}
+
+	// increase energy for the current player
+	public void EnergyIncrease (int value)
+	{
+		WhoseTurn().Energy += value;
+	}
+
+	// decrease energy for the current player
+	public void EnergyDecrease (int value)
+	{
+		WhoseTurn().Energy -= value;
 	}
 }

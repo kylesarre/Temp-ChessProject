@@ -2,16 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Upgrade : MonoBehaviour {
+public abstract class Upgrade : MonoBehaviour
+{
+	public int energyCost;
 
-	// Use this for initialization
-	void Start () {
-	
+	public void ApplyUpgrade() {}
+
+	public void RemoveUpgrade() {}
+
+	public int EnergyCost
+	{
+		get { return energyCost; } 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-		
 }
