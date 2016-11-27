@@ -412,17 +412,28 @@ public class BoardController : MonoBehaviour
 				interDict.Add (thrCell.name, thrCell);
 			}
 		}
+		// we build a table that stores what we want to delete from the threat table
+		// for every key in the intersection of the old and new table, if we find 
+		// such a key in the old table, we will remove the entry from the old table
 		foreach (string key in interDict.Keys) 
 		{
 			Cell thrCell;
 			if (tempDict.TryGetValue (key, out thrCell)) 
 			{
-				interDict.Add (thrCell.name, thrCell);
+				tempDict.Remove (thrCell.name);
 			}
 		}
-		Dictionary<string, Cell> DictRemove = new Dictionary<string, Cell> ();
+		// whatever is left in the tempDict is actually the entries we want to edit in the threatTable
+		Dictionary<string, Cell> DictRemove = tempDict;
+		foreach(string key in DictRemove)
+		{
+			List<string> thrPieces;
+			threatTable.TryGetValue (key, out thrPieces);
+			thrPieces.Remove (piece_scr.name);
+			threatTable [key] = thrPieces;
+		}
 	}
-	public void TableAdd(Dictionary<string, Cell>, Piece piece_scr)
+	public void TableAdd(Dictionary<string, Cell> dict, Piece piece_scr)
 	{
 		
 	}
