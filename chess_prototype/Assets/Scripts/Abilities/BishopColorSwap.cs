@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BishopColorSwap : Upgrade
 {
-	private BoardController boardController = GameController.gameController.boardController.GetComponent<BoardController>();
+	int energyCost = 7;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class BishopColorSwap : Upgrade
 	void Update () {
 	}
 
-	public void ApplyUpgrade () {
+	public override void ApplyUpgrade () {
 		Dictionary<string, Piece> playerPieces = boardController.PlayerTurn.MyPieces;
 
 		// go through each piece belonging to the player of the current turn
@@ -30,7 +30,7 @@ public class BishopColorSwap : Upgrade
 					{
 						// adding straight to movement vectors for bishops would cause scaling/capturing,
 						// so add cells directly to visitable cells table
-						Cell destCell = gridScript.grid [currCell.column + (int)vecs.x, currCell.row + (int)vecs.y];
+						Cell destCell = gridScript.grid [currCell.column + (int)vecs.x, currCell.row + (int)vecs.y].GetComponent<Cell> ();
 						if(destCell.MyPiece == null)
 							p.VisitableCells.Add (destCell);
 					}
@@ -39,7 +39,7 @@ public class BishopColorSwap : Upgrade
 		}
 	}
 
-	public void RemoveUpgrade () {
+	public override void RemoveUpgrade () {
 		Dictionary<string, Piece> playerPieces = boardController.PlayerTurn.MyPieces;
 
 		// go through each piece belonging to the player of the current turn

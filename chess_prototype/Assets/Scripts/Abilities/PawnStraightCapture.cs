@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class PawnStraightCapture : Upgrade
 {
-	private BoardController boardController = GameController.gameController.boardController.GetComponent<BoardController>();
-
 	// Use this for initialization
 	void Start () {
 
@@ -16,7 +14,7 @@ public class PawnStraightCapture : Upgrade
 
 	}
 
-	public void ApplyUpgrade () {
+	public override void ApplyUpgrade () {
 		Dictionary<string, Piece> playerPieces = boardController.PlayerTurn.MyPieces;
 
 		// go through each piece belonging to the player of the current turn
@@ -34,7 +32,7 @@ public class PawnStraightCapture : Upgrade
 		}
 	}
 
-	public void RemoveUpgrade () {
+	public override void RemoveUpgrade () {
 		Dictionary<string, Piece> playerPieces = boardController.PlayerTurn.MyPieces;
 
 		// go through each piece belonging to the player of the current turn

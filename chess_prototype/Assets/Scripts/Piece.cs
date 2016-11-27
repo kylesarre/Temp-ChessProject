@@ -22,7 +22,7 @@ public class Piece : MonoBehaviour
 	{
 	}
 
-	public void assignMovementVectors() {
+	public virtual void assignMovementVectors() {
 	}
 
 	public List<Cell> VisitableCells
