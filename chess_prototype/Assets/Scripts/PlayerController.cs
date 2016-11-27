@@ -131,6 +131,8 @@ public class PlayerController : MonoBehaviour
 	public void NextPlayer()
 	{
 		players.Enqueue (players.Dequeue ());
+		WhoseTurn ().Energy++;
+		Debug.Log (WhoseTurn().IsWhite + " " + WhoseTurn().Energy);
 	}
 	public Player WhoseTurn()
 	{

@@ -21,20 +21,26 @@ public class Piece : MonoBehaviour
 	public void Do_Init()
 	{
 	}
-		
+
+	public void assignMovementVectors() {
+	}
+
 	public List<Cell> VisitableCells
 	{
 		get{return visitableCells;}
 		set{visitableCells = new List<Cell>();}
 	}
+
 	public List<Vector3> MovementVectors
 	{
 		get{ return movementVectors;}
 	}
+
 	public List<Vector3> CaptureVectors
 	{
 		get{ return captureVectors;}
 	}
+
 	public Dictionary<string, Cell> ThreatenedCells
 	{
 		get{return threatenedCells;}

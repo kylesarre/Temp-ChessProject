@@ -27,4 +27,12 @@ public class Bishop : Piece
 	void Update () {
 	
 	}
+
+	public void assignMovementVectors() {
+		captureVectors.Clear ();
+		movementVectors.Clear ();
+
+		Vector3[] vectors = { new Vector3(1, 1, 0), new Vector3(-1, 1, 0), new Vector3(-1, -1, 0), new Vector3(1, -1, 0) };
+		movementVectors.AddRange(vectors);
+	}
 }

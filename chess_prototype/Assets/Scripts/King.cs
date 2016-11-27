@@ -28,4 +28,13 @@ public class King : Piece
 	void Update () {
 	
 	}
+
+	public void assignMovementVectors()
+	{
+		captureVectors.Clear ();
+		movementVectors.Clear ();
+		Vector3[] vectors = { new Vector3 (1, 1, 0), new Vector3 (-1, 1, 0), new Vector3 (-1, -1, 0), new Vector3 (1, -1, 0),
+			new Vector3 (1, 0, 0), new Vector3 (-1, 0, 0), new Vector3 (0, 1, 0), new Vector3 (0, -1, 0) };
+		movementVectors.AddRange (vectors);
+	}
 }

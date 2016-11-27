@@ -36,4 +36,14 @@ public class Rook : Piece
 	void Update () {
 	
 	}
+
+	public void assignMovementVectors()
+	{
+		captureVectors.Clear ();
+		movementVectors.Clear ();
+		movementVectors.Add (new Vector3 (0, 1, 0));
+		movementVectors.Add (new Vector3 (0, -1, 0));
+		movementVectors.Add (new Vector3 (1, 0, 0));
+		movementVectors.Add (new Vector3 (-1, 0, 0));
+	}
 }

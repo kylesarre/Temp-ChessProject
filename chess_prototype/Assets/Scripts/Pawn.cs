@@ -39,9 +39,13 @@ public class Pawn : Piece
 
     public void assignMovementVectors()
     {
+		// resets movement vectors in case previously altered by an ability
+		movementVectors.Clear ();
+		captureVectors.Clear ();
+
         if(!isWhite)
         {
-            // a pawn ca move in the forward direction
+            // a pawn can move in the forward direction
             movementVectors.Add(new Vector3(0, 1, 0));
             // a pawn can capture diagonally to the right
             captureVectors.Add(new Vector3(1, 1, 0));

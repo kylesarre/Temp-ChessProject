@@ -8,10 +8,12 @@ public class Player : MonoBehaviour
 	private Dictionary<string, Piece> myPieces;
 	private List<Upgrade> upgrades;
 	private bool inCheck;
+	private int energy;
 
 	// Use this for initialization
 	void Start () 
 	{
+		energy = 0;
 		inCheck = false;
 		myPieces = new Dictionary<string, Piece> ();
 	}
@@ -42,5 +44,11 @@ public class Player : MonoBehaviour
 	public Dictionary<string, Piece> MyPieces
 	{
 		get{return myPieces;}
+	}
+
+	public int Energy
+	{
+		get{return energy;}
+		set{energy = value;}
 	}
 }
