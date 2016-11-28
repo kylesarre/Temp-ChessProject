@@ -30,14 +30,14 @@ public class Pawn : Piece
             gameObject.GetComponent<SpriteRenderer>().sprite = GetComponentInParent<SpriteDictionary>().SpriteDict["spr_chess_pieces_6"];
         }
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
 		
 	}		
 
-    public void assignMovementVectors()
+    public override void assignMovementVectors()
     {
 		// resets movement vectors in case previously altered by an ability
 		movementVectors.Clear ();

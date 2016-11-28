@@ -28,7 +28,7 @@ public class Queen : Piece
 	void Update () {
 	}
 
-	public void assignMovementVectors()
+	public override void assignMovementVectors()
 	{
 		captureVectors.Clear ();
 		movementVectors.Clear ();

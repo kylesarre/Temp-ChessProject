@@ -37,7 +37,7 @@ public class Rook : Piece
 	
 	}
 
-	public void assignMovementVectors()
+	public override void assignMovementVectors()
 	{
 		captureVectors.Clear ();
 		movementVectors.Clear ();

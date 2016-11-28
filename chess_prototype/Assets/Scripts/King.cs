@@ -29,7 +29,7 @@ public class King : Piece
 	
 	}
 
-	public void assignMovementVectors()
+	public override void assignMovementVectors()
 	{
 		captureVectors.Clear ();
 		movementVectors.Clear ();

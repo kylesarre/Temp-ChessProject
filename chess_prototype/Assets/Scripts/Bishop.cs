@@ -28,7 +28,7 @@ public class Bishop : Piece
 	
 	}
 
-	public void assignMovementVectors() {
+	public override void assignMovementVectors() {
 		captureVectors.Clear ();
 		movementVectors.Clear ();
 
