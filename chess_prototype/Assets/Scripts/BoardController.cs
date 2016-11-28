@@ -57,6 +57,7 @@ public class BoardController : MonoBehaviour
 		}
 		if (GameController.gameController.curTurnState == GameController.TurnStates.TURN_START) 
 		{
+			inCheck ();
 			GameController.gameController.curTurnState = GameController.TurnStates.CAN_SELECT;
 		}
 		if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_SELECT) 
@@ -693,8 +694,8 @@ public class BoardController : MonoBehaviour
 		get{return playerTurn;}
 	}
 
-	// verifies that a piece at a given cell is locked in place (not allowed to move according to chess rules)
-	// @return true if the cell is locked, false if the piece is not locked
+	 //verifies that a piece at a given cell is locked in place (not allowed to move according to chess rules)
+	 //@return true if the cell is locked, false if the piece is not locked
 //	public bool isLocked(Cell cell)
 //	{
 //		Cell kingCell;
@@ -705,18 +706,53 @@ public class BoardController : MonoBehaviour
 //		cell.MyPiece = null;
 //		foreach (Piece piece in thrPieces) 
 //		{
-//			UpdatePieceLists (piece);
+//			UpdatePiece (piece);
 //			Cell threatCell;
 //			if (piece.ThreatenedCells.TryGetValue (kingCell.gameObject.name, out threatCell)) 
 //			{
 //				cell.MyPiece = temp;
-//				UpdatePieceLists (piece);
+//				UpdatePiece (piece);
 //				return true;
 //			}
 //			cell.MyPiece = temp;
-//			UpdatePieceLists (piece);
+//			UpdatePiece (piece);
 //		}
 //
 //		return false;
 //	}
+	public bool inCheck()
+	{
+		King kingPiece;
+		foreach (string key in playerTurn.MyPieces.Keys) 
+		{
+			Piece piece;
+			if (playerTurn.MyPieces.TryGetValue (key, out piece)) {
+				if (piece is King) 
+				{
+					kingPiece = piece;
+				} 
+				else 
+				{
+					kingPiece = null;
+				}
+			} 
+			else 
+			{
+				kingPiece = null;
+			}
+		}
+		if (kingPiece != null) {
+			Cell kingCell = kingPiece.GetComponentInParent<Cell> ();
+			List<string> threatList;
+			if (threatTable.TryGetValue (kingCell.name, out threatList)) {
+				foreach (string pieceName in threatList) {
+					GameObject piece = GameObject.Find (pieceName);
+					if (!DoesColorMatchPiece (kingPiece, piece.GetComponent<Piece> ())) {
+						Debug.Log ("Check has occurred");
+						return true;
+					}
+				}
+			}
+		}
+	}
 }
