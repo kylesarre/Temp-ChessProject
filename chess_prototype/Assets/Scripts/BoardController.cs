@@ -563,7 +563,7 @@ public class BoardController : MonoBehaviour
 			// destroy is just for testing purposes; needs to be replaced with correct capturing code
 			Destroy (destCell_scr.MyPiece);
 			sourceCell.MyPiece = null;
-            //
+
             selectedPiece.transform.SetParent(destCell.transform, false);
 			destCell_scr.MyPiece = selectedPiece;
             Piece piece_scr = selectedPiece.GetComponent<Piece>();

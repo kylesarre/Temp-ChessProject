@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class BishopColorSwap : Upgrade
 {
-	int energyCost = 7;
-
 	// Use this for initialization
 	void Start () {
+		energyCost = 7;
 	}
 
 	// Update is called once per frame

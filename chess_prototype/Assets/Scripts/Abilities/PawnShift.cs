@@ -4,10 +4,9 @@ using System.Collections.Generic;
 
 public class PawnShift : Upgrade
 {
-	int energyCost = 5;
-
 	// Use this for initialization
 	void Start () {
+		energyCost = 5;
 	}
 
 	// Update is called once per frame
