@@ -37,6 +37,14 @@ public class Highlighter : MonoBehaviour
 		if (gameObject.GetComponent<Highlightable> ()) 
 		{
 			Highlightable highlightable = gameObject.GetComponent<Highlightable> ();
+			if (col == Color.green) 
+			{
+				col.g = col.g + highlightable.Tint;
+			} 
+			else if (col == Color.blue) 
+			{
+				col.b = col.b + highlightable.Tint;
+			}
 			highlightable.colorHistory.Push (col);
 		} 
 		else

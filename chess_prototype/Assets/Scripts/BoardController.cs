@@ -135,10 +135,12 @@ public class BoardController : MonoBehaviour
 					if (currCells % 2 == 0) 
 					{
 						grid_scr.grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("vanilla_tile_edit1");
+						grid_scr.grid [i, j].GetComponent<Highlightable> ().Tint = 0;
 					} 
 					else 
 					{
 						grid_scr.grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("wood_tile");
+						grid_scr.grid [i, j].GetComponent<Highlightable> ().Tint = 2;
 					}
 				} 
 				else 
@@ -146,10 +148,12 @@ public class BoardController : MonoBehaviour
 					if (currCells % 2 == 0) 
 					{
 						grid_scr.grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("wood_tile");
+						grid_scr.grid [i, j].GetComponent<Highlightable> ().Tint = 2;
 					} 
 					else 
 					{
 						grid_scr.grid[i,j].GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("vanilla_tile_edit1");
+						grid_scr.grid [i, j].GetComponent<Highlightable> ().Tint = 0;
 					}
 				}
 				// create chess pieces and set their initial position

@@ -42,6 +42,7 @@ public class Highlightable : MonoBehaviour
 	public float Tint
 	{
 		set { this.tint = value; }
+		get{ return tint;}
 	}
 	// takes a peek at the top of the stack for this highlightable and assigns the gameobject material color to the color retrieved from the stack.
 	private void updateHighlight()
