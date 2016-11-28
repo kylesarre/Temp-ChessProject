@@ -1,0 +1,26 @@
+Intro(1 minute)
+	A.Introduction of team members and their roles in the project
+	B.Introduction of the Project
+		1. Name of Project
+		2. Brief description of what the project is
+		3. Describe the vision (the inspiration for the project)
+		4. Describe team construction (egoless) 
+		5. Describe tools, IDE
+		6. Describe our development methodology
+		7. Describe the primary features of the system
+Demo(3 Minutes)
+	A. Show the features of the main menu
+		1. New game
+		2. Help
+		3. Credit
+		4. Quit
+	B. Show the features in the base game
+ 		1. Have each player move pieces a little bit 
+		2. Try capturing pieces
+		3. Show that the king can be put into check
+		4. Forfeit the game
+		5. Explain what hadn't made it in the demo due to time constraints
+Technical Description and Questions()
+	A. Design decisions (Object oriented design; MVC pattern)
+	B. Data structures, 
+	C. Hardest feature to implement
