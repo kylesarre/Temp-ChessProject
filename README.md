@@ -84,3 +84,13 @@ and that we should meet again at a later date.</br>
 **Purpose**: Split up the testing documentation amongst the group.</br>
 **Members in Attendance**: Robert Anderson, Hanna Cunningham, Gabriel Davis, Julian Plaisance, Kyle Sarre</br>
 **Goals met**: Delegated sections of the testing document based on what parts of the system people had worked on. </br>
+
+**Date**: 11/26/16</br>
+**Purpose**: Worked on User Interface implementation</br>
+**Members in Attendance**: Hanna Cunningham, Julian Plaisance</br>
+**Goals met**: Furthered menu implementation slightly.</br>
+
+**Date**: 11/27/16</br>
+**Purpose**: Finish the project demo</br>
+**Members in Attendance**: Hanna Cunningham, Robert Anderson, Kyle Sarre, Julian Plaisance</br>
+**Goals met**: almost finished project demo</br>
