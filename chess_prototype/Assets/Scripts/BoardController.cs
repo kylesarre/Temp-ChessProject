@@ -722,37 +722,43 @@ public class BoardController : MonoBehaviour
 //	}
 	public bool inCheck()
 	{
-		King kingPiece;
+		King kingPiece = null;
 		foreach (string key in playerTurn.MyPieces.Keys) 
 		{
 			Piece piece;
-			if (playerTurn.MyPieces.TryGetValue (key, out piece)) {
+			if (playerTurn.MyPieces.TryGetValue (key, out piece)) 
+			{
 				if (piece is King) 
 				{
-					kingPiece = piece;
+					kingPiece = (King)piece;
+					break;
 				} 
-				else 
-				{
-					kingPiece = null;
-				}
 			} 
 			else 
 			{
 				kingPiece = null;
 			}
 		}
-		if (kingPiece != null) {
+		Debug.Log (kingPiece.name);
+		if (kingPiece != null) 
+		{
 			Cell kingCell = kingPiece.GetComponentInParent<Cell> ();
+			Debug.Log (kingCell.name);
 			List<string> threatList;
-			if (threatTable.TryGetValue (kingCell.name, out threatList)) {
-				foreach (string pieceName in threatList) {
+			if (threatTable.TryGetValue (kingCell.name, out threatList))
+			{
+				foreach (string pieceName in threatList) 
+				{
 					GameObject piece = GameObject.Find (pieceName);
-					if (!DoesColorMatchPiece (kingPiece, piece.GetComponent<Piece> ())) {
+					if (!DoesColorMatchPiece (kingPiece, piece.GetComponent<Piece> ())) 
+					{
 						Debug.Log ("Check has occurred");
 						return true;
 					}
 				}
 			}
 		}
+		Debug.Log ("No check has occurred");
+		return false;
 	}
 }

@@ -67,10 +67,10 @@ public class KingQueenSwap : Upgrade
 				kingCell.MyPiece = queenTemp;
 
 				// swap the king and queen's transforms
-				Transform transTemp = closestQueen.MyPiece.transform;
+				Vector3 transTemp = closestQueen.MyPiece.transform.position;
 
-				closestQueen.MyPiece.transform = kingCell.MyPiece.transform;
-				kingCell.MyPiece.transform = transTemp;
+				closestQueen.MyPiece.transform.position = kingCell.MyPiece.transform.position;
+				kingCell.MyPiece.transform.position = transTemp;
 			}
 		}
 	}
