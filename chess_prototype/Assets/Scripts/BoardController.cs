@@ -83,6 +83,15 @@ public class BoardController : MonoBehaviour
 			PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController> ();
 			playerController.NextPlayer ();
 			playerTurn = playerController.WhoseTurn ();
+			foreach (string key in playerTurn.MyPieces.Keys) 
+			{
+				Piece piece;
+				if (playerTurn.MyPieces.TryGetValue (key, out piece))
+				if (piece is King) 
+				{
+					TableUpdate (piece.ThreatenedCells, piece);
+				}
+			}	
 			GameController.gameController.curTurnState = GameController.TurnStates.TURN_START;
 		}
 	}
@@ -480,6 +489,22 @@ public class BoardController : MonoBehaviour
 		}
 
 	}
+	// removes a specified piece's threatened cells from the threat table
+	// @param Piece piece - the specified piece whose threatened cells we wish to remove
+	public void ClearFromTable(Piece piece)
+	{
+		foreach (string key in piece.threatenedCells.Keys) 
+		{
+			List<string> threatList;
+			if (threatTable.TryGetValue (key, out threatList)) 
+			{
+				if (threatList.Contains (piece.name)) 
+				{
+					threatList.Remove (piece.name);
+				}
+			}
+		}
+	}
 	public void TableUpdate(Dictionary<string, Cell> dict, Piece piece_scr)
 	{
 		TableRemove (dict, piece_scr);
@@ -505,7 +530,8 @@ public class BoardController : MonoBehaviour
 				AddCell (sourceCell_scr, newDistance, grid_scr, piece_scr);
 				GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)newDistance.y, sourceCell_scr.column + (int)newDistance.x];
 				Cell destCell_scr = destCell.GetComponent<Cell> ();
-				piece_scr.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
+				if( !(piece_scr is Pawn) )
+					piece_scr.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
                 //Debug.Log(piece_scr.name);
                 foreach(Cell vcell in piece_scr.VisitableCells)
                 {
@@ -562,14 +588,33 @@ public class BoardController : MonoBehaviour
 	{
 		GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)distance.y, sourceCell_scr.column + (int)distance.x];
 		Cell destCell_scr = destCell.GetComponent<Cell> ();
-		if (somePiece is Pawn) 
-		{
+		if (somePiece is Pawn) {
 			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
-			if (destCell_scr.myPiece == null )
-			{
+			if (destCell_scr.myPiece == null) {
 				somePiece.VisitableCells.Add (destCell_scr);
 			}
 		} 
+		else if (somePiece is King) 
+		{
+			List<string> threatList;
+			bool nextStep = true;
+			if (threatTable.TryGetValue (destCell_scr.name, out threatList)) 
+			{
+				foreach (string piece in threatList) 
+				{
+					GameObject piece_obj = GameObject.Find(piece);
+					if ( piece_obj != null && !DoesColorMatchPiece (somePiece, piece_obj.GetComponent<Piece> ())) 
+					{
+						nextStep = false;
+					}
+				}
+				if (nextStep) 
+				{
+					if (destCell_scr.MyPiece == null || !DoesColorMatchPiece (somePiece, destCell_scr.MyPiece.GetComponent<Piece> ()))
+						somePiece.VisitableCells.Add (destCell_scr);
+				}
+			}
+		}
 		else 
 		{
 			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
@@ -609,9 +654,13 @@ public class BoardController : MonoBehaviour
             }
             Cell sourceCell = selectedPiece.GetComponentInParent<Cell> ();
 			// destroy is just for testing purposes; needs to be replaced with correct capturing code
-			Destroy (destCell_scr.MyPiece);
+			if (destCell_scr.MyPiece != null) 
+			{
+				ClearFromTable(destCell_scr.MyPiece.GetComponent<Piece>());
+				Destroy (destCell_scr.MyPiece);
+			}
 			sourceCell.MyPiece = null;
-
+            //
             selectedPiece.transform.SetParent(destCell.transform, false);
 			destCell_scr.MyPiece = selectedPiece;
             Piece piece_scr = selectedPiece.GetComponent<Piece>();

@@ -144,7 +144,6 @@ public class PlayerController : MonoBehaviour
 	{
 		WhoseTurn().Energy += value;
 	}
-
 	// decrease energy for the current player
 	public void EnergyDecrease (int value)
 	{
