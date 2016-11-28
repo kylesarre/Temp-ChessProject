@@ -29,16 +29,17 @@ public class GameController : MonoBehaviour
 	// ensures exactly one instance of this controller is instantiated before game starts
 	void Awake()
 	{
-		if (gameController == null) {
-			gameController = this;
-
-			DontDestroyOnLoad (transform.gameObject);
-		} 
-		else 
-		{
-			Debug.LogError ("Error: GameController instantiated twice, but GameController is a singleton class.");
-			DestroyImmediate (this.gameObject);
-		}	
+		gameController = this;
+//////		if (gameController == null) {
+//////			gameController = this;
+//////
+//////			DontDestroyOnLoad (transform.gameObject);
+////		} 
+////		else 
+//		{
+//			Debug.LogError ("Error: GameController instantiated twice, but GameController is a singleton class.");
+//			DestroyImmediate (this.gameObject);
+//		}	
 	}
 		
 
@@ -89,6 +90,7 @@ public class GameController : MonoBehaviour
 				Transform gridTransform = boardController_scr.grid.GetComponent<Transform> ();
 				Vector3 gridCenterVector = new Vector3 (grid_scr.NumOfColumns/2, grid_scr.NumOfRows/2, 0);
 				mainCamera.GetComponent<Transform>().position = ( new Vector3 (gridTransform.position.x, gridTransform.position.y, -10) ) + gridCenterVector;
+				mainCamera.orthographicSize = 6;
 			}
 		}
 

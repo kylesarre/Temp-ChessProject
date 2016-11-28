@@ -303,16 +303,15 @@ public class BoardController : MonoBehaviour
 			return;
 		}
 		RaycastHit2D hit;
-		hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero, LayerMask.GetMask ("bottom"));
-		if (hit) 
-		{
-			selectionX = Mathf.FloorToInt (hit.point.x);
-			selectionY = Mathf.FloorToInt (hit.point.y);
-		} 
-		else 
-		{
-			selectionX = -1;
-			selectionY = -1;
+		if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject ()) {
+			hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero, LayerMask.GetMask ("bottom"));
+			if (hit) {
+				selectionX = Mathf.FloorToInt (hit.point.x);
+				selectionY = Mathf.FloorToInt (hit.point.y);
+			} else {
+				selectionX = -1;
+				selectionY = -1;
+			}
 		}
 	}
 	// sets the selectedCell to the cell underneath the mouse cursor whenever the left mouse button is pressed
@@ -677,16 +676,21 @@ public class BoardController : MonoBehaviour
     public void MoveUpdate(Cell cell)
     {
         List<string> threatList;
+		List<string> tempList = new List<string>();
         if(threatTable.TryGetValue(cell.name, out threatList))
-        {
-            foreach(string pieceID in threatList)
-            {
-                GameObject piece = GameObject.Find(pieceID);
-//              Debug.Log(piece.name);
-                Piece piece_scr = piece.GetComponent<Piece>();
-                //UpdatePiece(piece_scr);
+		{
+			foreach (string pieceID in threatList) 
+			{
+				tempList.Add (pieceID);
+			}
+			foreach(string pieceID in tempList)
+			{
+				GameObject piece = GameObject.Find(pieceID);
+				//Debug.Log(piece.name);
+				Piece piece_scr = piece.GetComponent<Piece>();
+				//UpdatePiece(piece_scr);
 				TableUpdate (piece_scr.ThreatenedCells, piece_scr);
-            }
+			}     
         }
     }
 	public Player PlayerTurn
@@ -739,11 +743,10 @@ public class BoardController : MonoBehaviour
 				kingPiece = null;
 			}
 		}
-		Debug.Log (kingPiece.name);
 		if (kingPiece != null) 
 		{
+			Debug.Log (kingPiece);
 			Cell kingCell = kingPiece.GetComponentInParent<Cell> ();
-			Debug.Log (kingCell.name);
 			List<string> threatList;
 			if (threatTable.TryGetValue (kingCell.name, out threatList))
 			{
@@ -762,3 +765,4 @@ public class BoardController : MonoBehaviour
 		return false;
 	}
 }
+
