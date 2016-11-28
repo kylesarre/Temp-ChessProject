@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public class PawnStraightCapture : Upgrade
 {
-
 	// Use this for initialization
 	void Start () {
 		energyCost = 10;
+		gridScript = boardController.grid.GetComponent<Grid> ();
 	}
 
 	// Update is called once per frame

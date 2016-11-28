@@ -44,4 +44,10 @@ public class Cell : MonoBehaviour
 			cellMidPoint = value;
 		}
 	}
+
+//	public Piece GetPiece
+//	{
+//		get{ return GetComponent<Cell> ().MyPiece.GetComponent<Piece> (); }
+//		set{ myPiece = value.gameObject; }
+//	}
 }

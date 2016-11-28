@@ -8,6 +8,7 @@ public abstract class Upgrade : MonoBehaviour
 
 	protected BoardController boardController = GameController.gameController.boardController.GetComponent<BoardController>();
 	protected PlayerController playerController = GameController.gameController.playerController.GetComponent<PlayerController>();
+	protected Grid gridScript;
 
 	public virtual void ApplyUpgrade() {}
 

@@ -7,6 +7,7 @@ public class BishopColorSwap : Upgrade
 	// Use this for initialization
 	void Start () {
 		energyCost = 7;
+		gridScript = boardController.grid.GetComponent<Grid> ();
 	}
 
 	// Update is called once per frame
@@ -26,7 +27,6 @@ public class BishopColorSwap : Upgrade
 			if (playerPieces.TryGetValue (key, out p)) {
 				if (p is Bishop) {
 					Cell currCell = p.GetComponentInParent<Cell> ();
-					Grid gridScript = boardController.grid.GetComponent<Grid> ();
 					Vector3[] v = { new Vector3 (0, 1, 0), new Vector3 (0, -1, 0), new Vector3 (1, 0, 0), new Vector3 (-1, 0, 0) };
 					foreach (Vector3 vecs in v)
 					{

@@ -4,9 +4,11 @@ using System.Collections.Generic;
 
 public class PawnShift : Upgrade
 {
+
 	// Use this for initialization
 	void Start () {
 		energyCost = 5;
+		gridScript = boardController.grid.GetComponent<Grid> ();
 	}
 
 	// Update is called once per frame

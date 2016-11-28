@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
 
 	public enum GameStates
 	{
-		MAIN_MENU, GAME_START ,IN_GAME, PAUSE, GAME_END
+		MAIN_MENU, GAME_START, IN_GAME, PAUSE, GAME_END
 	};
 
 	public enum TurnStates
