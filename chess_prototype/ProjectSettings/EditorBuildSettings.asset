@@ -4,4 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Menus/Spring Prefabs and Option Script/Main Menu.unity
+  - enabled: 1
+    path: Assets/Menus/Spring Prefabs and Option Script/Credits.unity
+  - enabled: 1
+    path: Assets/Menus/Spring Prefabs and Option Script/GameOver.unity
+  - enabled: 1
+    path: Assets/chess_prototype.unity

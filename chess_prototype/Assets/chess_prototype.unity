@@ -90,6 +90,58 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &350952646
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000013255596790, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013255596790, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013255596790, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013255596790, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013255596790, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013255596790, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013255596790, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013255596790, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011211482622, guid: fa0c0fac92e92c04295d49bfd9b042a3,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000011211482622, guid: fa0c0fac92e92c04295d49bfd9b042a3,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fa0c0fac92e92c04295d49bfd9b042a3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &751313839
 Prefab:
   m_ObjectHideFlags: 0
