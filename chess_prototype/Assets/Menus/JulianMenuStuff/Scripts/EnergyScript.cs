@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class EnergyScript : MonoBehaviour
 {
     public Text amountText;
-    //public PlayerController currentPlayer;
     
     // Use this for initialization
     void Start ()
@@ -16,6 +15,6 @@ public class EnergyScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-      //  amountText.text = "" + currentPlayer.WhoseTurn().Energy;
+       amountText.text = "" + GameController.gameController.playerController.GetComponent<PlayerController>().WhoseTurn().Energy;
 	}
 }

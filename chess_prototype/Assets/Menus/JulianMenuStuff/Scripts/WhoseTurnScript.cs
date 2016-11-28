@@ -6,7 +6,6 @@ public class WhoseTurnScript : MonoBehaviour
 {
     public string[] playerNames = new string[2];
     public Text displayName;
-    public bool isWhiteTurn = true;
 	// Use this for initialization
 	void Start () {
 	
@@ -15,7 +14,7 @@ public class WhoseTurnScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (isWhiteTurn)
+        if (GameController.gameController.playerController.GetComponent<PlayerController>().WhoseTurn().IsWhite)
             displayName.text = playerNames[0] + "'s turn";
         else
             displayName.text = playerNames[1] + "'s turn";
