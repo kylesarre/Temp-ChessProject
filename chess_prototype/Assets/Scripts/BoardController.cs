@@ -325,7 +325,7 @@ public class BoardController : MonoBehaviour
 				Cell scr_Cell = cell.GetComponent<Cell>();
 				if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_SELECT) 
 				{
-					if( scr_Cell.MyPiece != null && DoesColorMatch(playerTurn, scr_Cell.MyPiece.GetComponent<Piece>()) )
+					if( scr_Cell.MyPiece != null && DoesColorMatchPlayer(playerTurn, scr_Cell.MyPiece.GetComponent<Piece>()) )
 					{
 						selectedPiece = scr_Cell.MyPiece;
 					}
@@ -341,7 +341,7 @@ public class BoardController : MonoBehaviour
 				else if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_MOVE) 
 				{
 					// if the player clicks on one of their own pieces while a piece is selected
-					if (scr_Cell.MyPiece != null && DoesColorMatch (playerTurn, scr_Cell.MyPiece.GetComponent<Piece> ())) {
+					if (scr_Cell.MyPiece != null && DoesColorMatchPlayer (playerTurn, scr_Cell.MyPiece.GetComponent<Piece> ())) {
 						if (scr_Cell.MyPiece.Equals (selectedPiece)) {
 							// if the player clicks on the piece that's already selected, deselect piece
 							DeselectPiece ();
@@ -397,10 +397,21 @@ public class BoardController : MonoBehaviour
 			GenerateVisitableCells(cell_scr, grid_scr, piece_scr, true, 8);
 		}
 	}
-
+	// removes pieces from the threatTable whenever the piece's threatlist no longer includes a given cell (such as after a move)
+	//@param Dictionary dict - the threatList of the specified piece
+	//@param Piece piece_scr - the script of the specified piece
 	public void TableRemove(Dictionary<string, Cell> dict, Piece piece_scr)
 	{
-		Dictionary<string, Cell> tempDict = piece_scr.ThreatenedCells;
+		//Debug.Log ("table remove call on "+piece_scr.name);
+		Dictionary<string, Cell> tempDict = new Dictionary<string, Cell>();
+		foreach(string key in piece_scr.ThreatenedCells.Keys)
+		{
+			Cell cell;
+			if (piece_scr.ThreatenedCells.TryGetValue (key, out cell)) 
+			{
+				tempDict.Add (key, cell);
+			}
+		}
 		UpdatePiece (piece_scr);
 		Dictionary<string, Cell> newDict = piece_scr.ThreatenedCells;
 		Dictionary<string, Cell> interDict = new Dictionary<string, Cell> ();
@@ -409,12 +420,12 @@ public class BoardController : MonoBehaviour
 			Cell thrCell;
 			if (newDict.TryGetValue (key, out thrCell)) 
 			{
-				interDict.Add (thrCell.name, thrCell);
+				interDict.Add (key, thrCell);
 			}
 		}
-		// we build a table that stores what we want to delete from the threat table
-		// for every key in the intersection of the old and new table, if we find 
-		// such a key in the old table, we will remove the entry from the old table
+		 //we build a table that stores what we want to delete from the threat table
+		 //for every key in the intersection of the old and new table, if we find 
+		 //such a key in the old table, we will remove the entry from the old table
 		foreach (string key in interDict.Keys) 
 		{
 			Cell thrCell;
@@ -424,18 +435,55 @@ public class BoardController : MonoBehaviour
 			}
 		}
 		// whatever is left in the tempDict is actually the entries we want to edit in the threatTable
-		Dictionary<string, Cell> DictRemove = tempDict;
-		foreach(string key in DictRemove)
+		foreach(string key in tempDict.Keys)
 		{
 			List<string> thrPieces;
 			threatTable.TryGetValue (key, out thrPieces);
 			thrPieces.Remove (piece_scr.name);
 			threatTable [key] = thrPieces;
 		}
+
 	}
+	// checks the specified piece's threatLine, looks up the cells in the threat table
+	// and then adds the specified piece's name to the threat table if it doesn't already exist.
+	// @param Dictionary dict - the threatened cells of the specified piece
+	// @param Piece piece_Scr - the piece whose threatened cells we wish to add to the table.
 	public void TableAdd(Dictionary<string, Cell> dict, Piece piece_scr)
 	{
-		
+		foreach (string key in dict.Keys) 
+		{
+//			if (piece_scr is Pawn)
+//			{
+//				Debug.Log (key + " " + piece_scr.name);
+//			}
+			Cell tcell;
+			List<string> thrLine;
+			if (dict.TryGetValue (key, out tcell)) 
+			{
+				threatTable.TryGetValue (tcell.name, out thrLine);
+				if (!thrLine.Contains (piece_scr.name)) 
+				{
+//					Debug.Log (tcell.name +" "+ (!thrLine.Contains (piece_scr.name)));
+//					Debug.Log (piece_scr.name + " of " + tcell);
+					thrLine.Add (piece_scr.name);
+				}
+//				if (piece_scr is Pawn)
+//				{
+//					Debug.Log ("THRLINE1");
+//					foreach (string name in thrLine)
+//						Debug.Log (name);
+//					Debug.Log ("THRLINE2");
+//
+//				}
+				threatTable [tcell.name] = thrLine;
+			}
+		}
+
+	}
+	public void TableUpdate(Dictionary<string, Cell> dict, Piece piece_scr)
+	{
+		TableRemove (dict, piece_scr);
+		TableAdd (dict, piece_scr);
 	}
 	// adds all cells that a piece can move to to its visitable cells list
 	// @param Cell sourceCell_scr - the script attatched to the cell where the selected piece resides
@@ -483,16 +531,12 @@ public class BoardController : MonoBehaviour
 				// the way a pawn can capture is different from every other piece. i specify what i mean by that here.
 				GameObject destinationCell = grid_scr.grid [sourceCell_scr.row + (int)capVec.y, sourceCell_scr.column + (int)capVec.x];
 				Cell destCell_scr = destinationCell.GetComponent<Cell> ();
-//				Debug.Log ((destCell_scr.MyPiece != null) && (!DoesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ())));
-				if ((destCell_scr.MyPiece != null) && (!DoesColorMatch (playerTurn, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
+				if(destCell_scr.MyPiece != null)
+				if ((destCell_scr.MyPiece != null) && (!DoesColorMatchPiece (piece_scr, destCell_scr.MyPiece.GetComponent<Piece> ()))) 
 				{
-					Debug.Log (piece_scr.name);
 					piece_scr.VisitableCells.Add (destCell_scr);
-					GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)capVec.y, sourceCell_scr.column + (int)capVec.x];
-					destCell_scr = destCell.GetComponent<Cell> ();
-					piece_scr.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
-
 				}
+				piece_scr.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
 			}
 		}
 	}
@@ -508,12 +552,12 @@ public class BoardController : MonoBehaviour
 		cell_scr.column + (int)vector.x < grid_scr.NumOfColumns &&
 		cell_scr.column + (int)vector.x >= 0);
 	}
+		
 	// adds the specified cell to the the piece's visitable cells list
 	// @param Cell sourceCell_scr - the cell where the piece is moving from
 	// @param Cell destCell_scr - the cell that the piece is moving to
 	// @param Grid grid_scr - the grid in which the move is occuring
 	// @param Piece somePiece - the piece to be moved
-
 	private void AddCell(Cell sourceCell_scr, Vector3 distance, Grid grid_scr, Piece somePiece)
 	{
 		GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)distance.y, sourceCell_scr.column + (int)distance.x];
@@ -529,7 +573,7 @@ public class BoardController : MonoBehaviour
 		else 
 		{
 			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
-			if (destCell_scr.myPiece != null && !DoesColorMatch (playerTurn, destCell_scr.myPiece.GetComponent<Piece> ()))
+			if (destCell_scr.myPiece != null && !DoesColorMatchPiece (somePiece, destCell_scr.myPiece.GetComponent<Piece> ()))
 			{
 				somePiece.VisitableCells.Add (destCell_scr);
 			}
@@ -543,9 +587,13 @@ public class BoardController : MonoBehaviour
 	// @param Player curPlayer - the player who is taking their turn
 	// @param Piece piece - the piece to be compared with the player
 	// @return true if the color matches, false if the color doesn't match
-	public bool DoesColorMatch(Player curPlayer, Piece piece)
+	public bool DoesColorMatchPlayer(Player curPlayer, Piece piece)
 	{
 		return (!( curPlayer.IsWhite^piece.isWhite) );  
+	}
+	public bool DoesColorMatchPiece(Piece destPiece, Piece srcPiece)
+	{
+		return !(destPiece.isWhite ^ srcPiece.isWhite);
 	}
 	// moves the selected cell to the specified destination cell
 	// @param destCell - the destination cell
@@ -570,7 +618,7 @@ public class BoardController : MonoBehaviour
             DeselectPiece();
             MoveUpdate(sourceCell);
             //updateMoveLog ();
-            UpdatePiece(piece_scr);
+			TableUpdate(piece_scr.ThreatenedCells, piece_scr);
             MoveUpdate(destCell_scr);
             GameController.gameController.curTurnState = GameController.TurnStates.HAS_MOVED;
 		}
@@ -584,44 +632,18 @@ public class BoardController : MonoBehaviour
             foreach(string pieceID in threatList)
             {
                 GameObject piece = GameObject.Find(pieceID);
-//                Debug.Log(piece.name);
+//              Debug.Log(piece.name);
                 Piece piece_scr = piece.GetComponent<Piece>();
-                UpdatePiece(piece_scr);
+                //UpdatePiece(piece_scr);
+				TableUpdate (piece_scr.ThreatenedCells, piece_scr);
             }
         }
-
     }
 	public Player PlayerTurn
 	{
 		get{return playerTurn;}
 	}
-//	public void AddToThreatTable(Cell cell, Piece piece)
-//	{
-//		List<Piece> threateningPieces = threatTable.TryGetValue (cell.name);
-//		threateningPieces.Add (piece);
-//	}
-//	public void populateThreatTable(List<Piece> pieces)
-//	{
-//	}
-//	public void updateThreatTable(Cell cell)
-//	{
-//		List<Piece> thrPieces;
-//		bool found = threatTable.TryGetValue (cell.name, out thrPieces);
-//		if (cell.MyPiece == selectedPiece.gameObject) 
-//		{
-//			foreach (Piece piece in thrPieces) 
-//			{
-//				
-//			}
-//		} 
-//		else 
-//		{
-//			foreach (Piece piece in thrPieces) 
-//			{
-//
-//			}
-//		}
-//	}
+
 	// verifies that a piece at a given cell is locked in place (not allowed to move according to chess rules)
 	// @return true if the cell is locked, false if the piece is not locked
 //	public bool isLocked(Cell cell)
