@@ -1,6 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+/****************************************************************************************/
+/*
+/* FILE NAME: Sprite Dictionary
+/*
+/* DESCRIPTION: preloads all sprites into a dictionary so that gameobjects can be assigned sprites without needed to load them every time.
+/* 
+ * AUTHOR: Kyle Sarre
+ * 
+/****************************************************************************************/
 public class SpriteDictionary : MonoBehaviour 
 {
 	private Dictionary<string, Sprite> spriteDict = new Dictionary<string, Sprite>();

@@ -7,15 +7,9 @@ using System.Collections.Generic;
 /*
 /* DESCRIPTION: Controls the logic of the board and its pieces: receives input and updates the board and pieces accordingly. Signals the game controller to transition to new states when certain events occur.
 /*
-/* REFERENCE:
+ * AUTHOR: Kyle Sarre
 /*
-/* DATE BY CHANGE REF DESCRIPTION
-/* ======== ======= =========== =============
-/* 
-/* 
-/*
-/*
-/*
+/* 11/26/2016 edit by Robert - changed SelectCell(); made the controls to change piece selection easier
 /****************************************************************************************/
 
 public class BoardController : MonoBehaviour 
@@ -40,7 +34,7 @@ public class BoardController : MonoBehaviour
 		selectedPiece = null;
 		highlighter = GetComponent<Highlighter> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
@@ -57,7 +51,18 @@ public class BoardController : MonoBehaviour
 		}
 		if (GameController.gameController.curTurnState == GameController.TurnStates.TURN_START) 
 		{
-			inCheck ();
+			if (inCheck ()) 
+			{
+				if (NumOfThreateningPieces() == 1) 
+				{
+				}
+				else if (NumOfThreateningPieces() == 2)
+				{
+					// completely prune all moves except for the king
+				} 
+				// check by three or more pieces cannot occur
+			}
+			Debug.Log (NumOfThreateningPieces());
 			GameController.gameController.curTurnState = GameController.TurnStates.CAN_SELECT;
 		}
 		if (GameController.gameController.curTurnState == GameController.TurnStates.CAN_SELECT) 
@@ -298,26 +303,7 @@ public class BoardController : MonoBehaviour
 		}
 	}
 
-	// updates the x and y of our cursor's current position on the board and rounds the x and y to the lower integer bound
-	private void UpdateCursorPos()
-	{
-		if ( !Camera.main ) 
-		{
-			Debug.Log ("No main camera, exiting.");
-			return;
-		}
-		RaycastHit2D hit;
-		if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject ()) {
-			hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero, LayerMask.GetMask ("bottom"));
-			if (hit) {
-				selectionX = Mathf.FloorToInt (hit.point.x);
-				selectionY = Mathf.FloorToInt (hit.point.y);
-			} else {
-				selectionX = -1;
-				selectionY = -1;
-			}
-		}
-	}
+
 	// sets the selectedCell to the cell underneath the mouse cursor whenever the left mouse button is pressed
 	// adds a highlight to the piece of the selected cell
 	public void SelectCell()
@@ -381,118 +367,6 @@ public class BoardController : MonoBehaviour
 		selectedPiece = null;
 		GameController.gameController.curTurnState = GameController.TurnStates.CAN_SELECT;
 	}
-	// updates the piece model to reflect the current state of the game (visitable cells, threatened cells)
-	public void UpdatePiece(Piece piece_scr)
-	{
-		// save relevant components for this calculation
-		Cell cell_scr = piece_scr.gameObject.GetComponentInParent<Cell>();
-		Grid grid_scr = grid.GetComponent<Grid> ();
-		// clear the list to modify the list for the current piece position
-		piece_scr.VisitableCells.Clear ();
-		piece_scr.ThreatenedCells.Clear();
-		if (piece_scr is Pawn) 
-		{
-			// update the pawn's visitable cells based on its set of movement vectors (default: forward by one or two) and whether or not it has moved before
-			Pawn pawn_scr = (Pawn)piece_scr;
-			int scaleMax = 1;
-			if (!pawn_scr.hasMoved)
-				scaleMax = 2;
-			bool doScaling = true; 
-			GenerateVisitableCells( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
-			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
-		} 
-		else if (piece_scr is King || piece_scr is Knight) 
-		{
-			GenerateVisitableCells(cell_scr, grid_scr, piece_scr, false, 1);
-		} 
-		else 
-		{
-			GenerateVisitableCells(cell_scr, grid_scr, piece_scr, true, 8);
-		}
-	}
-	// removes pieces from the threatTable whenever the piece's threatlist no longer includes a given cell (such as after a move)
-	//@param Dictionary dict - the threatList of the specified piece
-	//@param Piece piece_scr - the script of the specified piece
-	public void TableRemove(Dictionary<string, Cell> dict, Piece piece_scr)
-	{
-		//Debug.Log ("table remove call on "+piece_scr.name);
-		Dictionary<string, Cell> tempDict = new Dictionary<string, Cell>();
-		foreach(string key in piece_scr.ThreatenedCells.Keys)
-		{
-			Cell cell;
-			if (piece_scr.ThreatenedCells.TryGetValue (key, out cell)) 
-			{
-				tempDict.Add (key, cell);
-			}
-		}
-		UpdatePiece (piece_scr);
-		Dictionary<string, Cell> newDict = piece_scr.ThreatenedCells;
-		Dictionary<string, Cell> interDict = new Dictionary<string, Cell> ();
-		foreach(string key in tempDict.Keys)
-		{
-			Cell thrCell;
-			if (newDict.TryGetValue (key, out thrCell)) 
-			{
-				interDict.Add (key, thrCell);
-			}
-		}
-		 //we build a table that stores what we want to delete from the threat table
-		 //for every key in the intersection of the old and new table, if we find 
-		 //such a key in the old table, we will remove the entry from the old table
-		foreach (string key in interDict.Keys) 
-		{
-			Cell thrCell;
-			if (tempDict.TryGetValue (key, out thrCell)) 
-			{
-				tempDict.Remove (thrCell.name);
-			}
-		}
-		// whatever is left in the tempDict is actually the entries we want to edit in the threatTable
-		foreach(string key in tempDict.Keys)
-		{
-			List<string> thrPieces;
-			threatTable.TryGetValue (key, out thrPieces);
-			thrPieces.Remove (piece_scr.name);
-			threatTable [key] = thrPieces;
-		}
-
-	}
-	// checks the specified piece's threatLine, looks up the cells in the threat table
-	// and then adds the specified piece's name to the threat table if it doesn't already exist.
-	// @param Dictionary dict - the threatened cells of the specified piece
-	// @param Piece piece_Scr - the piece whose threatened cells we wish to add to the table.
-	public void TableAdd(Dictionary<string, Cell> dict, Piece piece_scr)
-	{
-		foreach (string key in dict.Keys) 
-		{
-//			if (piece_scr is Pawn)
-//			{
-//				Debug.Log (key + " " + piece_scr.name);
-//			}
-			Cell tcell;
-			List<string> thrLine;
-			if (dict.TryGetValue (key, out tcell)) 
-			{
-				threatTable.TryGetValue (tcell.name, out thrLine);
-				if (!thrLine.Contains (piece_scr.name)) 
-				{
-//					Debug.Log (tcell.name +" "+ (!thrLine.Contains (piece_scr.name)));
-//					Debug.Log (piece_scr.name + " of " + tcell);
-					thrLine.Add (piece_scr.name);
-				}
-//				if (piece_scr is Pawn)
-//				{
-//					Debug.Log ("THRLINE1");
-//					foreach (string name in thrLine)
-//						Debug.Log (name);
-//					Debug.Log ("THRLINE2");
-//
-//				}
-				threatTable [tcell.name] = thrLine;
-			}
-		}
-
-	}
 	// removes a specified piece's threatened cells from the threat table
 	// @param Piece piece - the specified piece whose threatened cells we wish to remove
 	public void ClearFromTable(Piece piece)
@@ -508,11 +382,6 @@ public class BoardController : MonoBehaviour
 				}
 			}
 		}
-	}
-	public void TableUpdate(Dictionary<string, Cell> dict, Piece piece_scr)
-	{
-		TableRemove (dict, piece_scr);
-		TableAdd (dict, piece_scr);
 	}
 	// adds all cells that a piece can move to to its visitable cells list
 	// @param Cell sourceCell_scr - the script attatched to the cell where the selected piece resides
@@ -583,55 +452,6 @@ public class BoardController : MonoBehaviour
 		cell_scr.column + (int)vector.x >= 0);
 	}
 		
-	// adds the specified cell to the the piece's visitable cells list
-	// @param Cell sourceCell_scr - the cell where the piece is moving from
-	// @param Cell destCell_scr - the cell that the piece is moving to
-	// @param Grid grid_scr - the grid in which the move is occuring
-	// @param Piece somePiece - the piece to be moved
-	private void AddCell(Cell sourceCell_scr, Vector3 distance, Grid grid_scr, Piece somePiece)
-	{
-		GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)distance.y, sourceCell_scr.column + (int)distance.x];
-		Cell destCell_scr = destCell.GetComponent<Cell> ();
-		if (somePiece is Pawn) {
-			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
-			if (destCell_scr.myPiece == null) {
-				somePiece.VisitableCells.Add (destCell_scr);
-			}
-		} 
-		else if (somePiece is King) 
-		{
-			List<string> threatList;
-			bool nextStep = true;
-			if (threatTable.TryGetValue (destCell_scr.name, out threatList)) 
-			{
-				foreach (string piece in threatList) 
-				{
-					GameObject piece_obj = GameObject.Find(piece);
-					if ( piece_obj != null && !DoesColorMatchPiece (somePiece, piece_obj.GetComponent<Piece> ())) 
-					{
-						nextStep = false;
-					}
-				}
-				if (nextStep) 
-				{
-					if (destCell_scr.MyPiece == null || !DoesColorMatchPiece (somePiece, destCell_scr.MyPiece.GetComponent<Piece> ()))
-						somePiece.VisitableCells.Add (destCell_scr);
-				}
-			}
-		}
-		else 
-		{
-			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
-			if (destCell_scr.myPiece != null && !DoesColorMatchPiece (somePiece, destCell_scr.myPiece.GetComponent<Piece> ()))
-			{
-				somePiece.VisitableCells.Add (destCell_scr);
-			}
-            else if(destCell_scr.myPiece == null)
-            {
-                somePiece.VisitableCells.Add(destCell_scr);
-            }
-		}
-	}
 	// determines if the color of the player and the piece are the same
 	// @param Player curPlayer - the player who is taking their turn
 	// @param Piece piece - the piece to be compared with the player
@@ -676,32 +496,6 @@ public class BoardController : MonoBehaviour
             GameController.gameController.curTurnState = GameController.TurnStates.HAS_MOVED;
 		}
 	}
-    // updates all pieces threatening the specified cell (to be used on the source and destination cell of a move)
-    public void MoveUpdate(Cell cell)
-    {
-        List<string> threatList;
-		List<string> tempList = new List<string>();
-        if(threatTable.TryGetValue(cell.name, out threatList))
-		{
-			foreach (string pieceID in threatList) 
-			{
-				tempList.Add (pieceID);
-			}
-			foreach(string pieceID in tempList)
-			{
-				GameObject piece = GameObject.Find(pieceID);
-				//Debug.Log(piece.name);
-				Piece piece_scr = piece.GetComponent<Piece>();
-				//UpdatePiece(piece_scr);
-				TableUpdate (piece_scr.ThreatenedCells, piece_scr);
-			}     
-        }
-    }
-	public Player PlayerTurn
-	{
-		get{return playerTurn;}
-	}
-
 	 //verifies that a piece at a given cell is locked in place (not allowed to move according to chess rules)
 	 //@return true if the cell is locked, false if the piece is not locked
 //	public bool isLocked(Cell cell)
@@ -728,8 +522,27 @@ public class BoardController : MonoBehaviour
 //
 //		return false;
 //	}
-	public bool inCheck()
+	public void ClearPlayerPieces()
 	{
+		foreach (string key in playerTurn.MyPieces.Keys) 
+		{
+			Piece piece;
+			if (playerTurn.MyPieces.TryGetValue (key, out piece)) 
+			{
+				if (!(piece is King)) 
+				{
+					clearPiece (piece);
+				}
+			}
+		}
+	}
+	public void clearPiece(Piece piece)
+	{
+		
+	}
+	public int NumOfThreateningPieces()
+	{
+		int numOfThreats = 0;
 		King kingPiece = null;
 		foreach (string key in playerTurn.MyPieces.Keys) 
 		{
@@ -759,6 +572,43 @@ public class BoardController : MonoBehaviour
 					GameObject piece = GameObject.Find (pieceName);
 					if (!DoesColorMatchPiece (kingPiece, piece.GetComponent<Piece> ())) 
 					{
+						numOfThreats++;
+					}
+				}
+			}
+		}
+		return numOfThreats;
+	}
+	public bool inCheck()
+	{
+		King kingPiece = null;
+		foreach (string key in playerTurn.MyPieces.Keys) 
+		{
+			Piece piece;
+			if (playerTurn.MyPieces.TryGetValue (key, out piece)) 
+			{
+				if (piece is King) 
+				{
+					kingPiece = (King)piece;
+					break;
+				} 
+			} 
+			else 
+			{
+				kingPiece = null;
+			}
+		}
+		if (kingPiece != null) 
+		{
+			Cell kingCell = kingPiece.GetComponentInParent<Cell> ();
+			List<string> threatList;
+			if (threatTable.TryGetValue (kingCell.name, out threatList))
+			{
+				foreach (string pieceName in threatList) 
+				{
+					GameObject piece = GameObject.Find (pieceName);
+					if (!DoesColorMatchPiece (kingPiece, piece.GetComponent<Piece> ())) 
+					{
 						Debug.Log ("Check has occurred");
 						return true;
 					}
@@ -768,5 +618,212 @@ public class BoardController : MonoBehaviour
 		Debug.Log ("No check has occurred");
 		return false;
 	}
-}
+	// updates the x and y of our cursor's current position on the board and rounds the x and y to the lower integer bound
+	private void UpdateCursorPos()
+	{
+		if ( !Camera.main ) 
+		{
+			Debug.Log ("No main camera, exiting.");
+			return;
+		}
+		RaycastHit2D hit;
+		if (UnityEngine.EventSystems.EventSystem.current == null) 
+		{
+			hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero, LayerMask.GetMask ("bottom"));
+			if (hit) {
+				selectionX = Mathf.FloorToInt (hit.point.x);
+				selectionY = Mathf.FloorToInt (hit.point.y);
+			} else {
+				selectionX = -1;
+				selectionY = -1;
+			}
+		}
+		else if (UnityEngine.EventSystems.EventSystem.current != null && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject ()) {
+			hit = Physics2D.Raycast (Camera.main.ScreenToWorldPoint (Input.mousePosition), Vector2.zero, LayerMask.GetMask ("bottom"));
+			if (hit) {
+				selectionX = Mathf.FloorToInt (hit.point.x);
+				selectionY = Mathf.FloorToInt (hit.point.y);
+			} else {
+				selectionX = -1;
+				selectionY = -1;
+			}
+		}
+	}
+	// updates the piece model to reflect the current state of the game (visitable cells, threatened cells)
+	public void UpdatePiece(Piece piece_scr)
+	{
+		// save relevant components for this calculation
+		Cell cell_scr = piece_scr.gameObject.GetComponentInParent<Cell>();
+		Grid grid_scr = grid.GetComponent<Grid> ();
+		// clear the list to modify the list for the current piece position
+		piece_scr.VisitableCells.Clear ();
+		piece_scr.ThreatenedCells.Clear();
+		if (piece_scr is Pawn) 
+		{
+			// update the pawn's visitable cells based on its set of movement vectors (default: forward by one or two) and whether or not it has moved before
+			Pawn pawn_scr = (Pawn)piece_scr;
+			int scaleMax = 1;
+			if (!pawn_scr.hasMoved)
+				scaleMax = 2;
+			bool doScaling = true; 
+			GenerateVisitableCells( cell_scr, grid_scr, pawn_scr, doScaling, scaleMax);
+			// update the pawn's visitable cells based on its capture vectors (default: diagonally left or right)
+		} 
+		else if (piece_scr is King || piece_scr is Knight) 
+		{
+			GenerateVisitableCells(cell_scr, grid_scr, piece_scr, false, 1);
+		} 
+		else 
+		{
+			GenerateVisitableCells(cell_scr, grid_scr, piece_scr, true, 8);
+		}
+	}
+	// adds the specified cell to the the piece's visitable cells list
+	// @param Cell sourceCell_scr - the cell where the piece is moving from
+	// @param Cell destCell_scr - the cell that the piece is moving to
+	// @param Grid grid_scr - the grid in which the move is occuring
+	// @param Piece somePiece - the piece to be moved
+	private void AddCell(Cell sourceCell_scr, Vector3 distance, Grid grid_scr, Piece somePiece)
+	{
+		GameObject destCell = grid_scr.grid [sourceCell_scr.row + (int)distance.y, sourceCell_scr.column + (int)distance.x];
+		Cell destCell_scr = destCell.GetComponent<Cell> ();
+		if (somePiece is Pawn) {
+			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
+			if (destCell_scr.myPiece == null) {
+				somePiece.VisitableCells.Add (destCell_scr);
+			}
+		} 
+		else if (somePiece is King) 
+		{
+			List<string> threatList;
+			bool nextStep = true;
+			if (threatTable.TryGetValue (destCell_scr.name, out threatList)) 
+			{
+				foreach (string piece in threatList) 
+				{
+					GameObject piece_obj = GameObject.Find(piece);
+					if ( piece_obj != null && !DoesColorMatchPiece (somePiece, piece_obj.GetComponent<Piece> ())) 
+					{
+						nextStep = false;
+					}
+				}
+				if (nextStep) 
+				{
+					if (destCell_scr.MyPiece == null || !DoesColorMatchPiece (somePiece, destCell_scr.MyPiece.GetComponent<Piece> ()))
+						somePiece.VisitableCells.Add (destCell_scr);
+				}
+			}
+		}
+		else 
+		{
+			//somePiece.ThreatenedCells.Add (destCell_scr.gameObject.name, destCell_scr);
+			if (destCell_scr.myPiece != null && !DoesColorMatchPiece (somePiece, destCell_scr.myPiece.GetComponent<Piece> ()))
+			{
+				somePiece.VisitableCells.Add (destCell_scr);
+			}
+			else if(destCell_scr.myPiece == null)
+			{
+				somePiece.VisitableCells.Add(destCell_scr);
+			}
+		}
+	}
+	// updates all pieces threatening the specified cell (to be used on the source and destination cell of a move)
+	public void MoveUpdate(Cell cell)
+	{
+		List<string> threatList;
+		List<string> tempList = new List<string>();
+		if(threatTable.TryGetValue(cell.name, out threatList))
+		{
+			foreach (string pieceID in threatList) 
+			{
+				tempList.Add (pieceID);
+			}
+			foreach(string pieceID in tempList)
+			{
+				GameObject piece = GameObject.Find(pieceID);
+				//Debug.Log(piece.name);
+				Piece piece_scr = piece.GetComponent<Piece>();
+				//UpdatePiece(piece_scr);
+				TableUpdate (piece_scr.ThreatenedCells, piece_scr);
+			}     
+		}
+	}
+	public void TableUpdate(Dictionary<string, Cell> dict, Piece piece_scr)
+	{
+		TableRemove (dict, piece_scr);
+		TableAdd (dict, piece_scr);
+	}
+	// removes pieces from the threatTable whenever the piece's threatlist no longer includes a given cell (such as after a move)
+	//@param Dictionary dict - the threatList of the specified piece
+	//@param Piece piece_scr - the script of the specified piece
+	public void TableRemove(Dictionary<string, Cell> dict, Piece piece_scr)
+	{
+		//Debug.Log ("table remove call on "+piece_scr.name);
+		Dictionary<string, Cell> tempDict = new Dictionary<string, Cell>();
+		foreach(string key in piece_scr.ThreatenedCells.Keys)
+		{
+			Cell cell;
+			if (piece_scr.ThreatenedCells.TryGetValue (key, out cell)) 
+			{
+				tempDict.Add (key, cell);
+			}
+		}
+		UpdatePiece (piece_scr);
+		Dictionary<string, Cell> newDict = piece_scr.ThreatenedCells;
+		Dictionary<string, Cell> interDict = new Dictionary<string, Cell> ();
+		foreach(string key in tempDict.Keys)
+		{
+			Cell thrCell;
+			if (newDict.TryGetValue (key, out thrCell)) 
+			{
+				interDict.Add (key, thrCell);
+			}
+		}
+		//we build a table that stores what we want to delete from the threat table
+		//for every key in the intersection of the old and new table, if we find 
+		//such a key in the old table, we will remove the entry from the old table
+		foreach (string key in interDict.Keys) 
+		{
+			Cell thrCell;
+			if (tempDict.TryGetValue (key, out thrCell)) 
+			{
+				tempDict.Remove (thrCell.name);
+			}
+		}
+		// whatever is left in the tempDict is actually the entries we want to edit in the threatTable
+		foreach(string key in tempDict.Keys)
+		{
+			List<string> thrPieces;
+			threatTable.TryGetValue (key, out thrPieces);
+			thrPieces.Remove (piece_scr.name);
+			threatTable [key] = thrPieces;
+		}
 
+	}
+	// checks the specified piece's threatLine, looks up the cells in the threat table
+	// and then adds the specified piece's name to the threat table if it doesn't already exist.
+	// @param Dictionary dict - the threatened cells of the specified piece
+	// @param Piece piece_Scr - the piece whose threatened cells we wish to add to the table.
+	public void TableAdd(Dictionary<string, Cell> dict, Piece piece_scr)
+	{
+		foreach (string key in dict.Keys) 
+		{
+			Cell tcell;
+			List<string> thrLine;
+			if (dict.TryGetValue (key, out tcell)) 
+			{
+				threatTable.TryGetValue (tcell.name, out thrLine);
+				if (!thrLine.Contains (piece_scr.name)) 
+				{
+					thrLine.Add (piece_scr.name);
+				}
+				threatTable [tcell.name] = thrLine;
+			}
+		}
+	}
+
+	public Player PlayerTurn
+	{
+		get{return playerTurn;}
+	}
+}

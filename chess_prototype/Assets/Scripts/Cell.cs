@@ -1,6 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/****************************************************************************************/
+/*
+/* FILE NAME: Cell
+/*
+/* DESCRIPTION: The base unit of the gameboard. May contain a piece.
+ * 
+ * AUTHOR: Kyle Sarre
+ * 
+ * Dependency: component of Grid
+/*
+/****************************************************************************************/
 public class Cell : MonoBehaviour 
 {
 	public GameObject myPiece;

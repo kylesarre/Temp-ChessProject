@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/****************************************************************************************/
+/*
+/* FILE NAME: King
+/*
+/* DESCRIPTION: A model of the most important piece in chess: the king
+ * 
+ * AUTHOR: Kyle Sarre
+/*
+/* PARENT CLASS: Piece
+/****************************************************************************************/
 public class King : Piece 
 {
 	void Awake()
 	{
-		base.Do_Init();
 		Vector3[] vectors = { new Vector3 (1, 1, 0), new Vector3 (-1, 1, 0), new Vector3 (-1, -1, 0), new Vector3 (1, -1, 0),
 			new Vector3 (1, 0, 0), new Vector3 (-1, 0, 0), new Vector3 (0, 1, 0), new Vector3 (0, -1, 0) };
 		movementVectors.AddRange (vectors);

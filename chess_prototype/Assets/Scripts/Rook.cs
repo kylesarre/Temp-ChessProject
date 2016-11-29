@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/****************************************************************************************/
+/*
+/* FILE NAME: Knight
+/*
+/* DESCRIPTION: A model of the rook piece
+ * 
+ * AUTHOR: Kyle Sarre
+/*
+/****************************************************************************************/
 public class Rook : Piece 
 {
 	public RookState state;
@@ -11,8 +19,6 @@ public class Rook : Piece
 	void Awake()
 	{
 		state = RookState.NeverMoved;
-		base.Do_Init();
-
 		movementVectors.Add (new Vector3 (0, 1, 0));
 		movementVectors.Add (new Vector3 (0, -1, 0));
 		movementVectors.Add (new Vector3 (1, 0, 0));

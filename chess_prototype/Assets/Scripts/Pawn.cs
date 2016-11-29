@@ -1,6 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+/****************************************************************************************/
+/*
+/* FILE NAME: Pawn
+/*
+/* DESCRIPTION: A model for the most basic unit in chess: the pawn. 
+/*
+ * AUTHOR: Kyle Sarre
+/*
+/* Parent class: Piece
+/****************************************************************************************/
 public class Pawn : Piece
 {
 	
@@ -9,7 +19,6 @@ public class Pawn : Piece
 	// awake occurs before start
 	void Awake()
 	{		
-		base.Do_Init();
 		hasMoved = false;
 		// ensures that we can set this Piece's isWhite field before trying to access it Do_Init()
 		enabled = false;

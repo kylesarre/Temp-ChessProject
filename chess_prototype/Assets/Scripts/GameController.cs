@@ -1,8 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// This is a singleton class. It handles the state of the game, the game camera, and messaging between the sub-controllers in the game.
-// There should never exist more than one of these during runtime. 
+/****************************************************************************************/
+/*
+/* FILE NAME: BoardController
+/*
+/* DESCRIPTION: handles the state of the game, the game camera,instantiation of sub-controllers, and bridges communication between the sub-controllers in the game.
+/*
+ * AUTHOR: Kyle Sarre
+/*
+/****************************************************************************************/
+
 public class GameController : MonoBehaviour 
 {
 	public static GameController gameController;

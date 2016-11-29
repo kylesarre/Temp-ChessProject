@@ -5,17 +5,11 @@ using System.Collections.Generic;
 /*
 /* FILE NAME: Highlightable
 /*
-/* DESCRIPTION: This component is used by all gameObjects in the system that can be highlighted.
-/* It stores a history of all highlights currently on the object, starting with the default color of the sprite(its original state)
-/* REFERENCE:
-/*
-/* DATE BY CHANGE REF DESCRIPTION
-/* ======== ======= =========== =============
+/* DESCRIPTION: This component is used by all gameObjects in the system that can be highlighted. 
+ * It stores a history of all highlights currently on the object, starting with the default color of the sprite(its original state)
+ * 
+ * AUTHOR: Kyle Sarre
 /* 
-/* 
-/*
-/*
-/*
 /****************************************************************************************/
 
 public class Highlightable : MonoBehaviour 

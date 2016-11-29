@@ -6,19 +6,17 @@ using System.Collections;
 /*
 /* DESCRIPTION: This is a utility class of the board controller for highlighting game objects. 
 /* It includes methods that modify the stack of the highlightable component of a gameobject
-/* REFERENCE:
+/*
+ * AUTHOR: Kyle Sarre
+ * 
 /* Dependency: Requires a highlightable component on any gameObjects being modified
-/* DATE BY CHANGE REF DESCRIPTION
-/* ======== ======= =========== =============
-/* 
-/* 
-/*
-/*
 /*
 /****************************************************************************************/
 public class Highlighter : MonoBehaviour 
 {
+	// stores previous collisions and current collisions across all layers of the game
 	private RaycastHit2D[,] collisionTable;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -32,6 +30,8 @@ public class Highlighter : MonoBehaviour
 	{		
 	}
 	// adds a new highlight color to a gameObject's hightlightable stack
+	// @param Gameobject gameobject - the gameobject we wish to highlight
+	// @param Color col - the color we wish to highlight an object
 	public void AddHighlight(GameObject gameObject, Color col)
 	{
 		if (gameObject.GetComponent<Highlightable> ()) 
@@ -52,6 +52,7 @@ public class Highlighter : MonoBehaviour
 	}
 
 	// removes a highlight color from a gameObject's highlightable stack and stores it
+	// @param Gameobject gameObject - the gameobject whose highlight we wish to remove
 	public void RemoveHighlight(GameObject gameObject)
 	{
 		if (gameObject.GetComponent<Highlightable> ()) 
@@ -108,7 +109,7 @@ public class Highlighter : MonoBehaviour
 				//we have collided with something previously, and it had a hightlightable, but we are not colliding with anything anymore
 				RemoveHighlight (collisionTable [layer1, 1].collider.gameObject);
 			}
-			// previousCollision = newCollision
+			// update collisions : previousCollision = newCollision
 			collisionTable [layer1, 1] = collisionTable [layer1, 0];
 		}
 	}

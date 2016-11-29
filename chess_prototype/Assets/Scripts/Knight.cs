@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+/****************************************************************************************/
+/*
+/* FILE NAME: Knight
+/*
+/* DESCRIPTION: A model of the knight piece
+/*
+ * AUTHOR: Kyle Sarre
+/****************************************************************************************/
 public class Knight :  Piece 
 {
 	void Awake()
 	{
-		base.Do_Init();
 		Vector3[] vectors = { new Vector3 (2, 1, 0), new Vector3 (-2, 1, 0), new Vector3 (-2, -1, 0), new Vector3 (2, -1, 0),
 			new Vector3 (1, 2, 0), new Vector3 (-1, 2, 0), new Vector3 (-1, -2, 0), new Vector3 (1, -2, 0) };
 		movementVectors.AddRange (vectors);

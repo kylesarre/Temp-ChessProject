@@ -8,17 +8,7 @@ using System.Collections.Generic;
 /*
 /* DESCRIPTION: Controls the logic regarding player turn order and color and updates the models of the players in the game
 /*
-/* REFERENCE:
- * 
- * 
-/*
-/* DATE BY CHANGE REF DESCRIPTION
-/* ======== ======= =========== =============
-/* 
-/* 
-/*
-/*
-/*
+/* Edit by Robert 11/27/2016 - added functions to decrement or increment a player's energy 
 /****************************************************************************************/
 
 public class PlayerController : MonoBehaviour 
@@ -34,7 +24,7 @@ public class PlayerController : MonoBehaviour
 	public Player white;
 	public Player black;
 
-
+	// Use this for initialization of class specific variables
 	void Awake()
 	{
 		player1 = (GameObject)Instantiate (obj_Player,new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
@@ -46,17 +36,13 @@ public class PlayerController : MonoBehaviour
 		players = new Queue<Player> ();
 	}
 
-	// Use this for initialization
+	// Use this for initialization of variables of other game objects
 	void Start ()  
 	{
 		AssignRandomColor ();
 		PopulateQueue ();
 	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-	}
+
 	// assigns a name to the player class
 	// @param: Player player - the player whose name we wish to assign
 	// @param String name - the name we wish to assign to this player
@@ -106,10 +92,9 @@ public class PlayerController : MonoBehaviour
 				white.MyPieces.Add (piece.name, piece);
 			}
 		}
-		//printMyPieces (white);
-		//printMyPieces (black);
 	}
 	// logs the MyPieces table that corresponds to the specified player
+	// @param Player player - the player whose table we wish to print
 	public void printMyPieces(Player player)
 	{
 		foreach (string key in player.MyPieces.Keys) 
@@ -134,6 +119,7 @@ public class PlayerController : MonoBehaviour
 		EnergyIncrease(1);
 		Debug.Log (WhoseTurn().IsWhite + " " + WhoseTurn().Energy);
 	}
+	// returns the player at the front of the queue
 	public Player WhoseTurn()
 	{
 		return players.Peek ();

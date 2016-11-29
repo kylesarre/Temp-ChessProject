@@ -12,7 +12,6 @@ public class Bishop : Piece
 	// Use this for initialization
 	void Start () 
 	{
-		base.Do_Init();
 		if (!isWhite) 
 		{			
 			gameObject.GetComponent<SpriteRenderer> ().sprite = GetComponentInParent<SpriteDictionary> ().SpriteDict["spr_chess_pieces_3"];
