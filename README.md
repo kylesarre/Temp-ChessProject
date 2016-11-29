@@ -90,7 +90,25 @@ and that we should meet again at a later date.</br>
 **Members in Attendance**: Hanna Cunningham, Julian Plaisance</br>
 **Goals met**: Furthered menu implementation slightly.</br>
 
+**Date**: 11/26/16</br>
+**Purpose**: Pair programming to complete the check/checkmate feature of the system</br>
+**Members in Attendance**: Robert Anderson, Kyle Sarre</br>
+**Goals met**: Finished the underlying system needed to support finding check or checkmate; began implementation of piece upgrades.</br>
+
+**Date**: 11/27/16</br>
+**Purpose**: Pair programming to complete the check/checkmate feature of the system.</br>
+**Members in Attendance**: Robert Anderson, Kyle Sarre</br>
+**Goals met**: System could now recognize check as well as the number of pieces threatening the king. Implemented five of our upgrades. Check mate is not finished.</br>
+
 **Date**: 11/27/16</br>
 **Purpose**: Finish the project demo</br>
 **Members in Attendance**: Hanna Cunningham, Robert Anderson, Kyle Sarre, Julian Plaisance</br>
 **Goals met**: almost finished project demo</br>
+
+**Date**: 11/28/16</br>
+**Purpose**: Meet up before class, review presentation, discuss who will talk for what and when</br>
+**Members in Attendance**: Hanna Cunningham, Robert Anderson, Kyle Sarre, Julian Plaisance, Gabriel Davis</br>
+**Goals met**: Gabriel will introduce our project, Robert will lead the presentation, Julian and Hanna will talk about their UI,
+Kyle will talk about the technical details.</br>
+
+
