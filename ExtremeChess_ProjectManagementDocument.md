@@ -1,9 +1,24 @@
-# Temp-ChessProject
+# Project Management Document
+
+## Extreme Chess
 Spin-off of chess in Unity
 
-## Setting up the scene
-To set up your scene, drop the game controller prefab into your scene.
-If you play the scene, you should see the chess board displayed infront of the camera.
+## Index
+##### Vision
+##### Configuration Management Plan
+##### Process Model
+##### Deliverables
+##### Potential Risks
+##### Team Composition
+##### Team Member Contributions
+* Kyle Sarre
+* Robert Anderson
+* Gabriel Davis
+* Julian Plaisance
+* Hanna Cunningham
+
+##### Project Schedule
+##### Meetings Summary
 
 ## Vision
 The core concept of our game is to create a complete game of chess, but in addition, each player has a set of “special abilities” at their disposal they can periodically use to their advantage. Special abilities will be connected to a system of energy that builds up over time and spent to use an ability. Most moves in the game will follow standard chess rules.
@@ -46,6 +61,17 @@ We split our five members into 2 teams, 3 in the main game logic and 2 into UI, 
 	UI:</br>
 	egoless pair programming, with Julian as the code lead and Hanna as the design and documentation lead.</br>
 
+## Team Member Contributions
+### Kyle Sarre
+add your contribution here
+### Robert Anderson
+add your contribution here
+### Gabriel Davis
+add your contribution here
+### Julian Plaisance
+add your contribution here
+### Hanna Cunningham
+add your contribution here
 
 ## Project Schedule
 todo
