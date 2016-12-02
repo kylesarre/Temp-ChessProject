@@ -23,7 +23,7 @@ todo
 todo
 
 ## Team Composition
-**Team members**:
+**Team members**:</br>
 Kyle Sarre,</br>
 Robert Anderson,</br>
 Gabriel Davis,</br>
@@ -41,11 +41,10 @@ User Interface:</br>
 Worked on putting together menu & menu systems to allow the player to have maximal control through the game with the maximum amount of knowledge while being as minimal as possible given time constraints</br>
 **Team Style**:
 We split our five members into 2 teams, 3 in the main game logic and 2 into UI, with the idea that keeping both teams small will increase team cohesion and keep the teams egoless so that when everyone meets together we will be in practice for an egoless structure</br>
-	Game Logic: </br>
-  semi-egoless with a chief programmer in Kyle who led the main game code and logic with Kyle and Gabriel assisting</br>
-
-	UI: </br>
-  egoless pair programming, with Julian as the code lead and Hanna as the design and documentation lead.</br>
+	Game Logic:</br>
+	semi-egoless with a chief programmer in Kyle who led the main game code and logic with Kyle and Gabriel assisting</br>
+	UI:</br>
+	egoless pair programming, with Julian as the code lead and Hanna as the design and documentation lead.</br>
 
 
 ## Project Schedule
