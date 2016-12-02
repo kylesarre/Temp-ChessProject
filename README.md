@@ -23,7 +23,30 @@ todo
 todo
 
 ## Team Composition
-todo
+**Team members: **
+Kyle Sarre,
+Robert Anderson,
+Gabriel Davis,
+Julian Plaisance,
+Hanna Cunningham.
+**Tasks: **
+Game Logic:
+	Kyle Sarre, primary logic programmer & designer, secondary logic documenter
+	Robert Anderson, secondary logic programmer & designer, primary logic documenter
+	Gabriel Davis, secondary logic programmer & designer & documenter
+Worked on putting together the logic of the classic game chess into our program and built several power-ups.
+User Interface:
+	Julian Plaisance, primary UI programming, secondary UI design & documentation
+	Hanna Cunningham, secondary UI programming, primary UI design & documentation
+Worked on putting together menu & menu systems to allow the player to have maximal control through the game with the maximum amount of knowledge while being as minimal as possible given time constraints
+**Team Style: **
+We split our five members into 2 teams, 3 in the main game logic and 2 into UI, with the idea that keeping both teams small will increase team cohesion and keep the teams egoless so that when everyone meets together we will be in practice for an egoless structure
+	Game Logic: 
+  semi-egoless with a chief programmer in Kyle who led the main game code and logic with Kyle and Gabriel assisting
+
+	UI: 
+  egoless pair programming, with Julian as the code lead and Hanna as the design and documentation lead.
+
 
 ## Project Schedule
 todo
