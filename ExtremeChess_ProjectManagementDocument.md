@@ -133,12 +133,6 @@ Check piece powerup window | AB | AA | 2 | 53 | 53 | 0
 **Members in attendance**: Robert Anderson, Kyle Sarre</br>
 **Goals met**: finished brief requirements analysis, rough draft class diagram for iteration 1 of the project.</br>
 
-**Date**: 10-7-16</br>
-**Purpose**: Review each section of the SRS and delegate responsibilities for each section.</br>
-**Members in Attendance**: </br>
-**Goals met**: Didn't meet objective. Realized the group needs time to think about what the SRS covers in terms of our own project
-and that we should meet again at a later date.</br>
-
 **Date**: 10-14-16</br>
 **Purpose**: Review each section of the SRS and delegate responsibilities for each section.</br>
 **Members in Attendance**: Robert Anderson, Kyle Sarre, Gabriel Davis, Julian Plaisance, Hanna Cunningham </br>
@@ -166,7 +160,7 @@ and that we should meet again at a later date.</br>
 
 **Date**: 11/11/16</br>
 **Purpose**: Verify the system can be worked on by other team members. Integrate UI with the rest of the system.  </br>
-**Members in Attendance**: Kyle Sarre, Juilian, Plaisance</br>
+**Members in Attendance**: Kyle Sarre, Juilian Plaisance</br>
 **Goals met**: Realized that the current github configuration was leading to broken prefab and script references in the unity project after pulling, making the project extremely difficult to work on seperately.</br>
 
 **Date**: 11/18/16</br>
