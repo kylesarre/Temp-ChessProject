@@ -26,10 +26,10 @@ The core concept of our game is to create a complete game of chess, but in addit
 We’re choosing this project because Chess is a rigid game that requires years of dedication and study before one can even begin to create any truly new and effective strategies, and the project seeks to add a new strategic dimension of unpredictability, which will act to “level the playing field,” in a way. More unpredictability places more importance on adaptability and improvisation, instead of endless memorization of positions and strategies. Asymmetric design means that no two games will be the same
 
 ## Configuration Management Plan
-todo
+GitHub
 
 ## Process Model
-todo
+Agile Method: Extreme Programming
 
 ## Deliverables
 Extreme Chess Executable <br>
