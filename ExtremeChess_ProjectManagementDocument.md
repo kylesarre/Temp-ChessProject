@@ -74,7 +74,7 @@ We split our five members into 2 teams, 3 in the main game logic and 2 into UI, 
 	egoless pair programming, with Julian as the code lead and Hanna as the design and documentation lead.</br>
 
 ## Team Member Contributions
-### Kyle Sarre
+### Kyle Sarre</br>
 Contributions:
 * Documentation – I wrote sections 1,2 of the SRS and assisted Robert in writing section 4. I Wrote section 2 of the SDD and provided Robert with a diagram of the technical overview of the system. I wrote numerous test cases related to game logic (non ui related). Additionally, I maintained a log of group meetings throughout the semester.
 * Game design – I Provided feedback on design decisions made by the group and offered my own designs. Some of my designs that made it into the final product include the 2d aesthetic of the game, a few of the power ups, interfacing (user to game board), and object highlighting. 
@@ -82,6 +82,7 @@ Contributions:
 * Art – I created art for the board and the pieces. I also created art for the UI elements of the game but, due to time constraints, I couldn’t finish.
 * Feature Implementation – I implemented piece highlighting, piece selection, piece movement (partially unimplemented), piece capturing, check and checkmate (couldn’t function without correct piece movement), and all of their underlying subsystems.
 * Technical consultation – I assisted members of the group with using Unity, GitHub, and C# programming.
+</br>
 ### Robert Anderson</br>
 Code-wise, I contributed primarily towards the ability implementation. The ability system was mostly complete, though towards the end we ran into trouble connecting it to the UI. I also assisted Kyle with main game logic, primarily through talking through algorithms and design choices on paper, along with some pair programming. I participated in each major design document. I wrote the vision for the PMD, several functional requirements for the SRS, the logical view and work assignment view for the SDD, and several check/checkmate test cases for the STD.</br>
 ### Gabriel Davis</br>
