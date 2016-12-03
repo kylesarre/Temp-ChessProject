@@ -26,7 +26,10 @@ The core concept of our game is to create a complete game of chess, but in addit
 We’re choosing this project because Chess is a rigid game that requires years of dedication and study before one can even begin to create any truly new and effective strategies, and the project seeks to add a new strategic dimension of unpredictability, which will act to “level the playing field,” in a way. More unpredictability places more importance on adaptability and improvisation, instead of endless memorization of positions and strategies. Asymmetric design means that no two games will be the same
 
 ## Configuration Management Plan
-GitHub
+__GitHub:__
+For all of the documents and code in this project, we used GitHub as our configuration management tool. It worked well for our team, as it allowed us to create branches to test features separately and then merge them at a later date. 
+__GroupMe:__
+To stay connected with one another on a real-time basis, we used GroupMe to communicate. It allowed each of us to quickly send messages to the group and each other while archiving important comments for future reference.
 
 ## Process Model
 __Agile Method: Extreme Programming__
@@ -41,10 +44,10 @@ Documentation:
 * [Software Testing Documnet](https://github.com/kylesarre/Temp-ChessProject/blob/master/ExtremeChess_STD.md)
 
 ## Potential Risks
-Human Risk: Lack of experience with the software used to make the game. Not knowing how to use the tools can lead to a higher chance of problems occuring.  
-Time Risk: Semester due date - Must manage scope of project and keep on task with deadlines
-Resources Risk: Potentially encountering problems with Microsoft Visual Studios.
-Liability Issues: None
+__Human Risk:__ Lack of experience with the software used to make the game. Not knowing how to use the tools can lead to a higher chance of problems occuring. <br>  
+__Time Risk:__ Semester due date - Must manage scope of project and keep on task with deadlines <br>
+__Resources Risk:__ Potentially encountering problems with Microsoft Visual Studios. <br>
+__Liability Issues:__ None
 
 ## Team Composition
 **Team members**:</br>
