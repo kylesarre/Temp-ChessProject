@@ -29,7 +29,8 @@ We’re choosing this project because Chess is a rigid game that requires years 
 GitHub
 
 ## Process Model
-Agile Method: Extreme Programming
+__Agile Method: Extreme Programming__
+We chose to use the agile programming method because we started this project with only a vague idea of what we wanted to implement. Using the agile approach allowed us to constantly make changes to our requirements as we added features that we realized we wanted to implement while removing features that would be both more difficult and less important to include in the first release of the software. By using this method, we were able to change the direction of our development quickly to reflect our more updated visions of the game. 
 
 ## Deliverables
 Extreme Chess Executable <br>
