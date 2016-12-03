@@ -83,12 +83,16 @@ Contributions:
 * Feature Implementation – I implemented piece highlighting, piece selection, piece movement (partially unimplemented), piece capturing, check and checkmate (couldn’t function without correct piece movement), and all of their underlying subsystems.
 * Technical consultation – I assisted members of the group with using Unity, GitHub, and C# programming.
 </br>
+
 ### Robert Anderson</br>
 Code-wise, I contributed primarily towards the ability implementation. The ability system was mostly complete, though towards the end we ran into trouble connecting it to the UI. I also assisted Kyle with main game logic, primarily through talking through algorithms and design choices on paper, along with some pair programming. I participated in each major design document. I wrote the vision for the PMD, several functional requirements for the SRS, the logical view and work assignment view for the SDD, and several check/checkmate test cases for the STD.</br>
+
 ### Gabriel Davis</br>
 My exact contribution was assisting with the logic of the program and design as well as documentation for the project and assisting Kyle with game coding. I worked on the SRS, SDD, STD, PMD and code along with the rest of the group because we all did it together and split the work into parts. I missed a group meeting on 11/1/16 because I was out of town and again on the Thanksgiving weekend from 11/26/16 to 11/27/16 because I was out of town for the holidays.</br>
+
 ### Julian Plaisance
 add your contribution here
+
 ### Hanna Cunningham
 For this project, I contributed a fair amount to the documentation, created the project schedule, and organized the majority of the group meetings.  I designed the User Interface for the game and worked on a few menus, including the Main Menu, Credits, Help, and Options, while also designing and adding some of the custom buttons in the game. Some of the powerups created late in the implementation phase were thought up by me, though they were not the first to be added, and thus are not included in the game’s initial release. 
 
@@ -127,6 +131,9 @@ Subtract energy when powerup is used | AA | W, Z | 2 | 51 | 51 | 0
 Check piece powerup window | AB | AA | 2 | 53 | 53 | 0
 
 ![Gantt Chart](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Extreme%20Chess%20Gantt%20Chart.png?raw=true)
+
+__Estimation Method: PERT__
+Considering the team had no experience in Unity prior to this semester, we were unable to use an algorithmic estimation method for our project, being entirely unsure of the KLOC to which our project might grow. Though not experts by any means, we were forced to discuss how long we believed features would take to implement, based on the experience that a few of our members gained working in Unity during the WICS Game Jam early in the semester. The most likely results we garnered are shown in the above diagrams. 
 
 ## Meeting Summary
 **Date**: 09-21-16</br>
