@@ -1,7 +1,4 @@
-# Project Management Document
-
-## Extreme Chess
-Spin-off of chess in Unity
+# Extreme Chess Project Management Document
 
 ## Index
 ##### Vision
@@ -120,6 +117,9 @@ Subtract energy when powerup is used | AA | W, Z | 2 | 51 | 51 | 0
 Check piece powerup window | AB | AA | 2 | 53 | 53 | 0
 
 ![Gantt Chart](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Extreme%20Chess%20Gantt%20Chart.png?raw=true)
+
+__Estimation Method: PERT__
+Considering the team had no experience in Unity prior to this semester, we were unable to use an algorithmic estimation method for our project, being entirely unsure of the KLOC to which our project might grow. Though not experts by any means, we were forced to discuss how long we believed features would take to implement, based on the experience that a few of our members gained working in Unity during the WICS Game Jam early in the semester. The most likely results we garnered are shown in the above diagrams. 
 
 ## Meeting Summary
 **Date**: 09-21-16</br>
