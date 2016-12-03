@@ -75,39 +75,39 @@ add your contribution here
 
 ## Project Schedule
 +![CPM](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Extreme%20Chess%20Critical%20Path%20Diagram%20-%20New%20Page%20(3).png)
- +
- +Task Description| Task | Task Precedence | Length (days) | ES | LS | Slack
- +---|---|---|---|---|---|---|
- +Main menu/scenes | A | - | 1 | 0 | 0 | 0
- +Quit application | B | A | 1 | 1 | 54 | 53
- +Create game board/grid | C | A | 1 | 1 | 1 | 0
- +Powerup selection menu| D | A | 2 | 1 | 44 | 43
- +Generate pieces | E | C | 3 | 2 | 2 | 0
- +Highlight cells on hover | F | E | 2 | 5 | 6 | 1
- +Select piece | G | E | 3 | 5 | 5 | 0
- +Highlight piece cell on select | H | F, G | 1 | 8 | 9 | 1
- +Deselect piece | I | G | 2 | 8 | 8 | 0
- +Add movement vectors| J | H, I | 4 | 10 | 10 | 0
- +Highlight possible moves | K | J | 2 | 14 | 15 | 1
- +Move piece to applicable cell | L | J | 3 | 14 | 14 | 0
- +Assign players to colored pieces| M | K, L | 1 | 17 | 17 | 0
- +Previous turns window | N | L | 5 | 17 | 50 | 33
- +Player can only select own pieces | O | M | 2 | 18 | 18 | 0
- +Add turn logic/switching | P | O | 2 | 20 | 20 | 0
- +Piece capture | Q | P | 1 | 22 | 23 | 1
- +Cannot move on top of same color piece | R | P | 2 | 22 | 22 | 0
- +Energy adds up every turn | S | P | 1 | 22 | 49 | 27
- +Player name header switches every turn | T | P | 1 | 22 | 54 | 32
- +Graveyard/captured pieces window | U | Q | 5 | 23 | 50 | 27
- +Add check/checkmate logic | V | Q, R | 14 | 24 | 24 | 0
- +Energy assigned to player/energy UI | W | S | 1 | 23 | 50 | 27
- +End game on checkmate/forfeit | X | V | 1 | 38 | 38 | 0
- +Add powerup vectors to piece library | Y | X | 7 | 39 | 39 | 0
- +Allow selection of powerups | Z | D, Y | 5 | 46 | 46 | 0
- +Subtract energy when powerup is used | AA | W, Z | 2 | 51 | 51 | 0
- +Check piece powerup window | AB | AA | 2 | 53 | 53 | 0
- +
- +![Gantt Chart](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Extreme%20Chess%20Gantt%20Chart.png?raw=true)
+
+Task Description| Task | Task Precedence | Length (days) | ES | LS | Slack
+---|---|---|---|---|---|---|
+Main menu/scenes | A | - | 1 | 0 | 0 | 0
+Quit application | B | A | 1 | 1 | 54 | 53
+Create game board/grid | C | A | 1 | 1 | 1 | 0
+Powerup selection menu| D | A | 2 | 1 | 44 | 43
+Generate pieces | E | C | 3 | 2 | 2 | 0
+Highlight cells on hover | F | E | 2 | 5 | 6 | 1
+Select piece | G | E | 3 | 5 | 5 | 0
+Highlight piece cell on select | H | F, G | 1 | 8 | 9 | 1
+Deselect piece | I | G | 2 | 8 | 8 | 0
+Add movement vectors| J | H, I | 4 | 10 | 10 | 0
+Highlight possible moves | K | J | 2 | 14 | 15 | 1
+Move piece to applicable cell | L | J | 3 | 14 | 14 | 0
+Assign players to colored pieces| M | K, L | 1 | 17 | 17 | 0
+Previous turns window | N | L | 5 | 17 | 50 | 33
+Player can only select own pieces | O | M | 2 | 18 | 18 | 0
+Add turn logic/switching | P | O | 2 | 20 | 20 | 0
+Piece capture | Q | P | 1 | 22 | 23 | 1
+Cannot move on top of same color piece | R | P | 2 | 22 | 22 | 0
+Energy adds up every turn | S | P | 1 | 22 | 49 | 27
+Player name header switches every turn | T | P | 1 | 22 | 54 | 32
+Graveyard/captured pieces window | U | Q | 5 | 23 | 50 | 27
+Add check/checkmate logic | V | Q, R | 14 | 24 | 24 | 0
+Energy assigned to player/energy UI | W | S | 1 | 23 | 50 | 27
+End game on checkmate/forfeit | X | V | 1 | 38 | 38 | 0
+Add powerup vectors to piece library | Y | X | 7 | 39 | 39 | 0
+Allow selection of powerups | Z | D, Y | 5 | 46 | 46 | 0
+Subtract energy when powerup is used | AA | W, Z | 2 | 51 | 51 | 0
+Check piece powerup window | AB | AA | 2 | 53 | 53 | 0
+
+![Gantt Chart](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Extreme%20Chess%20Gantt%20Chart.png?raw=true)
 
 ## Meeting Summary
 **Date**: 09-21-16</br>
