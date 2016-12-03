@@ -1,7 +1,4 @@
-﻿# Project Management Document
-
-## Extreme Chess
-Spin-off of chess in Unity
+# Extreme Chess Project Management Document
 
 ## Index
 ##### Vision
