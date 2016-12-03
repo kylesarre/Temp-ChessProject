@@ -26,20 +26,21 @@ The core concept of our game is to create a complete game of chess, but in addit
 We’re choosing this project because Chess is a rigid game that requires years of dedication and study before one can even begin to create any truly new and effective strategies, and the project seeks to add a new strategic dimension of unpredictability, which will act to “level the playing field,” in a way. More unpredictability places more importance on adaptability and improvisation, instead of endless memorization of positions and strategies. Asymmetric design means that no two games will be the same
 
 ## Configuration Management Plan
-todo
+GitHub
 
 ## Process Model
-todo
+Agile Method: Extreme Programming
 
 ## Deliverables
-todo
+Extreme Chess Executable <br>
+
+Documentation:
+* [Software Requirements Specification](https://github.com/kylesarre/Temp-ChessProject/blob/master/ExtremeChess_SRS.md)
+* [Software Design Document](https://github.com/kylesarre/Temp-ChessProject/blob/master/ExtremeChess_SDD.md)
+* [Software Testing Documnet](https://github.com/kylesarre/Temp-ChessProject/blob/master/ExtremeChess_STD.md)
 
 ## Potential Risks
-Human Risk: Lack of experience with the software used to make the game. Not knowing how to use the tools can lead to a higher chance of problems occuring.  
-Time Risk: Semester due date - Must manage scope of project and keep on task with deadlines
-Resources Risk
-Liability Issues: 
-
+todo
 
 ## Team Composition
 **Team members**:</br>
@@ -68,17 +69,50 @@ We split our five members into 2 teams, 3 in the main game logic and 2 into UI, 
 ## Team Member Contributions
 ### Kyle Sarre
 add your contribution here
-### Robert Anderson
-add your contribution here
-### Gabriel Davis
-My exact contribution was assisting with the logic of the program and design as well as documentation for the project and assisting Kyle with game coding. I worked on the SRS, SDD, STD, PMD and code along with the rest of the group because we all did it together and split the work into parts. I missed a group meeting on 11/1/16 because I was out of town and again on the Thanksgiving weekend from 11/26/16 to 11/27/16 because I was out of town for the holidays.
+### Robert Anderson</br>
+Code-wise, I contributed primarily towards the ability implementation. The ability system was mostly complete, though towards the end we ran into trouble connecting it to the UI. I also assisted Kyle with main game logic, primarily through talking through algorithms and design choices on paper, along with some pair programming. I participated in each major design document. I wrote the vision for the PMD, several functional requirements for the SRS, the logical view and work assignment view for the SDD, and several check/checkmate test cases for the STD.</br>
+### Gabriel Davis</br>
+My exact contribution was assisting with the logic of the program and design as well as documentation for the project and assisting Kyle with game coding. I worked on the SRS, SDD, STD, PMD and code along with the rest of the group because we all did it together and split the work into parts. I missed a group meeting on 11/1/16 because I was out of town and again on the Thanksgiving weekend from 11/26/16 to 11/27/16 because I was out of town for the holidays.</br>
 ### Julian Plaisance
 add your contribution here
 ### Hanna Cunningham
-add your contribution here
+For this project, I contributed a fair amount to the documentation, created the project schedule, and organized the majority of the group meetings.  I designed the User Interface for the game and worked on a few menus, including the Main Menu, Credits, Help, and Options, while also designing and adding some of the custom buttons in the game. Some of the powerups created late in the implementation phase were thought up by me, though they were not the first to be added, and thus are not included in the game’s initial release. 
 
 ## Project Schedule
-todo
++![CPM](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Extreme%20Chess%20Critical%20Path%20Diagram%20-%20New%20Page%20(3).png)
+
+Task Description| Task | Task Precedence | Length (days) | ES | LS | Slack
+---|---|---|---|---|---|---|
+Main menu/scenes | A | - | 1 | 0 | 0 | 0
+Quit application | B | A | 1 | 1 | 54 | 53
+Create game board/grid | C | A | 1 | 1 | 1 | 0
+Powerup selection menu| D | A | 2 | 1 | 44 | 43
+Generate pieces | E | C | 3 | 2 | 2 | 0
+Highlight cells on hover | F | E | 2 | 5 | 6 | 1
+Select piece | G | E | 3 | 5 | 5 | 0
+Highlight piece cell on select | H | F, G | 1 | 8 | 9 | 1
+Deselect piece | I | G | 2 | 8 | 8 | 0
+Add movement vectors| J | H, I | 4 | 10 | 10 | 0
+Highlight possible moves | K | J | 2 | 14 | 15 | 1
+Move piece to applicable cell | L | J | 3 | 14 | 14 | 0
+Assign players to colored pieces| M | K, L | 1 | 17 | 17 | 0
+Previous turns window | N | L | 5 | 17 | 50 | 33
+Player can only select own pieces | O | M | 2 | 18 | 18 | 0
+Add turn logic/switching | P | O | 2 | 20 | 20 | 0
+Piece capture | Q | P | 1 | 22 | 23 | 1
+Cannot move on top of same color piece | R | P | 2 | 22 | 22 | 0
+Energy adds up every turn | S | P | 1 | 22 | 49 | 27
+Player name header switches every turn | T | P | 1 | 22 | 54 | 32
+Graveyard/captured pieces window | U | Q | 5 | 23 | 50 | 27
+Add check/checkmate logic | V | Q, R | 14 | 24 | 24 | 0
+Energy assigned to player/energy UI | W | S | 1 | 23 | 50 | 27
+End game on checkmate/forfeit | X | V | 1 | 38 | 38 | 0
+Add powerup vectors to piece library | Y | X | 7 | 39 | 39 | 0
+Allow selection of powerups | Z | D, Y | 5 | 46 | 46 | 0
+Subtract energy when powerup is used | AA | W, Z | 2 | 51 | 51 | 0
+Check piece powerup window | AB | AA | 2 | 53 | 53 | 0
+
+![Gantt Chart](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Extreme%20Chess%20Gantt%20Chart.png?raw=true)
 
 ## Meeting Summary
 **Date**: 09-21-16</br>
@@ -162,5 +196,4 @@ and that we should meet again at a later date.</br>
 **Members in Attendance**: Hanna Cunningham, Robert Anderson, Kyle Sarre, Julian Plaisance, Gabriel Davis</br>
 **Goals met**: Gabriel will introduce our project, Robert will lead the presentation, Julian and Hanna will talk about their UI,
 Kyle will talk about the technical details.</br>
-
 
