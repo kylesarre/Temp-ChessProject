@@ -88,7 +88,7 @@ Code-wise, I contributed primarily towards the ability implementation. The abili
 My exact contribution was assisting with the logic of the program and design as well as documentation for the project and assisting Kyle with game coding. I worked on the SRS, SDD, STD, PMD and code along with the rest of the group because we all did it together and split the work into parts. I missed a group meeting on 11/1/16 because I was out of town and again on the Thanksgiving weekend from 11/26/16 to 11/27/16 because I was out of town for the holidays.</br>
 
 ### Julian Plaisance
-add your contribution here
+Minor documentation contribution.  Helped Hanna design and document the UI, worked on several menus and other UI elements including most of the implementation of the UI implementation.  Talked with Kyle about Game Logic design.  I also synced the UI and Game Logic teams's code into a cohesive demo.
 
 ### Hanna Cunningham
 For this project, I contributed a fair amount to the documentation, created the project schedule, and organized the majority of the group meetings.  I designed the User Interface for the game and worked on a few menus, including the Main Menu, Credits, Help, and Options, while also designing and adding some of the custom buttons in the game. Some of the powerups created late in the implementation phase were thought up by me, though they were not the first to be added, and thus are not included in the game’s initial release. 
