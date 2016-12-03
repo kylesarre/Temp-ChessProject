@@ -32,7 +32,12 @@ todo
 todo
 
 ## Deliverables
-todo
+Extreme Chess Executable <br>
+
+Documentation:
+* [Software Requirements Specification](https://github.com/kylesarre/Temp-ChessProject/blob/master/ExtremeChess_SRS.md)
+* [Software Design Document](https://github.com/kylesarre/Temp-ChessProject/blob/master/ExtremeChess_SDD.md)
+* [Software Testing Documnet](https://github.com/kylesarre/Temp-ChessProject/blob/master/ExtremeChess_STD.md)
 
 ## Potential Risks
 todo
