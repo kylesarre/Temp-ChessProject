@@ -40,7 +40,10 @@ Documentation:
 * [Software Testing Documnet](https://github.com/kylesarre/Temp-ChessProject/blob/master/ExtremeChess_STD.md)
 
 ## Potential Risks
-todo
+Human Risk: Lack of experience with the software used to make the game. Not knowing how to use the tools can lead to a higher chance of problems occuring. <br>
+Time Risk: Semester due date - Must manage scope of project and keep on task with deadlines <br>
+Resources Risk: <br> 
+Liability Issues:
 
 ## Team Composition
 **Team members**:</br>
