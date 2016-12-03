@@ -76,7 +76,7 @@ add your contribution here
 ### Julian Plaisance
 add your contribution here
 ### Hanna Cunningham
-add your contribution here
+For this project, I contributed a fair amount to the documentation, created the project schedule, and organized the majority of the group meetings.  I designed the User Interface for the game and worked on a few menus, including the Main Menu, Credits, Help, and Options, while also designing and adding some of the custom buttons in the game. Some of the powerups created late in the implementation phase were thought up by me, though they were not the first to be added, and thus are not included in the game’s initial release. 
 
 ## Project Schedule
 +![CPM](https://github.com/kylesarre/Temp-ChessProject/blob/master/SRSdiagrams/Extreme%20Chess%20Critical%20Path%20Diagram%20-%20New%20Page%20(3).png)
